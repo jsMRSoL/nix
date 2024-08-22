@@ -11,9 +11,15 @@
   let
       system = "x86_64-linux";
   in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [ ./pistol/configuration.nix ];
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./pistol/configuration.nix ];
+        };
+        rapier = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./rapier/configuration.nix ];
+        };
       };
 
       homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
