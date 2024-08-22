@@ -43,28 +43,29 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  fonts.packages = with pkgs; [
+    fira-code-nerdfont
+    source-code-pro
+    hack-font
+  ];
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver = {
     enable = true;
     windowManager.dwm = {
       enable = true;
-      # package = pkgs.dwm.overrideAttrs {
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "jsMRSoL";
-      #     repo = "dwm";
-      #     rev = "00e1d9d676baebc7f54f961f3082447cc488465e";
-      #     hash = "sha256-XIPgcyHy6f04U9KnooeW0yREmObe/2/e0aQjXTyT0Ps=";
-      #   };
-      # };
+      package = pkgs.dwm.overrideAttrs {
+        # src = pkgs.fetchFromGitHub {
+        #   owner = "jsMRSoL";
+        #   repo = "dwm";
+        #   rev = "00e1d9d676baebc7f54f961f3082447cc488465e";
+        #   hash = "sha256-XIPgcyHy6f04U9KnooeW0yREmObe/2/e0aQjXTyT0Ps=";
+        # };
+        src = /home/simon/Repos/dwm;
+      };
     };
   };
-
-  fonts.packages = with pkgs; [
-    fira-code-nerdfont
-    source-code-pro
-    hack-font
-  ];
 
   # services.dwm-status = {
   #   enable = true;

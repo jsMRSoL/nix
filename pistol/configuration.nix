@@ -15,7 +15,7 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "pistol"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -42,6 +42,12 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+
+  fonts.packages = with pkgs; [
+    fira-code-nerdfont
+    source-code-pro
+    hack-font
+  ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
