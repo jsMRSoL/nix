@@ -108,7 +108,6 @@
    wget
    gcc
    pciutils
-   go
    home-manager
   ];
 
