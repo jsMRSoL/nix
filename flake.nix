@@ -14,17 +14,21 @@
       nixosConfigurations = {
         pistol = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./pistol/configuration.nix ];
+          modules = [ ./hosts/pistol/configuration.nix ];
         };
         rapier = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./rapier/configuration.nix ];
+          modules = [ ./hosts/rapier/configuration.nix ];
+        };
+        swing = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/swing/configuration.nix ];
         };
       };
 
       homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [ ./home.nix ];
+        modules = [ ./homemanager/home.nix ];
       };
     };
 }
