@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # ../../modules/sddm-chili-theme/chili.nix
     ];
 
   # Bootloader.
@@ -49,11 +50,11 @@
   services.upower.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-    options = "ctrl:nocaps";
-  };
+  # services.xserver.xkb = {
+  #   layout = "gb";
+  #   variant = "";
+  #   options = "ctrl:nocaps";
+  # };
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -62,7 +63,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -95,6 +95,18 @@
     wrapperFeatures.gtk = true;
   };
 
+  services.displayManager.sddm = {
+    enable = true;
+    # theme = "elarun";
+    wayland.enable = true;
+    settings = {
+      Theme = {
+        ThemeDir = "/home/simon/.config/sddm/themes";
+        Current = "sugar-candy";
+      };
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -115,6 +127,7 @@
    chromium
    pass
   ];
+
 
   # Install firefox.
   programs.firefox.enable = true;

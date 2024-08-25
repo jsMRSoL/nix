@@ -1,0 +1,11 @@
+diff --git a/theme.conf b/theme.conf
+index 6d8c7b5..fd945b9 100644
+--- a/theme.conf
++++ b/theme.conf
+@@ -1,5 +1,5 @@
+ [General]
+-background=assets/background.jpg
++background=/home/simon/.config/sddm/themes/sugar-candy/Backgrounds/salty_mountains.png
+ 
+ ScreenWidth=1440
+ ScreenHeight=900
