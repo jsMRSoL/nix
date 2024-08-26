@@ -97,15 +97,18 @@
 
   services.displayManager.sddm = {
     enable = true;
-    # theme = "elarun";
+    theme = "chili"; # elarun, maldives, maya
     wayland.enable = true;
-    settings = {
-      Theme = {
-        ThemeDir = "/home/simon/.config/sddm/themes";
-        Current = "sugar-candy";
-      };
-    };
+    # settings = {
+    #   Theme = {
+    #     ThemeDir = "${pkgs.sddm-chili-theme.outPath}/sddm/share/theme";
+    #     Current = "chili";
+    #   };
+    # };
   };
+
+  # overlays
+  nixpkgs.overlays = [ ../../modules/sddm-chili-theme/chili-overlay.nix ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -126,6 +129,7 @@
    mako # notification system developed by swaywm maintainer
    chromium
    pass
+   sddm-chili-theme
   ];
 
 

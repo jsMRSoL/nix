@@ -15,5 +15,6 @@
     ];
   });
   chili = pkgs.sddm-chili-theme.override {inherit sddm-chili-theme;};
-  in
-  environment.systemPackages = [ chili ];
+  in {
+    environment.systemPackages = [ chili ];
+  }
