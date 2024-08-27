@@ -1,11 +1,12 @@
 { config, pkgs, ...}: {
 
   imports = [
-    ../modules/foot
     ../modules/bash
-    ../modules/git
+    ../modules/dunst
     ../modules/dwm-status
+    ../modules/foot
     ../modules/games
+    ../modules/git
   ];
 
   home = {
@@ -24,6 +25,7 @@
       mpv
       mupdf
       neovim
+      sway-contrib.grimshot
       sxiv
       unar
       xdg-utils

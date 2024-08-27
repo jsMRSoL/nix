@@ -4,6 +4,7 @@
     enableCompletion = true;
     historyControl = ["ignoreboth"];
     initExtra = ''
+    export XDG_SCREENSHOTS_DIR="/home/simon/Pictures/screenshots"
     function r() {
       local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
       yazi "$@" --cwd-file="$tmp"
