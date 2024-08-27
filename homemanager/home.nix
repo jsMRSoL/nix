@@ -21,10 +21,12 @@
       htop
       imagemagick
       lazygit
+      libnotify
       mediainfo
       mpv
       mupdf
       neovim
+      papirus-icon-theme
       sway-contrib.grimshot
       sxiv
       unar
