@@ -4,7 +4,7 @@
     settings = {
       main = {
         font = "FiraCode Nerd Font Mono:size=12";
-      }
+      };
       colors = {
         foreground = "cdd6f4";
         background = "1e1e2e";
@@ -32,5 +32,5 @@
         urls = "89b4fa";
       };
     };
-  }
+  };
 }
