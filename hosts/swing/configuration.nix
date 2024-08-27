@@ -99,16 +99,15 @@
     enable = true;
     theme = "chili"; # elarun, maldives, maya
     wayland.enable = true;
-    # settings = {
-    #   Theme = {
-    #     ThemeDir = "${pkgs.sddm-chili-theme.outPath}/sddm/share/theme";
-    #     Current = "chili";
-    #   };
-    # };
   };
 
   # overlays
-  nixpkgs.overlays = [ ../../modules/sddm-chili-theme/chili-overlay.nix ];
+  nixpkgs.overlays = [ (finalAttrs: previousAttrs: {
+        sddm-chili-theme = previousAttrs.sddm-chili-theme.overrideAttrs {
+          src = /home/simon/Repos/sddm-chili;
+        };
+      })
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
