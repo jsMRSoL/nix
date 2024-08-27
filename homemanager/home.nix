@@ -1,4 +1,7 @@
 { config, pkgs, ...}: {
+  imports = [
+    ../modules/foot/foot.nix
+  ];
   home = {
     username = "simon";
     homeDirectory = "/home/simon";
