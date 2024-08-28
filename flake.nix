@@ -24,6 +24,10 @@
           inherit system;
           modules = [ ./hosts/swing/configuration.nix ];
         };
+        swingvm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/swingvm/configuration.nix ];
+        };
       };
 
       homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
