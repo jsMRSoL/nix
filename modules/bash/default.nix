@@ -4,7 +4,6 @@
     enableCompletion = true;
     historyControl = ["ignoreboth"];
     initExtra = ''
-    export XDG_SCREENSHOTS_DIR="/home/simon/Pictures/screenshots"
     function r() {
       local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
       yazi "$@" --cwd-file="$tmp"
@@ -26,6 +25,7 @@
       gd = "cd ~/Documents";
       gn = "cd ${flakeDir}";
       gp = "cd ~/Pictures";
+      gR = "cd ~/Repos";
       gv = "cd ~/Videos";
       # r = "yazi";
       rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
@@ -36,5 +36,9 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
+  };
+
+  home.sessionVariables = {
+    XDG_SCREENSHOTS_DIR = "/home/simon/Pictures/screenshots";
   };
 }

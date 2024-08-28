@@ -1,4 +1,5 @@
 # Edit this configuration file to define what should be installed on
+
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -8,7 +9,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # ../../modules/sddm-chili-theme/chili.nix
     ];
 
   # Bootloader.
@@ -104,7 +104,12 @@
   # overlays
   nixpkgs.overlays = [ (finalAttrs: previousAttrs: {
         sddm-chili-theme = previousAttrs.sddm-chili-theme.overrideAttrs {
-          src = /home/simon/Repos/sddm-chili;
+          src = pkgs.fetchFromGitHub {
+            owner = "jsMRSoL";
+            repo = "jalapeno";
+            rev = "34144ad7adf9469e40645fc5158f35d5dabfe262";
+            hash = "sha256-QO5pPTHCHsi2NWl3hAa354D4Sk6OZBAyoLzYLgF8AzE=";
+          };
         };
       })
   ];
@@ -131,6 +136,7 @@
    sddm-chili-theme
   ];
 
+  environment.variables.EDITOR = "nvim";
 
   # Install firefox.
   programs.firefox.enable = true;

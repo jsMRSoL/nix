@@ -54,13 +54,13 @@
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs {
-        # src = pkgs.fetchFromGitHub {
-        #   owner = "jsMRSoL";
-        #   repo = "dwm";
-        #   rev = "00e1d9d676baebc7f54f961f3082447cc488465e";
-        #   hash = "sha256-XIPgcyHy6f04U9KnooeW0yREmObe/2/e0aQjXTyT0Ps=";
-        # };
-        src = /home/simon/Repos/dwm;
+        src = fetchFromGitHub {
+          owner = "jsMRSoL";
+          repo = "dwm";
+          rev = "95014cb2f8bd9feb31f0f1f3058146aff602386f";
+          hash = "sha256-PkwV3Qe04ASM9R28ESZXGIekTNRW1nQ3WmAZgLojo90=";
+        };
+        # src = /home/simon/Repos/dwm;
       };
     };
   };
