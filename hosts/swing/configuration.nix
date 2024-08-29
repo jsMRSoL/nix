@@ -93,6 +93,7 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraConfig = builtins.readFile ../../modules/sway/config;
   };
 
   services.displayManager.sddm = {
