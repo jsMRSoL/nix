@@ -89,13 +89,6 @@
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraConfig = builtins.readFile ../../modules/sway/config;
-  };
-
   services.displayManager.sddm = {
     enable = true;
     theme = "chili"; # elarun, maldives, maya
@@ -135,6 +128,7 @@
    chromium
    pass
    sddm-chili-theme
+   sway
   ];
 
   environment.variables.EDITOR = "nvim";
