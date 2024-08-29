@@ -1,20 +1,18 @@
-{ config, pkgs }:
-
+{ config, pkgs, ... }:
 let
-  modifier = wayland.windowManager.sway.config.modifier;
-  left = wayland.windowManager.sway.config.left;
-  down = wayland.windowManager.sway.config.down;
-  up = wayland.windowManager.sway.config.up;
-  right = wayland.windowManager.sway.config.right;
-  _ = pkgs.lib.getExe;
-  term = wayland.windowManager.sway.config.term;
-  menu = wayland.windowManager.sway.config.menu;
+  cfg = config.wayland.windowManager.sway.config;
+  modifier = cfg.modifier;
+  left = cfg.left;
+  down = cfg.down;
+  up = cfg.up;
+  right = cfg.right;
+  term = cfg.terminal;
+  menu = cfg.menu;
   # ocrScript = pkgs.writeShellScript "ocr.sh" ''
   #   ${_ pkgs.grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract} - - | ${wl-clipboard}/bin/wl-copy
   #   ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
   # '';
-in
-{
+in pkgs.lib.mkOptionDefault {
   # Core WM controls
   "${modifier}+Shift+Return" = "exec ${term}";
   "${modifier}+Shift+p" = "exec ${menu}";
@@ -25,7 +23,7 @@ in
   "${modifier}+Shift+s" = "exec ${pkgs.swaylock}/bin/swaylock -f -c 000000";
   "${modifier}+q" = "exit";
   "${modifier}+Shift+Delete" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
-  
+
   # Movements
   "${modifier}+${left}" = "focus left";
   "${modifier}+${down}" = "focus down";
@@ -82,33 +80,11 @@ in
 
   # Screenshots
   # save custom area
-  Print = "exec ${pkgs.grimshot}/bin/grimshot save area";
+  "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
   # save screen
-  "${modifier}+Print" = "exec ${pkgs.grimshot}/bin/grimshot save output";
+  "${modifier}+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save output";
   # copy custom area to clipboard
-  "Alt+Print" = "exec ${pkgs.grimshot}/bin/grimshot copy area";
+  "Alt+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
   # copy screen to clipboard
-  "${modifier}+Shift+Print" = "exec ${pkgs.grimshot}/bin/grimshot copy output";
-  # Print = ''exec ${grim}/bin/grim -g "$(${slurp}/bin/slurp -d)" - | ${wl-clipboard}/bin/wl-copy -t image/png'';
-  # "${modifier}+p" = ''exec /bin/sh -c "cat /home/gytis/notes | ${pkgs.g-rofi}/bin/rofi -dmenu | ${pkgs.findutils}/bin/xargs ${pkgs.wtype}/bin/wtype"'';
-  # XF86AudioMute = "exec ${pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-  # XF86AudioPlay = "exec ${playerctl}/bin/playerctl play";
-  # XF86AudioPause = "exec ${playerctl}/bin/playerctl pause";
-  # XF86AudioNext = "exec ${playerctl}/bin/playerctl next";
-  # XF86AudioPrev = "exec ${playerctl}/bin/playerctl prev";
-  # XF86AudioRaiseVolume = "exec ${pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ +5%";
-  # XF86AudioLowerVolume = "exec ${pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ -5%";
-  # XF86MonBrightnessUp = "exec ${xorg.xbacklight} -inc 20";
-  # XF86MonBrightnessDown = "exec ${xorg.xbacklight} -dec 20";
-
-  # "${modifier}+o" = "exec ${ocrScript}";
-  # "${modifier}+b" = "exec ${brave}/bin/brave";
-  #"${modifier}+t" = ''[class="scratchterm"] scratchpad show, move position center'';
-  #"${modifier}+b" = ''[class="scratchbrowser"] scratchpad show, move position center '';
-
-
-
-  #"${modifier}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-
-  #"${modifier}+r" = "mode resize";
+  "${modifier}+Shift+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy output";
 }

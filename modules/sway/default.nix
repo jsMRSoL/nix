@@ -1,3 +1,10 @@
+{ pkgs, config, ... }:
+let 
+  left = "h";
+  down = "j";
+  up = "k";
+  right = "l";
+in
 {
   # enable sway window manager
   # programs.sway = {
@@ -14,50 +21,50 @@
         titlebar = false;
         border = 2;
       };
-      left = "h";
-      down = "j";
-      up = "k";
-      right = "l";
+      inherit left;
+      inherit down;
+      inherit up;
+      inherit right;
       terminal = "${pkgs.foot}/bin/foot";
       menu = "${pkgs.wmenu}/bin/wmenu-run -i -l 42";
-    };
-    keybindings = import ./keybindings.nix;
-    modes.resize = {
-      Escape = "mode default";
-      Return = "mode default";
-      "${down}" = "resize grow height 10 px or 10 ppt";
-      "${left}" = "resize shrink width 10 px or 10 ppt";
-      "${right}" = "resize grow width 10 px or 10 ppt";
-      "${up}" = "resize shrink height 10 px or 10 ppt";
+      bars = [
+        {
+           position = "top";
+           statusCommand = ''while date + '%Y-%m-d %X'; do sleep 1; done'';
+           colors = {
+             statusline = "#cdd6f4";
+             background = "#1e1e2e";
+             focusedWorkspace = {
+               background = "#89b4fa";
+               text = "#74c7ec";
+               border = "#45475a";
+             };
+             inactiveWorkspace = {
+               background = "#585b70      ";
+               text = "#cdd6fa";
+               border = "#89b4fa  ";
+             };
+           };
+        }
+      ];
+      keybindings = import ./keybindings.nix { inherit config pkgs; };
+      modes.resize = {
+        Escape = "mode default";
+        Return = "mode default";
+        "${down}" = "resize grow height 10 px or 10 ppt";
+        "${left}" = "resize shrink width 10 px or 10 ppt";
+        "${right}" = "resize grow width 10 px or 10 ppt";
+        "${up}" = "resize shrink height 10 px or 10 ppt";
+      };
     };
     extraConfig = ''
       client.focused #89b4fa #89b4fa #000000
-      output * bg /home/simon/Pictures/wallpapers/landscapes/salty_mountains.png stretch
+      output * bg "${./salty_mountains.png}" stretch
       input "type:keyboard" {
           xkb_layout us
           xkb_options ctrl:nocaps
       }
     '';
-    bars = [
-      {
-         position = "top";
-         statusCommand = ''while date + '%Y-%m-d %X'; do sleep 1; done'';
-         colors = {
-           statusline = "#cdd6f4";
-           background = "#1e1e2e";
-           focusedWorkspace = {
-             background = "#89b4fa";
-             text = "#74c7ec";
-             border = "#45475a";
-           };
-           inactiveWorkspace = {
-             background = "#585b70      ";
-             text = "#cdd6fa";
-             border = "#89b4fa  ";
-           };
-         };
-      }
-    ];
     wrapperFeatures.gtk = true;
   };
 
@@ -66,7 +73,7 @@
     enable = true;
     events = [
       { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; }
-      { event = "resume"; command = ''swaymsg "output * power on"''; }
+      { event = "after-resume"; command = ''swaymsg "output * power on"''; }
       { event = "lock"; command = "lock"; }
     ];
     timeouts = [
