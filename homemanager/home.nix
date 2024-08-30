@@ -39,7 +39,10 @@
     file = {
       "testhomefile.txt" = {
          enable = true;
-         text = "hi there!";
+         text = ''
+           hi there!
+           How's it goin'?
+         '';
          target = "testhomefile.txt";
       };
     };
