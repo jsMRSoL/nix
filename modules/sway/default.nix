@@ -13,6 +13,7 @@ in
     xwayland = true;
     config = {
       modifier = "Mod4";
+      defaultWorkspace = "workspace number 1";
       window = {
         border = 2;
         titlebar = false;
@@ -40,14 +41,14 @@ in
              statusline = "#cdd6f4";
              background = "#1e1e2e";
              focusedWorkspace = {
-               background = "#89b4fa";
-               text = "#74c7ec";
-               border = "#45475a";
+               border = "#89b4fa";
+               background = "#74c7ec";
+               text = "#45475a";
              };
              inactiveWorkspace = {
+               border = "#89b4fa";
                background = "#585b70      ";
                text = "#cdd6fa";
-               border = "#89b4fa  ";
              };
            };
         }

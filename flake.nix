@@ -26,13 +26,18 @@
         };
         swingvm = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/swingvm/configuration.nix ];
+          modules = [
+            ./hosts/swingvm/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.users.simon = ./homemanager/home.nix
+            }
+          ];
         };
       };
 
-      homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [ ./homemanager/home.nix ];
-      };
+      # homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
+      #   pkgs = nixpkgs.legacyPackages.${system};
+      #   modules = [ ./homemanager/home.nix ];
+      # };
     };
 }

@@ -49,13 +49,6 @@
   # Enable the upower daemon
   services.upower.enable = true;
 
-  # Configure keymap in X11
-  # services.xserver.xkb = {
-  #   layout = "gb";
-  #   variant = "";
-  #   options = "ctrl:nocaps";
-  # };
-
   # Configure console keymap
   console.keyMap = "uk";
 
@@ -91,8 +84,10 @@
 
   programs.sway = {
     enable = true;
+    xwayland.enable = true;
     package = null;
   };
+
   services.displayManager = {
     sddm = {
       enable = true;
