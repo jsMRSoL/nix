@@ -1,4 +1,4 @@
-# It's works!
+# It works!
 # Window decorations
 default_border pixel 2
 client.focused #89b4fa #89b4fa #000000
