@@ -1,7 +1,7 @@
 {
-  home.file."sway" = {
+  xdg.configFile."sway" = {
     enable = true;
     source = ./sway-config;
-    target = ".config/sway/config";
+    target = "sway/config";
   };
 }
