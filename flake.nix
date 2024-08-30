@@ -14,11 +14,25 @@
       nixosConfigurations = {
         pistol = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/pistol/configuration.nix ];
+          modules = [ 
+            ./hosts/pistol/configuration.nix 
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.simon = import ./userprofiles/simon-pistol.nix;
+            }
+          ];
         };
         rapier = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/rapier/configuration.nix ];
+          modules = [ 
+            ./hosts/rapier/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.simon = import ./userprofiles/simon-rapier.nix;
+            }
+          ];
         };
         swing = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -27,7 +41,7 @@
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.simon = import ./homemanager/home.nix;
+              home-manager.users.simon = import ./userprofiles/simon-swing.nix;
             }
           ];
         };
@@ -35,6 +49,11 @@
           inherit system;
           modules = [
             ./hosts/swingvm/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.simon = import ./userprofiles/simon-swing.nix;
+            }
           ];
         };
       };
