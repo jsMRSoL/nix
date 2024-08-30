@@ -35,17 +35,6 @@
       yazi
       zoxide
     ];
-
-    file = {
-      "testhomefile.txt" = {
-         enable = true;
-         text = ''
-           hi there!
-           How's it goin'?
-         '';
-         target = "testhomefile.txt";
-      };
-    };
   };
 
   programs.home-manager.enable = true;
