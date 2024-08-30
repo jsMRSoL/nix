@@ -85,6 +85,7 @@
   programs.sway = {
     enable = true;
     xwayland.enable = true;
+    extraOptions = ["--config ${../../modules/sway/sway-config}"];
   };
 
   services.displayManager = {
