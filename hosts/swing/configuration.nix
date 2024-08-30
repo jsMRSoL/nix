@@ -82,10 +82,6 @@
   programs.sway = {
     enable = true;
     xwayland.enable = true;
-    extraOptions = [
-      "--config"
-      "${../../modules/sway/sway-config}"
-    ];
   };
 
   services.displayManager = {
@@ -97,18 +93,6 @@
   };
   security.polkit.enable = true;
 
-  # overlays
-  # nixpkgs.overlays = [ (finalAttrs: previousAttrs: {
-  #       sddm-chili-theme = previousAttrs.sddm-chili-theme.overrideAttrs {
-  #         src = pkgs.fetchFromGitHub {
-  #           owner = "jsMRSoL";
-  #           repo = "jalapeno";
-  #           rev = "34144ad7adf9469e40645fc5158f35d5dabfe262";
-  #           hash = "sha256-QO5pPTHCHsi2NWl3hAa354D4Sk6OZBAyoLzYLgF8AzE=";
-  #         };
-  #       };
-  #     })
-  # ];
   nixpkgs.overlays = [
     (final: prev: {
        sddm-chili-theme = prev.sddm-chili-theme.override {
