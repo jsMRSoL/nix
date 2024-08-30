@@ -97,6 +97,7 @@
       wayland.enable = true;
     };
   };
+  security.polkit.enable = true;
 
   # overlays
   nixpkgs.overlays = [ (finalAttrs: previousAttrs: {

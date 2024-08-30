@@ -35,7 +35,7 @@ in
              names = [ "FiraCode Nerd Font Mono Med" ];
              size = 11.0;
            };
-           statusCommand = "${./status.sh}";
+           statusCommand = "while date +'%Y-%m-%d %X'; do sleep 1; done";
            colors = {
              statusline = "#cdd6f4";
              background = "#1e1e2e";
