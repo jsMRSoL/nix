@@ -28,18 +28,18 @@
           inherit system;
           modules = [
             ./hosts/swingvm/configuration.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPkgs = true;
-              home-manager.users.simon = import ./homemanager/home.nix;
-            }
+            # home-manager.nixosModules.home-manager {
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPkgs = true;
+            #   home-manager.users.simon = import ./homemanager/home.nix;
+            # }
           ];
         };
       };
 
-      # homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = nixpkgs.legacyPackages.${system};
-      #   modules = [ ./homemanager/home.nix ];
-      # };
+      homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [ ./homemanager/home.nix ];
+      };
     };
 }
