@@ -15,7 +15,7 @@ let
 in pkgs.lib.mkOptionDefault {
   # Core WM controls
   "${modifier}+Shift+Return" = "exec ${term}";
-  "${modifier}+Shift+p" = "exec ${menu}";
+  "${modifier}+p" = "exec ${menu}";
   "${modifier}+Shift+c" = "kill";
   "${modifier}+r" = "resize";
   "${modifier}+Shift+r" = "reload";

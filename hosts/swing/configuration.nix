@@ -89,10 +89,13 @@
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "chili"; # elarun, maldives, maya
-    wayland.enable = true;
+  services.displayManager = {
+    defaultSession = "sway";
+    sddm = {
+      enable = true;
+      theme = "chili"; # elarun, maldives, maya
+      wayland.enable = true;
+    };
   };
 
   # overlays

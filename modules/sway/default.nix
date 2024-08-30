@@ -15,6 +15,7 @@ in
       modifier = "Mod4";
       window = {
         border = 2;
+        titlebar = false;
       };
       floating = {
         modifier = "Mod4";
@@ -30,7 +31,11 @@ in
       bars = [
         {
            position = "top";
-           statusCommand = ''while date + '%Y-%m-d %X'; do sleep 1; done'';
+           fonts = {
+             names = [ "FiraCode Nerd Font Mono Med" ];
+             size = 11.0;
+           };
+           statusCommand = "${./status.sh}";
            colors = {
              statusline = "#cdd6f4";
              background = "#1e1e2e";
