@@ -89,8 +89,11 @@
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
+  programs.sway = {
+    enable = true;
+    package = null;
+  };
   services.displayManager = {
-    defaultSession = "sway";
     sddm = {
       enable = true;
       theme = "chili"; # elarun, maldives, maya
@@ -100,16 +103,27 @@
   security.polkit.enable = true;
 
   # overlays
-  nixpkgs.overlays = [ (finalAttrs: previousAttrs: {
-        sddm-chili-theme = previousAttrs.sddm-chili-theme.overrideAttrs {
-          src = pkgs.fetchFromGitHub {
-            owner = "jsMRSoL";
-            repo = "jalapeno";
-            rev = "34144ad7adf9469e40645fc5158f35d5dabfe262";
-            hash = "sha256-QO5pPTHCHsi2NWl3hAa354D4Sk6OZBAyoLzYLgF8AzE=";
-          };
-        };
-      })
+  # nixpkgs.overlays = [ (finalAttrs: previousAttrs: {
+  #       sddm-chili-theme = previousAttrs.sddm-chili-theme.overrideAttrs {
+  #         src = pkgs.fetchFromGitHub {
+  #           owner = "jsMRSoL";
+  #           repo = "jalapeno";
+  #           rev = "34144ad7adf9469e40645fc5158f35d5dabfe262";
+  #           hash = "sha256-QO5pPTHCHsi2NWl3hAa354D4Sk6OZBAyoLzYLgF8AzE=";
+  #         };
+  #       };
+  #     })
+  # ];
+  nixpkgs.overlays = [
+    (final: prev: {
+       sddm-chili-theme = prev.sddm-chili-theme.override {
+         themeConfig = {
+           background = "${../../assets/salty_mountains.png}";
+           ScreenWidth = 1366;
+           ScreenHeight = 768;
+         };
+       };
+    })
   ];
 
   # List packages installed in system profile. To search, run:

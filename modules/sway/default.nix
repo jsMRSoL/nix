@@ -64,7 +64,7 @@ in
     };
     extraConfig = ''
       client.focused #89b4fa #89b4fa #000000
-      output * bg "${./salty_mountains.png}" stretch
+      output * bg "${../../assets/salty_mountains.png}" stretch
       input "type:keyboard" {
           xkb_layout us
           xkb_options ctrl:nocaps
