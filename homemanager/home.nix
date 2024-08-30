@@ -7,7 +7,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
-    ../modules/sway
+    ../modules/sway/config.nix
   ];
 
   home = {
@@ -37,6 +37,7 @@
     ];
   };
 
+  xdg.enable = true;
   programs.home-manager.enable = true;
 
 }

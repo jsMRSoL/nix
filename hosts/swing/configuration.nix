@@ -85,7 +85,6 @@
   programs.sway = {
     enable = true;
     xwayland.enable = true;
-    package = null;
   };
 
   services.displayManager = {

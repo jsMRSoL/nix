@@ -29,7 +29,9 @@
           modules = [
             ./hosts/swingvm/configuration.nix
             home-manager.nixosModules.home-manager {
-              home-manager.users.simon = ./homemanager/home.nix
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPkgs = true;
+              home-manager.users.simon = ./homemanager/home.nix;
             }
           ];
         };
