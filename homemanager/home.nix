@@ -38,7 +38,9 @@
 
     file = {
       "testhomefile.txt" = {
+         enable = true;
          text = "hi there!";
+         target = "testhomefile.txt";
       };
     };
   };
