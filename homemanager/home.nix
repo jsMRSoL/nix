@@ -7,7 +7,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
-    ../modules/sway/config.nix
+    # ../modules/sway/config.nix
   ];
 
   home = {
@@ -35,6 +35,12 @@
       yazi
       zoxide
     ];
+
+    file = {
+      "testhomefile.txt" = {
+         text = "hi there!";
+      };
+    };
   };
 
   programs.home-manager.enable = true;
