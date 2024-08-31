@@ -21,7 +21,8 @@ set $menu dmenu_path | wmenu -i -l 42 | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 # output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/simon/Pictures/wallpapers/landscapes/salty_mountains.png stretch
+# output * bg /home/simon/Pictures/wallpapers/landscapes/salty_mountains.png stretch
+output * bg /home/simon/.config/backgrounds/salty_mountains.png stretch
 #
 # Example configuration:
 #
