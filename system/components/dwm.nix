@@ -5,7 +5,7 @@
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs {
-        src = fetchFromGitHub {
+        src = pkgs.fetchFromGitHub {
           owner = "jsMRSoL";
           repo = "dwm";
           rev = "95014cb2f8bd9feb31f0f1f3058146aff602386f";
@@ -16,6 +16,11 @@
   };
 
   programs.slock.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    st
+    (callPackage ../../user/modules/dmenu/dmenu.nix {})
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
