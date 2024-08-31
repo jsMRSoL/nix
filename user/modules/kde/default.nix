@@ -7,7 +7,7 @@
 
   xdg.configFile."kwinrc" = {
     enable = true;
-    source = ./kwinrc
+    source = ./kwinrc;
     target = "kwinrc";
   };
 
