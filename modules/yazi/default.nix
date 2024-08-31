@@ -1,3 +1,4 @@
+{ pkgs, ...}:
 {
   programs.yazi.enable = true;
 
@@ -6,4 +7,13 @@
     source = ./yazi;
     target = "yazi";
   };
+
+  # plugin dependencies
+  home.packages = with pkgs; [
+    catdoc
+    python312Packages.doc2txt
+    python312Packages.xlsx2csv
+    odt2txt
+  ];
 }
+
