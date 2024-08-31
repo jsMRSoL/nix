@@ -99,7 +99,7 @@
     (final: prev: {
        sddm-chili-theme = prev.sddm-chili-theme.override {
          themeConfig = {
-           background = "${../../assets/salty_mountains.png}";
+           background = "${../../../assets/salty_mountains.png}";
            ScreenWidth = 1366;
            ScreenHeight = 768;
          };
