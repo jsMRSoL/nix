@@ -1,5 +1,3 @@
-# Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -27,6 +25,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [];
 
+  # overlays
   nixpkgs.overlays = [
     (final: prev: {
        sddm-chili-theme = prev.sddm-chili-theme.override {
@@ -39,5 +38,5 @@
     })
   ];
 
-  system.stateVersion = "24.05"; # Must leave at state of first install
+  system.stateVersion = "24.05"; # Don't touch! I mean it!
 }
