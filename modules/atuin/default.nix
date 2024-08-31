@@ -8,5 +8,5 @@
       inline_height = 20;
       invert = true;
     };
-  }
+  };
 }
