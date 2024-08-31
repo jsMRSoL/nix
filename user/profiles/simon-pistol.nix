@@ -8,6 +8,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
+    ../modules/kde
     ../modules/yazi
   ];
 
