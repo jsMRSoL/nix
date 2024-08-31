@@ -9,5 +9,5 @@
     enable = true;
     source = ../../../assets/salty_mountains.png;
     target = "backgrounds/salty_mountains.png";
-  }
+  };
 }
