@@ -17,7 +17,6 @@
       sxiv
       unar
       xdg-utils
-      yazi
       zoxide
   ];
 }
