@@ -5,7 +5,7 @@
     xwayland.enable = true;
   };
 
-  environment.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     mako # notification system developed by swaywm maintainer
   ];
 }

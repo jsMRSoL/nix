@@ -46,7 +46,7 @@
     hack-font
   ];
 
-  environment.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
    wget
    pciutils
    alsa-utils
