@@ -2,6 +2,7 @@
 
   imports = [
     ../modules/cmdline
+    ../modules/atuin
     ../modules/bash
     ../modules/dunst
     ../modules/foot

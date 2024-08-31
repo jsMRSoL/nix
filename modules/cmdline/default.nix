@@ -1,7 +1,6 @@
 { pkgs, ...}:
 {
   home.packages = with pkgs; [
-      atuin
       bash-preexec
       exiftool
       htop
