@@ -11,7 +11,7 @@
   # plugin dependencies
   home.packages = with pkgs; [
     catdoc
-    python312Packages.doc2txt
+    python312Packages.docx2txt
     python312Packages.xlsx2csv
     odt2txt
   ];
