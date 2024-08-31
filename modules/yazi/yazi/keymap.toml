@@ -142,15 +142,17 @@ keymap = [
 	{ on = [ "w" ], run = "tasks_show", desc = "Show the tasks manager" },
 
 	# Goto
-	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the home dir" },
-	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go to the config dir" },
-	{ on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go to the documents dir" },
-	{ on = [ "g", "o" ],       run = "cd ~/Downloads",   desc = "Go to the downloads dir" },
-	{ on = [ "g", "m" ],       run = "cd ~/Music",   desc = "Go to the music dir" },
+	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the ~ dir" },
+	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go to the .config dir" },
+	{ on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go to the Documents dir" },
+	{ on = [ "g", "j" ],       run = "cd ~/Projects",   desc = "Go to the Projects dir" },
+	{ on = [ "g", "m" ],       run = "cd ~/Music",   desc = "Go to the Music dir" },
 	{ on = [ "g", "n" ],       run = "cd ~/.nixos",   desc = "Go to the .nixos dir" },
-	{ on = [ "g", "p" ],       run = "cd ~/Pictures",   desc = "Go to the .nixos dir" },
-	{ on = [ "g", "v" ],       run = "cd ~/Videos",   desc = "Go to the videos dir" },
-	{ on = [ "g", "t" ],       run = "cd /tmp",          desc = "Go to the temporary dir" },
+	{ on = [ "g", "o" ],       run = "cd ~/Downloads",   desc = "Go to the Downloads dir" },
+	{ on = [ "g", "p" ],       run = "cd ~/Pictures",   desc = "Go to the Pictures dir" },
+	{ on = [ "g", "r" ],       run = "cd ~/Repos",   desc = "Go to the Repos dir" },
+	{ on = [ "g", "v" ],       run = "cd ~/Videos",   desc = "Go to the Videos dir" },
+	{ on = [ "g", "t" ],       run = "cd /tmp",          desc = "Go to the /tmp dir" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Go to a dir interactively" },
 
 	# Help
