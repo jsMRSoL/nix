@@ -8,7 +8,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
-    ../modules/sway/config.nix
+    ../modules/sway
     ../modules/yazi
   ];
 
