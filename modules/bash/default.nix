@@ -20,14 +20,17 @@
       let
         flakeDir = "~/.nixos/";
       in {
-      go = "cd ~/Downloads";
       gc = "cd ~/.config";
       gd = "cd ~/Documents";
+      gj = "cd ~/Projects";
+      gm = "cd ~/Music";
       gn = "cd ${flakeDir}";
+      go = "cd ~/Downloads";
       gp = "cd ~/Pictures";
-      gR = "cd ~/Repos";
+      gr = "cd ~/Repos";
+      gt = "cd /tmp";
       gv = "cd ~/Videos";
-      # r = "yazi";
+      # r = "yazi"; Moved to function - see initExtra attribute.
       rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
       rehome = "home-manager switch --flake ${flakeDir}";
       update = "nix flake update ${flakeDir}";
