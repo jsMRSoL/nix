@@ -1,17 +1,9 @@
 {
-  programs.yazi = {
-    enable = true;
-    plugins = {
-      docx = ./yazi/plugins/docx.yazi;
-      doc = ./yazi/plugins/doc.yazi;
-      odt = ./yazi/plugins/odt.yazi;
-      xlsx = ./yazi/plugins/xlsx.yazi;
-    };
-  };
+  programs.yazi.enable = true;
 
   xdg.configFile."yazi-configs" = {
     enable = true;
-    source = ./yazi/configs;
+    source = ./yazi;
     target = "yazi";
   };
 }
