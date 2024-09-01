@@ -9,6 +9,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
+    ../modules/rust
     ../modules/sway
     ../modules/yazi
   ];
