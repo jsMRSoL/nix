@@ -61,9 +61,7 @@
   # Environment variables
   environment.variables.EDITOR = "nvim";
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
+  # gnupg
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

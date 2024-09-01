@@ -4,6 +4,7 @@
     ../modules/cmdline
     ../modules/atuin
     ../modules/bash
+    ../modules/browser
     ../modules/dunst
     ../modules/foot
     ../modules/games
