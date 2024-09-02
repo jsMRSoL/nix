@@ -7,6 +7,7 @@
       style = "full";
       inline_height = 20;
       invert = true;
+      enter_accept = true;
     };
   };
 }
