@@ -5,8 +5,6 @@
     historyControl = ["ignoreboth"];
     initExtra = ''
     set -o vi
-    set vi-ins-mode-string="+"
-    set vi-cmd-mode-string=":"
     bind -m vi-command ".":insert-last-argument
     bind -m vi-command '"\e-":yank-nth-arg'
     bind -m vi-insert '"\e=":edit-and-execute-command'
@@ -49,5 +47,14 @@
 
   home.sessionVariables = {
     XDG_SCREENSHOTS_DIR = "/home/simon/Pictures/screenshots";
+  };
+
+  home.file.inputrc = {
+    target = ".inputrc";
+    text = ''
+      set show-mode-in-prompt on
+      set vi-ins-mode-string "+"
+      set vi-cmd-mode-string ":"
+    '';
   };
 }
