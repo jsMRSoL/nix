@@ -10,12 +10,12 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "path:./user/modules/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixvim, ... }:
   let
       system = "x86_64-linux";
   in {
@@ -23,7 +23,7 @@
 
         pistol = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ 
+          modules = [
             ./system/hosts/pistol/configuration.nix 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
@@ -35,7 +35,7 @@
 
         rapier = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ 
+          modules = [
             ./system/hosts/rapier/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
@@ -46,13 +46,14 @@
         };
 
         swing = nixpkgs.lib.nixosSystem {
-          inherit system inputs;
-          modules = [ 
+          inherit system;
+          modules = [
             ./system/hosts/swing/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-swing.nix;
+              home-manager.extraSpecialArgs = { inherit nixvim; };
             }
           ];
         };

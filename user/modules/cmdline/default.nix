@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, nixvim, ...}:
 {
   home.packages = with pkgs; [
       bash-preexec
@@ -10,6 +10,8 @@
       mediainfo
       mpv
       mupdf
+      # neovim
+      nixvim
       papirus-icon-theme
       ripgrep
       sway-contrib.grimshot
