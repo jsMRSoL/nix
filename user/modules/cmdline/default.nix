@@ -10,11 +10,11 @@
       mediainfo
       mpv
       mupdf
-      neovim
       papirus-icon-theme
       ripgrep
       sway-contrib.grimshot
       sxiv
+      vim
       unar
       xdg-utils
       zoxide
