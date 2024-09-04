@@ -11,7 +11,7 @@
       mpv
       mupdf
       # neovim
-      nixvim
+      nixvim.packages.x86_64-linux.default
       papirus-icon-theme
       ripgrep
       sway-contrib.grimshot
