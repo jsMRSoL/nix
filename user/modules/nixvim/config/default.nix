@@ -1,5 +1,6 @@
 {
   imports = [
+    ./autocmds.nix
     ./diagnostics.nix
     ./editor.nix
     ./floaterm.nix
@@ -13,7 +14,7 @@
     ./ui.nix
   ];
 
-  extraFile = {
+  extraFiles = {
 		"ftplugin/nix.lua".text = ''
 			vim.opt.tabstop = 2
 			vim.opt.shiftwidth = 2
