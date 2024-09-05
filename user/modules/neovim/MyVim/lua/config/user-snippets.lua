@@ -8,7 +8,7 @@ local d = luasnip.dynamic_node
 local f = luasnip.function_node
 local rep = require('luasnip.extras').rep
 
-return {
+luasnip.add_snippets('rust', {
   s('pln', {
     -- equivalent to "println!(text{}text);"
     t('println!("'),
@@ -43,5 +43,24 @@ return {
         i(0, ''),
       }),
     }),
+  }),
+})
+
+local date_input = function(args, snip, old_state, fmt)
+  local fmt = fmt or '%Y-%m-%d'
+  return sn(nil, i(1, os.date(fmt)))
+end
+
+local date_input2 = function (_, _, user_arg1)
+  local fmt = user_arg1 or '%Y-%m-%d'
+  return os.date(fmt)
+end
+
+luasnip.add_snippets('all', {
+  s('daydate', {
+    d(1, date_input, {}, { user_args = { "%d-%m-%Y %H:%M" } }),
+  }),
+  s('dydt', {
+    f(date_input2, {}, { user_args = { "%d-%m-%Y %H:%M" } }),
   })
-}, {}
+})

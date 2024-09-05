@@ -1,3 +1,0 @@
-{
-  plugins.trouble.enable = true;
-}
