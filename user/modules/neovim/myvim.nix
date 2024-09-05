@@ -1,5 +1,4 @@
 { pkgs, ... }:
-{
 let
   my-name = "myvim";
   my-script = pkgs.writeShellScriptBin my-name ''
@@ -15,12 +14,10 @@ let
     gotests # test generator
     gotestsum # test runner
     delve # debugger, bin is dlv
-    # rust packages
-    rust-analyzer
-    lldb # provides lldb-vscode
+    # rust packages are installed via rustup
     # python
     pyright # ? or pylsp
-    pythonPackages312.debugpy
+    python312Packages.debugpy
     # js / ts
     prettierd
     typescript # provides tsserver
@@ -38,4 +35,4 @@ pkgs.symlinkJoin {
   paths = [ my-script ] ++ my-buildInputs;
   buildInputs = [ pkgs.makeWrapper ];
   postBuild = "wrapProgram $out/bin/${my-name} --prefix PATH : $out/bin";
-};
+}

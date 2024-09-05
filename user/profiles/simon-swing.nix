@@ -9,7 +9,7 @@
     ../modules/foot
     ../modules/games
     ../modules/git
-    ../modules/neovim
+    ../modules/nixvim
     ../modules/rust
     ../modules/sway
     ../modules/yazi
