@@ -21,6 +21,10 @@
         completion.cmp.enabled = true;
       };
     };
+    lsp-format =  {
+      enable = true;
+      lspServersToEnable = "all";
+    };
     lspkind.enable = true;
     fidget.enable = true;
     luasnip = {
