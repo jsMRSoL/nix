@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # rust
     rustup
     gcc
-    # cargo
-    # rust-analyzer
-    # rustfmt
-    # clippy
+    # go
+    go
+    # python
+    python312Full
   ];
 }

@@ -40,10 +40,25 @@
               key = "a";
             }
             {
-              action = "Telescope dotfiles";
+              action = {
+                __raw = ''
+                  function()
+                    require("telescope.builtin").find_files({
+                      prompt_title = "<= neovim config =>",
+                      cwd = "~/.nixos/user/modules/nixvim/config/",
+                    })
+                  end
+                '';
+              };
               desc = " dotfiles";
               group = "Number";
               key = "d";
+            }
+            {
+              action = "q!";
+              desc = "Quit";
+              group = "Label";
+              key = "q";
             }
           ];
         };

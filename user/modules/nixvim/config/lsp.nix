@@ -1,5 +1,19 @@
+{ pkgs, ...}:
 {
   plugins = {
+    nix.enable = true;
+    lsp = {
+      enable = true;
+      servers = {
+        bashls.enable = true;
+        gopls.enable = true;
+        jsonls.enable = true;
+        lua-ls.enable = true;
+        nixd.enable = true;
+        pyright.enable = true;
+        tsserver.enable = true;
+      };
+    };
     rustaceanvim.enable = true;
     crates-nvim = {
       enable = true;
@@ -7,20 +21,14 @@
         completion.cmp.enabled = true;
       };
     };
+    lspkind.enable = true;
+    fidget.enable = true;
     luasnip = {
       enable = true;
       fromVscode = [ {} ];
       fromLua = [ { paths = ./snippets; } ];
     };
     friendly-snippets.enable = true;
-    lsp = {
-      enable = true;
-      servers = {
-        lua-ls.enable = true;
-      };
-    };
-    lspkind.enable = true;
-    fidget.enable = true;
     cmp = {
       enable = true;
       autoEnableSources = true;
@@ -66,23 +74,28 @@
       };
     };
   };
+
+
+  extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
+      name = "gopher.nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "olexsmir";
+        repo = "gopher.nvim";
+        rev = "f55c15ada8e02398000c04a96ef44d986cd01051";
+        hash = "sha256-ExB8jSmjMBuNJ8XQ8pVEaOo6moIMyNogBMHlDc0frHA=";
+      };      
+  })];
+
   keymaps = [
     {
       action = "<Plug>luasnip-next-choice";
       key = "<C-n>";
       mode = [ "i" "s" ];
-      # options = ;
     }
     {
       action = "<Plug>luasnip-prev-choice";
       key = "<C-p>";
       mode = [ "i" "s" ];
-      # options = ;
     }
-
   ];
-      # vim.api.nvim_set_keymap('i', '<C-n>', '<Plug>luasnip-next-choice', {})
-      # vim.api.nvim_set_keymap('s', '<C-n>', '<Plug>luasnip-next-choice', {})
-      # vim.api.nvim_set_keymap('i', '<C-p>', '<Plug>luasnip-prev-choice', {})
-      # vim.api.nvim_set_keymap('s', '<C-p>', '<Plug>luasnip-prev-choice', {})
 }

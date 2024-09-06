@@ -3,7 +3,6 @@
     {
       event = "LspAttach";
       desc = "LspAttach";
-      group = "my-lsp-attach";
       callback = {
         __raw = ''
         function (event)
