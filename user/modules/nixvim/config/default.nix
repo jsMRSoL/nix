@@ -27,6 +27,10 @@
 			source = ./ftplugin/rust.lua;
 		};
     
+		"ftplugin/go.lua" = {
+			source = ./ftplugin/go.lua;
+		};
+    
 		"ftplugin/python.lua" = {
 			source = ./ftplugin/python.lua;
 		};
