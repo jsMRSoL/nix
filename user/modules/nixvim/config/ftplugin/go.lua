@@ -10,9 +10,12 @@ require('gopher').setup()
 
 local wk = require('which-key')
 wk.add({
-  ['<leader>lt'] = { group = '+tags' },
-  ['<leader>lT'] = { group = '+tests' },
-  ['<leader>lm'] = { group = '+mod' },
+  -- ['<leader>lt'] = { name = '+tags' },
+  -- ['<leader>lT'] = { name = '+tests' },
+  -- ['<leader>lm'] = { name = '+mod' },
+  { "<leader>lT", group = "tests" },
+  { "<leader>lm", group = "mod" },
+  { "<leader>lt", group = "tags" },
 })
 
 local keymap = {

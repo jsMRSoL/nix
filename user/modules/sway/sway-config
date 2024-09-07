@@ -1,6 +1,7 @@
 # It really really works!
 # Window decorations
 default_border pixel 2
+smart_borders on
 client.focused #89b4fa #89b4fa #000000
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -233,9 +234,11 @@ bar {
         statusline #cdd6f4
         background #1e1e2e
         # active_workspace <border> <background> <text>
-        focused_workspace   #89b4fa  #74c7ec     #45475a
+        # focused_workspace   #89b4fa  #74c7ec     #45475a
+        focused_workspace   #74c7ec   #74c7ec     #45475a
         # inactive_workspace <border> <background> <text>
-        inactive_workspace   #89b4fa  #585b70      #cdd6fa
+        # inactive_workspace   #89b4fa  #585b70      #cdd6fa
+        inactive_workspace   #585b70  #585b70      #cdd6fa
     }
 }
 

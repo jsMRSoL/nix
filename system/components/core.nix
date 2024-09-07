@@ -54,6 +54,7 @@
    dig
    wirelesstools
    pass
+   pinentry-gtk2
    neovim
    git
   ];
