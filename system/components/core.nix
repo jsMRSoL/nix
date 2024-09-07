@@ -54,7 +54,7 @@
    dig
    wirelesstools
    pass
-   inputs.mypassmenu.packages.x86_64-linux.default
+   inputs.mypassmenu.packages.x86_64-linux.defaultPackage
    pinentry-gtk2
    neovim
    git

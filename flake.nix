@@ -15,7 +15,8 @@
     };
     
     mypassmenu = {
-      url = "path:../Projects/shellscripts/mypassmenu";
+      url = "github:jsMRSoL/mypassmenu";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -52,7 +53,7 @@
 
         swing = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           modules = [
             ./system/hosts/swing/configuration.nix
             home-manager.nixosModules.home-manager {
