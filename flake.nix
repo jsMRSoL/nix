@@ -13,9 +13,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    mypassmenu = {
+      url = "path:../Projects/shellscripts/mypassmenu";
+    };
+
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, ... }:
+  outputs = { nixpkgs, home-manager, nixvim, ... }@inputs:
   let
       system = "x86_64-linux";
   in {
@@ -47,6 +52,7 @@
 
         swing = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = inputs;
           modules = [
             ./system/hosts/swing/configuration.nix
             home-manager.nixosModules.home-manager {

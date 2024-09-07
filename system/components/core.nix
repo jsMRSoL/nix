@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # Configure console keymap
   console.keyMap = "uk";
@@ -54,6 +54,7 @@
    dig
    wirelesstools
    pass
+   inputs.mypassmenu.packages.x86_64-linux.default
    pinentry-gtk2
    neovim
    git
