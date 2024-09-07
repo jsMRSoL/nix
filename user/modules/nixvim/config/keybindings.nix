@@ -98,6 +98,46 @@
   keymaps = [
     {
       mode = "n";
+      key = "j";
+      action = "gj";
+    }
+    {
+      mode = "n";
+      key = "k";
+      action = "gk";
+    }
+    {
+      mode = "n";
+      key = "n";
+      action = "nzzzv";
+    }
+    {
+      mode = "n";
+      key = "N";
+      action = "Nzzzv";
+    }
+    {
+      mode = "v";
+      key = "<";
+      action = "<gv";
+    }
+    {
+      mode = "v";
+      key = ">";
+      action = ">gv";
+    }
+    {
+      mode = "v";
+      key = "J";
+      action = "<cmd>m '>+1<CR>gv=gv";
+    }
+    {
+      mode = "v";
+      key = "K";
+      action = "<cmd>m '<-2<CR>gv=gv";
+    }
+    {
+      mode = "n";
       key = "<leader>r";
       action = "<cmd>FloatermNew --opener=edit --title=yazi --name=yazi yazi<CR>";
       options = {

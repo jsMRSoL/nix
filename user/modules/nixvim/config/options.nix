@@ -49,7 +49,7 @@
     showbreak = "⤷ ";
     showmode = false;
     sidescrolloff = 8;
-    signcolumn = "yes";
+    signcolumn = "number";
     smartcase = true;
     smartindent = true;
     spelllang = "en_gb";
