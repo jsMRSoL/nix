@@ -9,9 +9,9 @@
     ../modules/foot
     ../modules/games
     ../modules/git
+    ../modules/gui
     ../modules/languages
     ../modules/nixvim
-    ../modules/office
     ../modules/sway
     ../modules/yazi
   ];

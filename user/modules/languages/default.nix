@@ -8,5 +8,6 @@
     go
     # python
     python312Full
+    virtualenv
   ];
 }
