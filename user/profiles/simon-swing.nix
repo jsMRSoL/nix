@@ -1,4 +1,4 @@
-{ config, pkgs, ...}: {
+{
 
   imports = [
     ../modules/cmdline
@@ -11,6 +11,7 @@
     ../modules/git
     ../modules/languages
     ../modules/nixvim
+    ../modules/office
     ../modules/sway
     ../modules/yazi
   ];
@@ -20,7 +21,7 @@
     homeDirectory = "/home/simon";
     stateVersion = "24.05";
 
-    packages = with pkgs; [];
+    packages = [];
   };
 
   programs.home-manager.enable = true;
