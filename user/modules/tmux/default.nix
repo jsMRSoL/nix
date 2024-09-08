@@ -9,6 +9,8 @@
       unbind C-b
       set -g prefix C-Space
       set -g status-position top
+      set -s copy-command wl-copy
+      bind b set -g status
       bind -n C-h select-pane -L
       bind -n C-j select-pane -D
       bind -n C-k select-pane -U
@@ -27,6 +29,18 @@
       bind -n M-l next-window
       bind -n M-n switch-client -n
       bind -n M-p switch-client -p
+      bind-key p paste-buffer
+      bind-key P choose-buffer
+      bind-key + delete-buffer \; display-message "Deleted current Tmux Clipboard History"
+      bind-key < run-shell "tmux set-buffer -- \"$(wl-paste)\"" \; display-message "Copy To Tmux Clipboard"
+      bind-key > run-shell 'tmux show-buffer | wl-copy' \; display-message "Copy To System Clipboard"
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi V send-keys -X select-line
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T choice-mode-vi h send-keys -X tree-collapse 
+      bind-key -T choice-mode-vi l send-keys -X tree-expand 
+      bind-key -T choice-mode-vi H send-keys -X tree-collapse-all 
+      bind-key -T choice-mode-vi L send-keys -X tree-expand-all 
       run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
       set -g @catppuccin_flavour 'mocha'
       set -g @catppuccin_window_tabs_enabled 'off'
