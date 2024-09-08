@@ -4,6 +4,7 @@
     bacon
     bash-preexec
     bat
+    clipman
     duf
     exiftool
     ffmpeg
