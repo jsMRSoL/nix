@@ -13,6 +13,7 @@
     ../modules/languages
     ../modules/nixvim
     ../modules/sway
+    ../modules/tmux
     ../modules/yazi
   ];
 
