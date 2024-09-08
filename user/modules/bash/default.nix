@@ -44,13 +44,14 @@
       update = "nix flake update ${flakeDir}";
       upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
     };
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
+    # sessionVariables = {
+    #   EDITOR = "nvim";
+    # };
   };
 
   home.sessionVariables = {
     XDG_SCREENSHOTS_DIR = "/home/simon/Pictures/screenshots";
+    GOPATH = "/home/simon/.go";
   };
 
   home.file.inputrc = {

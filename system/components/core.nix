@@ -46,6 +46,8 @@
     hack-font
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
    wget
    pciutils
@@ -61,7 +63,9 @@
   ];
 
   # Environment variables
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
   # gnupg
   programs.gnupg.agent = {
@@ -74,6 +78,6 @@
     isNormalUser = true;
     description = "Simon";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = [];
   };
 }
