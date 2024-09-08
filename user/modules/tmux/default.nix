@@ -6,6 +6,8 @@
     clock24 = true;
     escapeTime = 0;
     extraConfig = ''
+      unbind C-b
+      set -g prefix C-Space
       set -g status-position top
       bind -n C-h select-pane -L
       bind -n C-j select-pane -D
@@ -25,16 +27,24 @@
       bind -n M-l next-window
       bind -n M-n switch-client -n
       bind -n M-p switch-client -p
+      run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
+      set -g @catppuccin_flavour 'mocha'
+      set -g @catppuccin_window_tabs_enabled 'off'
+      set -g @catppuccin_status_modules_right 'session directory date_time'
+      set -g @catppuccin_datetime_icon ""
+      set -g @catppuccin_date_time "%d-%m-%Y %H:%M"
+      set -g @catppuccin_directory "off"
+      run-shell ${pkgs.tmuxPlugins.sensible}/share/tmux-plugins/sensible/sensible.tmux
     '';
     keyMode = "vi";
     mouse = true;
     newSession = true;
-    plugins = with pkgs; [
-      {
-        plugin = tmuxPlugins.catppuccin;
-      }
-    ];
-    sensibleOnTop = true;
+    # plugins = with pkgs; [
+    #   {
+    #     plugin = tmuxPlugins.catppuccin;
+    #   }
+    # ];
+    # sensibleOnTop = true;
     terminal = "tmux-256color";
   };
 }
