@@ -41,7 +41,6 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000'
 
 # Clipboard manager
-exec wl-paste -t text --watch clipman store --no-persist
 bindsym $mod+Insert exec clipman pick -t wmenu
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
