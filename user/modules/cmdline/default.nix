@@ -26,7 +26,6 @@
     sway-contrib.grimshot
     sxiv
     tesseract
-    tmux
     trash-cli
     unpaper
     vim
