@@ -5,7 +5,7 @@
     ../modules/atuin
     ../modules/bash
     ../modules/browser
-    # ../modules/clipboard
+    ../modules/clipboard
     ../modules/dunst
     ../modules/foot
     ../modules/games

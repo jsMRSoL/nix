@@ -1,9 +1,13 @@
 {
-  services.clipman.enable = true;
-
-  xdg.configFile."wofi" = {
+  xdg.configFile."wofi-config" = {
     enable = true;
-    source = ./wofi;
-    target = "wofi";
+    source = ./wofi/config;
+    target = "wofi/config";
+  };
+
+  xdg.configFile."wofi-css" = {
+    enable = true;
+    source = ./wofi/style.css;
+    target = "wofi/style.css";
   };
 }
