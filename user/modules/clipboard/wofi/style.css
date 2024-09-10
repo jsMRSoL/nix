@@ -19,11 +19,19 @@ window {
   padding-right: 15px;
 }
 #entry:selected {
-  background-color: #1e1e2e;
-  border: 2px solid #74c7ec;
-  border-radius: 5px;
+  background-color: #cba6f7;
 }
-#expander-box {
-  background-color: #1e1e2e;
+#text:selected {
+  color: #1e1e2e;
 }
-#scroll {}
+#expander-box > #entry  {
+  background-color: #cba6f7;
+  color: #1e1e2e;
+}
+#expander-box > #entry:selected  {
+  font-style: italic;
+}
+/*works*/
+/*#expander-box > #entry:hover  {*/
+/*  font-weight: bold;*/
+/*}*/
