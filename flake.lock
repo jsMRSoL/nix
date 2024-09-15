@@ -174,11 +174,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725715836,
-        "narHash": "sha256-xQbKGTt9sW6osDZBkyVzF8CVs6bRE5r4RUSGJo4FDgY=",
+        "lastModified": 1726415372,
+        "narHash": "sha256-+/bWg/h1GKzFwzDXoPyHAJzhgc9NnBO4NQkBcesjJ6c=",
         "owner": "jsMRSoL",
         "repo": "mypassmenu",
-        "rev": "6ffff4abaf75cf174a76482e739df0fa6724a969",
+        "rev": "68db59b94165ae86e955c397e0a8288b8a3728c8",
         "type": "github"
       },
       "original": {

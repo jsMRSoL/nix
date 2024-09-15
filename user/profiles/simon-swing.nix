@@ -14,6 +14,7 @@
     ../modules/languages
     ../modules/nixvim
     ../modules/sway
+    ../modules/theme
     ../modules/tmux
     ../modules/yazi
   ];
