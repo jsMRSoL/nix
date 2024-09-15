@@ -15,13 +15,13 @@ Left = [
 [[modules]]
 name = "battery"
 instance = "0"
-format = "Bat: {state_of_charge:{:5.1}}%, Health: {state_of_health:{:4.1}}%"
+format = "Bat:{state_of_charge:{:4.0}}% Health:{state_of_health:{:3.0}}%"
 html_escape = false
 
 [[modules]]
 name = "pactl"
 instance = "0"
-format = "Vol: {volume:{:3}}%{muted}"
+format = "Vol:{volume:{:3}}%{muted}"
 html_escape = true
 
 [modules.on_click]
@@ -47,7 +47,7 @@ WheelDown = [
 [[modules]]
 name = "nmcli"
 instance = "0"
-format = "Net: {name} - {signal}"
+format = "Net: {name} -{signal}"
 html_escape = false
 
 [[modules]]
