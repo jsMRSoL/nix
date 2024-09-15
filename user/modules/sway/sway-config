@@ -2,9 +2,9 @@
 set $mod Mod4
 # Set applications
 set $term foot
-set $menu dmenu_path | wmenu -i -l 42 | xargs swaymsg exec --
+# set $menu dmenu_path | wmenu -i -l 42 | xargs swaymsg exec --
 set $menu_drun wofi --insensitive --show=drun
-set $menu_run wofi --insensitive --show=run
+set $menu_run foot -e wofi --insensitive --show=run
 
 
 # It really really works!
@@ -69,8 +69,8 @@ input "type:keyboard" {
 
     # Start your launcher
     bindsym $mod+p exec $menu_drun
-    bindsym Ctrl+$mod+p $menu_run
-    bindsym $mod+Shift+p exec mypassmenu
+    bindsym $mod+Shift+p exec $menu_run
+    bindsym Ctrl+Alt+p exec mypassmenu
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -214,6 +214,7 @@ bindsym {
 #
 # Status Bar:
 #
+bindsym $mod+Shift+b bar mode toggle
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
