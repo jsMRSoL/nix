@@ -12,8 +12,15 @@
     target = "backgrounds/salty_mountains.png";
   };
 
+  xdg.configFile."swayrbar" = {
+    enable = true;
+    source = ./swayrbar-config.toml;
+    target = "swayrbar/config.toml";
+  };
+  
   home.packages = with pkgs; [
     swayrbar
+    pulseaudioFull
     wofi
   ];
 }
