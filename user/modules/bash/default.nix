@@ -35,9 +35,12 @@
       gt = "cd /tmp";
       gv = "cd ~/Videos";
       gs = "git status";
+      gl = "git log --all --graph --decorate";
       gac = "git add . && git commit -m ";
+      glo = "git log --all --graph --decorate --oneline";
       gsh = "git show";
       gcm = "git commit --amend";
+      gri = "git rebase --interactive";
       # r = "yazi"; Moved to function - see initExtra attribute.
       rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
       rehome = "home-manager switch --flake ${flakeDir}";
