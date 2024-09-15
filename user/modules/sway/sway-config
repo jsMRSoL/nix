@@ -3,6 +3,8 @@ set $mod Mod4
 # Set applications
 set $term foot
 set $menu dmenu_path | wmenu -i -l 42 | xargs swaymsg exec --
+set $menu_drun wofi --insensitive --show=drun
+set $menu_run wofi --insensitive --show=run
 
 
 # It really really works!
@@ -66,7 +68,8 @@ input "type:keyboard" {
     bindsym $mod+Shift+c kill
 
     # Start your launcher
-    bindsym $mod+p exec $menu
+    bindsym $mod+p exec $menu_drun
+    bindsym $mod+Ctrl+p $menu_run
     bindsym $mod+Shift+p exec mypassmenu
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
