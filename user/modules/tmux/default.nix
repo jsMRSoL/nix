@@ -42,12 +42,6 @@
     keyMode = "vi";
     mouse = true;
     newSession = true;
-    # plugins = with pkgs; [
-    #   {
-    #     plugin = tmuxPlugins.catppuccin;
-    #   }
-    # ];
-    # sensibleOnTop = true;
     terminal = "tmux-256color";
   };
 }
