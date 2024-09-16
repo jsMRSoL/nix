@@ -16,6 +16,7 @@
     ../modules/sway
     ../modules/theme
     ../modules/tmux
+    ../modules/tmux-scripts
     ../modules/yazi
   ];
 

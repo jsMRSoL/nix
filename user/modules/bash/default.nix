@@ -4,72 +4,72 @@
     enableCompletion = true;
     historyControl = ["ignoreboth"];
     initExtra = ''
-    set -o vi
-    bind -m vi-command ".":insert-last-argument
-    bind -m vi-command '"\e-":yank-nth-arg'
-    bind -m vi-insert '"\e=":edit-and-execute-command'
+      set -o vi
+      bind -m vi-command ".":insert-last-argument
+      bind -m vi-command '"\e-":yank-nth-arg'
+      bind -m vi-insert '"\e=":edit-and-execute-command'
 
-    function r() {
-      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-      yazi "$@" --cwd-file="$tmp"
-      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-      fi
-      rm -f -- "$tmp"
-    }
+      function r() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+      }
 
-    # fuzzy cd and fancy ls -lh
-    function c() {
-      local dir
-      dir="$( fd --type d -H -d 5 | fzf )"
-      [[ -z $dir ]] && return
-      # cd "$dir"
-      # exa -l --icons
-      yazi $dir
-    }
+      # fuzzy cd and fancy ls -lh
+      function c() {
+        local dir
+        dir="$( fd --type d -H -d 5 | fzf )"
+        [[ -z $dir ]] && return
+        # cd "$dir"
+        # exa -l --icons
+        yazi $dir
+      }
 
-    # fuzzy search for a file in the current directory and open it in $EDITOR.
-    function f() {
-      local file
-      file="$(fd --type f -HL | fzf --preview='bat --color always {}')"
-      [[ -z $file ]] && return
+      # fuzzy search for a file in the current directory and open it in $EDITOR.
+      function f() {
+        local file
+        file="$(fd --type f -HL | fzf --preview='bat --color always {}')"
+        [[ -z $file ]] && return
 
-      cd "$(dirname $file)"
-      # base="$(basename $file)"
-      # echo $base
-      # $EDITOR "$file"
-      $EDITOR "$(basename $file)"
-    }
+        cd "$(dirname $file)"
+        # base="$(basename $file)"
+        # echo $base
+        # $EDITOR "$file"
+        $EDITOR "$(basename $file)"
+      }
 
-    # fuzzy search for a file in the Projects directory and open it in $EDITOR.
-    function j() {
-      local file
-      file="$(fd --type f -HL . '/home/simon/Projects' | fzf --preview='bat --color always {}')"
-      [[ -z $file ]] && return
+      # fuzzy search for a file in the Projects directory and open it in $EDITOR.
+      function j() {
+        local file
+        file="$(fd --type f -HL . '/home/simon/Projects' | fzf --preview='bat --color always {}')"
+        [[ -z $file ]] && return
 
-      cd "$(dirname $file)"
-      $EDITOR "$file"
-      cd ~/
-    }
+        cd "$(dirname $file)"
+        $EDITOR "$file"
+        cd ~/
+      }
 
-    # fuzzy search for a file in a directory under $HOME
-    # narrowing by directory, and open it in $EDITOR.
-    function ff() {
-      local dir
-      dir="$( fd --type d -H . -d 1 ~/ | fzf )"
-      [[ -z $dir ]] && return
+      # fuzzy search for a file in a directory under $HOME
+      # narrowing by directory, and open it in $EDITOR.
+      function ff() {
+        local dir
+        dir="$( fd --type d -H . -d 1 ~/ | fzf )"
+        [[ -z $dir ]] && return
 
-      local file
-      file="$(fd --type f -HL . $dir | fzf --preview='bat --color always {}')"
-      [[ -z $file ]] && return
+        local file
+        file="$(fd --type f -HL . $dir | fzf --preview='bat --color always {}')"
+        [[ -z $file ]] && return
 
-      cd "$(dirname $file)"
-      $EDITOR "$file"
-    }
-    
-    eval "$(zoxide init bash)"
-    [[ -f /home/$USER/.nix-profile/share/bash/bash-preexec.sh ]] && source /home/$USER/.nix-profile/share/bash/bash-preexec.sh
-    eval "$(atuin init bash --disable-up-arrow)"
+        cd "$(dirname $file)"
+        $EDITOR "$file"
+      }
+      
+      eval "$(zoxide init bash)"
+      [[ -f /home/$USER/.nix-profile/share/bash/bash-preexec.sh ]] && source /home/$USER/.nix-profile/share/bash/bash-preexec.sh
+      eval "$(atuin init bash --disable-up-arrow)"
     '';
     shellAliases =
       let
