@@ -18,48 +18,53 @@
       rm -f -- "$tmp"
     }
 
-    function tmux_running() {
-      if ! tmux run 2> /dev/null; then
-        return 1
-      fi
-      # return true
-      return 0
+    # fuzzy cd and fancy ls -lh
+    function c() {
+      local dir
+      dir="$( fd --type d -H -d 5 | fzf )"
+      [[ -z $dir ]] && return
+      # cd "$dir"
+      # exa -l --icons
+      yazi $dir
     }
 
-    function tmux_attached() {
-      attached="$(tmux list-sessions -F \
-        '#{session_attached} #{session_name}' | grep ^1)"
-      if [[ -n $attached ]]; then
-        # return true
-        return 0
-      else
-        return 1
-      fi
+    # fuzzy search for a file in the current directory and open it in $EDITOR.
+    function f() {
+      local file
+      file="$(fd --type f -HL | fzf --preview='bat --color always {}')"
+      [[ -z $file ]] && return
+
+      cd "$(dirname $file)"
+      # base="$(basename $file)"
+      # echo $base
+      # $EDITOR "$file"
+      $EDITOR "$(basename $file)"
     }
 
-    function tmux_ready() {
-      if tmux_running && tmux_attached; then
-        return 0
-      else
-        exec "$TERM" -e tmux-sessionizer.sh home &
-        for _i in {1..50}; do
-          if tmux has-session -t home 2> /dev/null; then
-            # good to go
-            return 0
-          fi
-          sleep 0.1
-        done
-        return 1
-      fi
+    # fuzzy search for a file in the Projects directory and open it in $EDITOR.
+    function j() {
+      local file
+      file="$(fd --type f -HL . '/home/simon/Projects' | fzf --preview='bat --color always {}')"
+      [[ -z $file ]] && return
+
+      cd "$(dirname $file)"
+      $EDITOR "$file"
+      cd ~/
     }
 
-    tmux_window_exists() {
-      exists="$(tmux list-windows -F \
-        '#{session_attached} #{window_name}' | grep "$1")"
-      if [[ -n $exists ]]; then
-        return 0
-      fi
-      return 1
+    # fuzzy search for a file in a directory under $HOME
+    # narrowing by directory, and open it in $EDITOR.
+    function ff() {
+      local dir
+      dir="$( fd --type d -H . -d 1 ~/ | fzf )"
+      [[ -z $dir ]] && return
+
+      local file
+      file="$(fd --type f -HL . $dir | fzf --preview='bat --color always {}')"
+      [[ -z $file ]] && return
+
+      cd "$(dirname $file)"
+      $EDITOR "$file"
     }
     
     eval "$(zoxide init bash)"

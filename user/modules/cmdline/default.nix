@@ -7,6 +7,7 @@
     clipman
     duf
     exiftool
+    fd
     ffmpeg
     ffmpegthumbnailer
     fzf
