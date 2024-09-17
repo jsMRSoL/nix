@@ -1,21 +1,33 @@
+{ pkgs, ... }:
 {
   plugins.dap = {
     enable = true;
     signs = {
       dapBreakpoint = {
-        text = "●";
+        text = "";
         texthl = "DapBreakpoint";
       };
       dapBreakpointCondition = {
-        text = "●";
+        text = "";
         texthl = "DapBreakpointCondition";
       };
+      dapBreakpointRejected = {
+        text = "";
+        texthl = "dapBreakpointRejected";
+      };
       dapLogPoint = {
-        text = "◆";
+        text = "";
         texthl = "DapLogPoint";
+      };
+      dapStopped = {
+        text = "";
+        texthl = "DapStopped";
       };
     };
     extensions = {
+      dap-go = {
+        enable = true;
+      };
       dap-python = {
         enable = true;
       };
@@ -29,18 +41,52 @@
         enable = true;
       };
     };
-    configurations = {
-      java = [
-        {
-          type = "java";
-          request = "launch";
-          name = "Debug (Attach) - Remote";
-          hostName = "127.0.0.1";
-          port = 5005;
-        }
-      ];
-    };
   };
+
+  extraConfigLua = ''
+      local dap = require('dap')
+      local dapui = require('dapui')
+      dap.listeners.after.event_initialized['dapui_config'] = function ()
+        vim.keymap.set('n', '<right>', '<cmd>DapStepOver<cr>',
+          { desc = 'StepOver' })
+        vim.keymap.set('n', '<up>', '<cmd>DapStepOut<cr>', { desc = 'StepOut' })
+        vim.keymap.set('n', '<down>', '<cmd>DapStepInto<cr>', { desc = 'StepInto' })
+        dapui.open()
+      end
+      dap.listeners.after.event_exited['dapui_config'] = function ()
+        vim.keymap.del('n', '<right>')
+        vim.keymap.del('n', '<up>')
+        vim.keymap.del('n', '<down>')
+      end
+
+      dap.adapters.bashdb = {
+        type = 'executable',
+        command = '${pkgs.bashdb}/bin/bashdb',
+        name = 'bashdb',
+      }
+
+      dap.configurations.sh = {
+        {
+          type = 'bashdb',
+          request = 'launch',
+          name = 'Launch file',
+          showDebugOutput = true,
+          pathBashdb = '${pkgs.bashdb}/bin/bashdb',
+          pathBashdbLib = '${pkgs.bashdb}/share/bashdb/lib',
+          trace = true,
+          file = "''${file}",
+          program = "''${file}",
+          cwd = "''${workspaceFolder}",
+          pathCat = 'cat',
+          pathBash = '/bin/bash',
+          pathMkfifo = 'mkfifo',
+          pathPkill = 'pkill',
+          args = {},
+          env = {},
+          terminalKind = 'integrated',
+        },
+      }
+  '';
 
   keymaps = [
     {

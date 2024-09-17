@@ -33,5 +33,6 @@ in
     shfmt
     shellcheck
     beautysh
+    bashdb
   ] ++ [ nvim ];
 }

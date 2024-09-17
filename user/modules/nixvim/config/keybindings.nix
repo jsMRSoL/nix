@@ -162,6 +162,14 @@
     }
     {
       mode = "n";
+      key = "<leader>e";
+      action = "<cmd>Neotree<CR>";
+      options = {
+        desc = "Explore tree";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>h";
       action = "<cmd>vert h ";
       options = {
