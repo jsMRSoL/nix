@@ -37,7 +37,7 @@
     nvim-autopairs.enable = true;
     surround.enable = true;
     undotree.enable = true;
-  };
+ };
 
   clipboard = {
     register = "unnamedplus";

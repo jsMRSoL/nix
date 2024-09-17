@@ -1,6 +1,7 @@
 {
   imports = [
     ./autocmds.nix
+    ./dap.nix
     ./diagnostics.nix
     ./editor.nix
     ./floaterm.nix
