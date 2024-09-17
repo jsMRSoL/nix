@@ -9,6 +9,7 @@
         # shortcut_type = "number";
         config = {
           header = [
+            ""
             "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
             "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
             "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
@@ -73,5 +74,9 @@
     lualine.enable = true;
     # nice tabs
     bufferline.enable = true;
+    # colours for colour codes
+    nvim-colorizer.enable = true;
+    # neo-tree
+    neo-tree.enable = true;
   };
 }
