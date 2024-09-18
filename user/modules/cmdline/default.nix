@@ -34,6 +34,5 @@
     wipe
     unar
     xdg-utils
-    zoxide
   ];
 }

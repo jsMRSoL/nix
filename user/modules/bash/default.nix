@@ -23,8 +23,6 @@
         local dir
         dir="$( fd --type d -H -d 5 | fzf )"
         [[ -z $dir ]] && return
-        # cd "$dir"
-        # exa -l --icons
         yazi $dir
       }
 
@@ -35,9 +33,6 @@
         [[ -z $file ]] && return
 
         cd "$(dirname $file)"
-        # base="$(basename $file)"
-        # echo $base
-        # $EDITOR "$file"
         $EDITOR "$(basename $file)"
       }
 
@@ -67,7 +62,7 @@
         $EDITOR "$file"
       }
       
-      eval "$(zoxide init bash)"
+      # eval "$(zoxide init bash)"
       [[ -f /home/$USER/.nix-profile/share/bash/bash-preexec.sh ]] && source /home/$USER/.nix-profile/share/bash/bash-preexec.sh
       eval "$(atuin init bash --disable-up-arrow)"
     '';
@@ -117,6 +112,11 @@
   };
 
   programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
   };
