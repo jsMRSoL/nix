@@ -116,4 +116,9 @@
       set vi-cmd-mode-string ":"
     '';
   };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+  };
 }
