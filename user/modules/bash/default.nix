@@ -105,7 +105,6 @@
 
   home.sessionVariables = {
     XDG_SCREENSHOTS_DIR = "/home/simon/Pictures/screenshots";
-    GOPATH = "/home/simon/.go";
   };
 
   home.file.inputrc = {
