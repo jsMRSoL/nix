@@ -2,7 +2,6 @@
 
 let
   system = "x86_64-linux";
-  nixvimLib = nixvim.lib.${system};
   nixvim' = nixvim.legacyPackages.${system};
   nixvimModule = {
     inherit pkgs;
@@ -21,6 +20,7 @@ in
     gotestsum # test runner
     delve # debugger, bin is dlv
     # rust packages are installed via rustup
+    lldb
     # python
     pyright # ? or pylsp
     # python312Packages.debugpy
