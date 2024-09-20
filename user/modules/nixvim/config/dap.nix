@@ -33,6 +33,32 @@
       };
       dap-ui = {
         enable = true;
+        layouts = [
+          {
+            elements = [
+              {
+                id = "scopes";
+                size = 1;
+              }
+            ];
+            position = "left";
+            size = 40;
+          }
+          {
+            elements = [
+              {
+                id = "repl";
+                size = 0.5;
+              }
+              {
+                id = "console";
+                size = 0.5;
+              }
+            ];
+            position = "right";
+            size = 25;
+          }
+        ];
         floating.mappings = {
           close = ["<ESC>" "q"];
         };
