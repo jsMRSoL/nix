@@ -23,7 +23,7 @@ in
     # rust packages are installed via rustup
     # python
     pyright # ? or pylsp
-    python312Packages.debugpy
+    # python312Packages.debugpy
     # js / ts
     prettierd
     typescript # provides tsserver

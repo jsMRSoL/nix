@@ -7,8 +7,8 @@
     # go
     go
     # python
-    python312Full
-    virtualenv
+    # python312Full
+    # virtualenv
   ];
 
   programs.go = {
