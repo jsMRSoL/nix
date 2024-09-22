@@ -14,5 +14,6 @@
     simple-scan
     simplescreenrecorder
     sqlitebrowser
+    zed-editor
   ];
 }
