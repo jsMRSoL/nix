@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -18,12 +18,9 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Will be exposed through DBus to programs willing to store secrets.
-  # services.gnome.gnome-keyring.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = [];
 
   # overlays
   nixpkgs.overlays = [
