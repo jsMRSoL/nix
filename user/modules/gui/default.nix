@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    emacs
     filezilla
     gimp
     gthumb
