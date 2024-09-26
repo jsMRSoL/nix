@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.neovim.enable = true;
+
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
+    /home/simon/.nixos/user/modules/neovim/nvim;
 
   home.packages = with pkgs; [
     # go packages
