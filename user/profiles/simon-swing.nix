@@ -13,7 +13,7 @@
     ../modules/git
     ../modules/gui
     ../modules/languages
-    ../modules/nixvim
+    ../modules/neovim
     ../modules/sway
     ../modules/theme
     ../modules/tmux

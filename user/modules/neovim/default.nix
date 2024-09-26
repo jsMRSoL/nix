@@ -2,8 +2,30 @@
 {
   programs.neovim.enable = true;
 
-  # MyVim customization
   home.packages = with pkgs; [
-    (callPackage ./myvim.nix {})
+    # go packages
+    gopls
+    impl
+    gomodifytags
+    iferr
+    golines # fixes long lines
+    gotests # test generator
+    gotestsum # test runner
+    delve # debugger, bin is dlv
+    # rust packages are installed via rustup
+    lldb
+    # python
+    pyright # ? or pylsp
+    # python312Packages.debugpy
+    # js / ts
+    prettierd
+    typescript # provides tsserver
+    # lua
+    lua-language-server
+    # shell
+    shfmt
+    shellcheck
+    beautysh
+    bashdb
   ];
 }
