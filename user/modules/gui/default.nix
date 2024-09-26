@@ -11,7 +11,6 @@
     mkvtoolnix
     pavucontrol
     pdfarranger
-    rsync
     simple-scan
     simplescreenrecorder
     sqlitebrowser
