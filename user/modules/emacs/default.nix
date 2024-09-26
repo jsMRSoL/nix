@@ -3,7 +3,10 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  home.packages = [ pkgs.emacs ];
+  home.packages = with pkgs; [ 
+    emacs
+    emacs-all-the-icons-fonts
+  ];
 
   # use an absolute path. Otherwise link will point to subtree in nix store.
   home.file = {
