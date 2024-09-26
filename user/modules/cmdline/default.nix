@@ -1,4 +1,4 @@
-{ pkgs, nixvim, ...}:
+{ pkgs, ...}:
 {
   home.packages = with pkgs; [
     bacon
