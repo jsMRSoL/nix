@@ -7,6 +7,7 @@
     ../modules/browser
     ../modules/clipboard
     ../modules/dunst
+    ../modules/emacs
     ../modules/foot
     ../modules/games
     ../modules/git
