@@ -24,6 +24,74 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-partlabel/DATA";
+    fsType = "ext4";
+  };
+
+  fileSystems."/home/simon/Documents" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Documents";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Downloads" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Downloads";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Music" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Music";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Pictures" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Pictures";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Projects" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Projects";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Repos" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Repos";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/home/simon/Videos" = {
+    depends = [
+      "/home/simon"
+      "/mnt/data"
+    ];
+    device = "/mnt/data/Videos";
+    options = [ "bind" ];
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/ae5e84f0-b175-4af8-8f49-62134c58acf0"; }
     ];
