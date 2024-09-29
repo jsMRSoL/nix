@@ -68,7 +68,7 @@
     (custom-set-faces '(default ((t
 				  (:family "FiraCode Nerd Font Propo"
 					   :foundry "CTDB" :slant normal
-					   :weight normal :height 150
+					   :weight normal :height 120
 					   :width normal)))))
 
     (when (string= "derek" (system-name))
