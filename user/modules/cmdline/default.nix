@@ -36,6 +36,7 @@
     wipe
     unar
     xdg-utils
+    xorg.xrdb
   ];
 
   home.file."Xresources" = {
