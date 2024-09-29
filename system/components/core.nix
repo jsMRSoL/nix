@@ -77,7 +77,7 @@
   users.users.simon = {
     isNormalUser = true;
     description = "Simon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = [];
   };
 }
