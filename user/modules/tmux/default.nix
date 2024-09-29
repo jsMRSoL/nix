@@ -34,17 +34,10 @@
       bind m display-message "Test works!"
       bind-key C-y display-popup -w 40% -h 30% -T "tmux-menu" -E "menu.tmx"
       run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
-      set -g @catppuccin_flavour 'mocha'
-      set -g @catppuccin_window_tabs_enabled 'off'
-      set -g @catppuccin_status_modules_right 'session directory date_time'
-      set -g @catppuccin_datetime_icon ""
-      set -g @catppuccin_date_time "%d-%m-%Y %H:%M"
-      set -g @catppuccin_directory "off"
-      run-shell ${pkgs.tmuxPlugins.sensible}/share/tmux-plugins/sensible/sensible.tmux
+      set -g @catppuccin_status_modules_right "date_time application user session host"
     '';
     keyMode = "vi";
     mouse = true;
-    newSession = true;
     terminal = "tmux-256color";
   };
 }
