@@ -30,6 +30,7 @@
     sxiv
     tesseract
     trash-cli
+    tree
     unpaper
     vim
     wipe
