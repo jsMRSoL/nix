@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    
     mypassmenu = {
       url = "github:jsMRSoL/mypassmenu";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +16,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let
       system = "x86_64-linux";
   in {
@@ -60,7 +55,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-swing.nix;
-              home-manager.extraSpecialArgs = { inherit nixvim; };
             }
           ];
         };
@@ -74,10 +68,23 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-swing.nix;
-              home-manager.extraSpecialArgs = { inherit nixvim; };
             }
           ];
         };
+
+        viv = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./system/hosts/viv/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.simon = import ./user/profiles/simon-viv.nix;
+            }
+          ];
+        };
+
       };
     };
 }
