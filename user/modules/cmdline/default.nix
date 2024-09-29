@@ -37,4 +37,10 @@
     unar
     xdg-utils
   ];
+
+  home.file."Xresources" = {
+    enable = true;
+    source = ./Xresources;
+    target = ".Xresources";
+  };
 }
