@@ -4,13 +4,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../components/bootloader.nix
+      ../../components/bootloader_systemd_efi.nix
       ../../components/core.nix
       ../../components/sddm.nix
       ../../components/sound.nix
       ../../components/sway.nix
       ../../components/wayland.nix
     ];
+
 
   hardware.graphics.enable = true;
 
