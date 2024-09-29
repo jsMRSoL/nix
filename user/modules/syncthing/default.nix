@@ -2,7 +2,7 @@
 let
   paths = {
     "derek" = ./swingvm-config.xml;
-    "viv" = ./swingvm-config.xml;
+    "viv" = ./viv-config.xml;
     "swing" = ./swing-config.xml;
     "swingvm" = ./swingvm-config.xml;
   };
