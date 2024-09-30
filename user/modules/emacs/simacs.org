@@ -50,6 +50,8 @@
 
     (global-auto-revert-mode 1)
     (setq global-auto-revert-non-file-buffers t)
+
+    (setq warning-minimum-level :error)
   #+end_src   
 
 * Theming
@@ -68,7 +70,7 @@
     (custom-set-faces '(default ((t
 				  (:family "FiraCode Nerd Font Propo"
 					   :foundry "CTDB" :slant normal
-					   :weight normal :height 120
+					   :weight normal :height 160
 					   :width normal)))))
 
     (when (string= "derek" (system-name))

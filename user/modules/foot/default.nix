@@ -1,9 +1,25 @@
+{ osConfig, ...}:
+let
+  fontsizes = {
+    "swing" = "12";
+    "swingvm" = "12";
+    "viv" = "16";
+    "derek" = "14";
+  };
+
+  currentSystem = osConfig.networking.hostName;
+
+  lookup = attrs: key: default:
+    if attrs ? "${key}" then attrs."${key}" else default;
+
+  fSize = lookup fontsizes currentSystem fontsizes.swingvm;
+in
 {
   programs.foot = {
     enable = true;
     settings = {
       main = {
-        font = "FiraCode Nerd Font Mono:size=12";
+        font = "FiraCode Nerd Font Mono:size=${fSize}";
       };
       colors = {
         foreground = "cdd6f4";
