@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../components/bootloader_systemd_efi.nix
       ../../components/core.nix
+      ../../components/garbage_collection.nix
       ../../components/sddm.nix
       ../../components/sound.nix
       ../../components/sway.nix

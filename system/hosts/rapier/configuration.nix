@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
       ../../components/bootloader.nix
       ../../components/core.nix
+      ../../components/backlight.nix
+      ../../components/garbage_collection.nix
       ../../components/dwm.nix
       ../../components/sound.nix
     ];
