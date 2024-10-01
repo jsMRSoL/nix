@@ -1310,60 +1310,6 @@
 #+begin_src emacs-lisp
   (use-package ledger-mode)
 #+end_src
-* Start screen
-#+begin_src emacs-lisp
-
-  (defun sp/open-with-tasks-and-agenda ()
-    "Open tasks.org and org-capture for simacs.
-
-    This is mainly intended to be used from the command line as a startup convenience."
-    (interactive)
-    (tab-new)
-    (org-agenda-list)
-    (ace-delete-window)
-    (let ((screen-width (window-width)))
-      (evil-window-vsplit)
-      (find-file "~/Documents/org/tasks.org")
-      (persp-switch "git")
-      (magit-status "/home/simon/.dotfiles")
-      (persp-switch "org")
-      (dired "/home/simon/Documents/org")
-      (persp-switch "main")
-      (evil-window-set-width (max (round (* screen-width 0.55)) 60))))
-
-  ;; (sp/open-with-tasks-and-agenda)
-
-  (defun sp/longest-buffer-line ()
-    "Get length of longest line in buffer."
-    (interactive)
-    (goto-char (point-min))
-    (let ((length 0))
-      (while (not (eobp))
-	(setq length (max length (- (line-end-position) (line-beginning-position))))
-	(forward-line 1))
-      length))
-
-  (defun sp/narrow-other ()
-    "Make other window as narrow as its longest line allows."
-    (interactive)
-    (other-window 1)
-    (evil-window-set-width (sp/longest-buffer-line))
-    (other-window 1))
-
-  (defun sp/open-dashboard ()
-    "Open tasks and agenda list."
-    (interactive)
-    (tab-new)
-    (org-agenda-list)
-    (delete-other-windows)
-    (evil-window-vsplit)
-    (find-file "~/Documents/org/tasks.org")
-    (other-window 1)
-    (evil-window-set-width (sp/longest-buffer-line))
-    (other-window 1))
-
-  ;; (sp/open-dashboard)
-#+end_src
 * LSJ2 mode
   #+begin_src emacs-lisp
     ;; (use-package lsj2-mode
@@ -1380,3 +1326,59 @@
   #+end_src
   
   
+
+* Start screen
+#+begin_src emacs-lisp
+
+   (defun sp/longest-buffer-line ()
+     "Get length of longest line in buffer."
+     (interactive)
+     (goto-char (point-min))
+     (let ((length 0))
+       (while (not (eobp))
+	 (setq length (max length (- (line-end-position) (line-beginning-position))))
+	 (forward-line 1))
+       length))
+
+   (defun sp/narrow-other ()
+     "Make other window as narrow as its longest line allows."
+     (interactive)
+     (other-window 1)
+     (evil-window-set-width (sp/longest-buffer-line))
+     (other-window 1))
+
+   (defun sp/open-dashboard ()
+     "Open tasks and agenda list."
+     (interactive)
+     (tab-new)
+     (org-agenda-list)
+     (delete-other-windows)
+     (evil-window-vsplit)
+     (find-file "~/Documents/org/tasks.org")
+     (other-window 1)
+     (evil-window-set-width (sp/longest-buffer-line))
+     (other-window 1))
+
+  ;; (sp/open-dashboard)
+
+    (defun sp/open-with-tasks-and-agenda ()
+     "Open tasks.org and org-capture for simacs.
+
+     This is mainly intended to be used from the command line as a startup convenience."
+     (interactive)
+     (tab-new)
+     (org-agenda-list)
+     (ace-delete-window)
+     (let ((screen-width (window-width)))
+       (evil-window-vsplit)
+       (find-file "~/Documents/org/tasks.org")
+       (persp-switch "git")
+       (magit-status "/home/simon/.dotfiles")
+       (persp-switch "org")
+       (dired "/home/simon/Documents/org")
+       (persp-switch "main")
+       (evil-window-set-width (max (round (* screen-width 0.55)) 60))))
+
+   (sp/open-with-tasks-and-agenda)
+
+#+end_src
