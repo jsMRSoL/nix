@@ -4,19 +4,26 @@
     enable = true; # enable Hyprland
 
     settings = {
-      exec-once = [
-          "waybar"
-          "hyprpaper"
-          "dunst"
-          "wl-paste -t text --watch clipman store --no-persist"
-        ]
+      monitor = [
+        "eDP-1,1920x1080,0x0,1"
+      ];
 
-      "$terminal" = "kitty";
+      exec-once = [
+        "waybar"
+        "hyprpaper"
+        "dunst"
+        "wl-paste -t text --watch clipman store --no-persist"
+      ];
+
+      "$terminal" = "foot";
       "$menu" = "wofi --show drun";
       "$menu_term" = "wofi --show run";
       "$mainMod" = "SUPER";
-      "env" = "XCURSOR_SIZE,24";
-      "env" = "QT_QPA_PLATFORMTHEME,qt5ct";
+
+      env = [
+        "XCURSOR_SIZE,24"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+      ];
 
       input = {
         kb_layout = "us";
@@ -35,8 +42,8 @@
         "col.active_border" =  "rgba(f38ba8ff)";
         "col.inactive_border" = "rgba(595959aa)";
 
-        layout = master;
-        no_cursor_warps = true;
+        layout = "master";
+        # no_cursor_warps = true;
 
         allow_tearing = false;
       };
@@ -59,16 +66,18 @@
 
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-          animation = "windows, 1, 7, myBezier";
-          animation = "windowsOut, 1, 7, default, popin 80%";
-          animation = "border, 1, 10, default";
-          animation = "borderangle, 1, 8, default";
-          animation = "fade, 1, 7, default";
-          animation = "workspaces, 1, 6, default";
+          animation = [
+            "windows, 1, 7, myBezier"
+            "windowsOut, 1, 7, default, popin 80%"
+            "border, 1, 10, default"
+            "borderangle, 1, 8, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 6, default"
+          ];
       };
 
       master = {
-          new_is_master = true;
+          # new_is_master = true;
           new_on_top = true;
           no_gaps_when_only = true;
           inherit_fullscreen = false;
@@ -83,15 +92,16 @@
           workspace_swipe = "off";
       };
 
-      misc {
+      misc = {
           force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
       };
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "opacity 0.96 0.9 1.0, class:.*"
-        "fakefullscreen, class:^(GIMP)"
+        # "fakefullscreen, class:^(GIMP)"
         "float,class:(pavucontrol)"
+        "size 50% 80%,class:(pavucontrol)"
         "float,class:(mpv)"
         "opacity 1.0,class:(mpv)"
         "size 75% 95%,class:(mpv)"
@@ -110,7 +120,7 @@
           "$mainMod_SHIFT, S, exec, waylock"
           "$CTRL_SHIFT_ALT, Q, exit"
           "$mainMod_SHIFT, C, killactive,"
-          "$mainMod, B, exec, killall waybar || waybar &"
+          "$mainMod, B, exec, pkill waybar || waybar &"
 
           # Program bindings
           "$mainMod_SHIFT, RETURN, exec, $terminal"
@@ -138,7 +148,7 @@
           "$mainMod, Right, movefocus, r"
 
           # toggle opacity
-          "$mainMod, O, toggleopaque"
+          # "$mainMod, O, toggleopaque"
 
           # Move windows
           "$mainMod_SHIFT, J, layoutmsg, swapnext"
@@ -196,8 +206,8 @@
     enable = true;
     settings = {
       splash = true;
-      preload = [ ../../../assets/salty_mountains.png ];
-      wallpaper = [ ",${../../../assets/salty_mountains.png}" ];
+      preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
+      wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
     };
   };
 

@@ -49,17 +49,19 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-   wget
-   pciutils
-   alsa-utils
-   nurl # cli tool to generate nix fetcher calls
-   dig
-   wirelesstools
-   pass
-   inputs.mypassmenu.defaultPackage
-   pinentry-gtk2
-   neovim
-   git
+    alsa-utils
+    dig
+    git
+    inputs.mypassmenu.defaultPackage
+    killall
+    neovim
+    nurl # cli tool to generate nix fetcher calls
+    pass
+    pciutils
+    pinentry-gtk2
+    procps
+    wget
+    wirelesstools
   ];
 
   # Environment variables

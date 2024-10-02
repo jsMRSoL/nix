@@ -8,7 +8,8 @@
       ../../components/garbage_collection.nix
       ../../components/sddm.nix
       ../../components/sound.nix
-      ../../components/sway.nix
+      # ../../components/sway.nix
+      ../../components/hyprland.nix
       ../../components/wayland.nix
     ];
 
