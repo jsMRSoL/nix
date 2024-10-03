@@ -204,7 +204,16 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
+
     };
+
+    extraConfig = ''
+      bind = $mainMod, escape, submap, passthru
+
+      submap = passthru
+      bind = $mainMod, escape, submap, reset
+      submap = reset
+    '';
 
     systemd = {
       enable = true;
