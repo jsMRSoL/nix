@@ -81,6 +81,7 @@
           new_on_top = true;
           no_gaps_when_only = true;
           inherit_fullscreen = false;
+          mfact = 0.5;
       };
 
       dwindle = {
