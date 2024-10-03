@@ -129,7 +129,7 @@
         "$CTRL_SHIFT_ALT, Q, exit"
         "$mainMod_SHIFT, C, killactive,"
         "$mainMod, B, exec, pkill waybar || waybar &"
-        "SHIFT, F2, exec, hyprctl switchxkblayout"
+        "SHIFT, F2, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 
         # Program bindings
         "$mainMod_SHIFT, RETURN, exec, $terminal"
