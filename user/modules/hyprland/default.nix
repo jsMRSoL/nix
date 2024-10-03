@@ -206,8 +206,12 @@
     enable = true;
     settings = {
       splash = true;
-      preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
-      wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
+      # preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
+      # wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
+      preload = [
+        "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png" ];
+      wallpaper = [
+        ",/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png" ];
     };
   };
 
