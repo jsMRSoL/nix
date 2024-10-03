@@ -20,6 +20,7 @@
     ../modules/theme
     ../modules/tmux
     ../modules/tmux-scripts
+    ../modules/waybar
     ../modules/yazi
   ];
 
