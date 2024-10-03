@@ -9,10 +9,8 @@
     "hyprland/language",
     "pulseaudio",
     "backlight",
+    "hyprland/submap",
     "idle_inhibitor",
-    "hyprland/mode",
-    "hyprland/scratchpad",
-    "custom/media",
   ],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
@@ -47,6 +45,17 @@
       "activated": "",
       "deactivated": "",
     },
+  },
+  "hyprland/language": {
+    "format": " {}",
+    "keyboard-name": "at-translated-set-2-keyboard",
+  },
+  "hyprland/submap": {
+    "format": " {}",
+    "max-length": 10,
+    "always-on": true,
+    "default-submap": "global",
+    "tooltip": false,
   },
   "tray": {
     // "icon-size": 21,
@@ -84,7 +93,7 @@
   },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
+    "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
   },
   "battery": {
@@ -112,12 +121,12 @@
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon}  {format_source}",
+    "format": "{icon} {volume}%  {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "M ",
+    "format-source": " {volume}%",
+    "format-source-muted": " M",
     "format-icons": {
       "headphone": "",
       "hands-free": "",

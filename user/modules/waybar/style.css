@@ -50,6 +50,7 @@ button:hover {
   background-color: #eb4d4b;
 }
 
+#submap,
 #language,
 #cpu,
 #disk,
@@ -75,6 +76,7 @@ button:hover {
   }
 }
 
+#submap,
 #language,
 #clock,
 #battery,
