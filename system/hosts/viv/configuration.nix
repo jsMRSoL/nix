@@ -29,7 +29,7 @@
     (final: prev: {
        sddm-chili-theme = prev.sddm-chili-theme.override {
          themeConfig = {
-           background = "${../../../assets/salty_mountains.png}";
+           background = "${../../../assets/nix-wallpaper-moonscape.png";
            ScreenWidth = 1920;
            ScreenHeight = 1080;
          };
