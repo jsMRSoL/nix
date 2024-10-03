@@ -166,6 +166,11 @@
         "$mainMod, I, layoutmsg, addmaster"
         "$mainMod, D, layoutmsg, removemaster"
 
+        # Group windows (stacking)
+        "$mainMod_SHIFT, T, togglegroup"
+        "$mainMod, N, changegroupactive, f"
+        "$mainMod_SHIFT, N, changegroupactive, b"
+
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
