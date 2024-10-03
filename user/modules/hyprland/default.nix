@@ -39,7 +39,7 @@
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
-        "col.active_border" =  "rgba(f38ba8ff)";
+        "col.active_border" = "rgba(f38ba8ff)";
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
@@ -49,52 +49,52 @@
       };
 
       decoration = {
-          rounding = 0;
-          blur = {
-              enabled = true;
-              size = 3;
-              passes = 1;
-          };
-          drop_shadow = "yes";
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+        rounding = 0;
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+        };
+        drop_shadow = "yes";
+        shadow_range = 4;
+        shadow_render_power = 3;
+        "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
-          enabled = "yes";
+        enabled = "yes";
 
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-          animation = [
-            "windows, 1, 7, myBezier"
-            "windowsOut, 1, 7, default, popin 80%"
-            "border, 1, 10, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
-          ];
+        animation = [
+          "windows, 1, 7, myBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
       };
 
       master = {
-          # new_is_master = true;
-          new_on_top = true;
-          no_gaps_when_only = true;
-          inherit_fullscreen = false;
-          mfact = 0.5;
+        # new_is_master = true;
+        new_on_top = true;
+        no_gaps_when_only = true;
+        inherit_fullscreen = false;
+        mfact = 0.5;
       };
 
       dwindle = {
-          pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = "yes"; # you probably want this
+        pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        preserve_split = "yes"; # you probably want this
       };
 
       gestures = {
-          workspace_swipe = "off";
+        workspace_swipe = "off";
       };
 
       misc = {
-          force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
       };
 
       windowrulev2 = [
@@ -113,92 +113,91 @@
         "opacity 1.0,class:(Sxiv)"
       ];
 
-      bind =
-        [
-          "$mainMod, Delete, exec, systemctl suspend"
-          "$mainMod_SHIFT, Delete, exec, systemctl poweroff"
-          "$mainMod_SHIFT, Q, exec, wlogout -s"
-          "$mainMod_SHIFT, S, exec, waylock"
-          "$CTRL_SHIFT_ALT, Q, exit"
-          "$mainMod_SHIFT, C, killactive,"
-          "$mainMod, B, exec, pkill waybar || waybar &"
+      bind = [
+        "$mainMod, Delete, exec, systemctl suspend"
+        "$mainMod_SHIFT, Delete, exec, systemctl poweroff"
+        "$mainMod_SHIFT, Q, exec, wlogout -s"
+        "$mainMod_SHIFT, S, exec, waylock"
+        "$CTRL_SHIFT_ALT, Q, exit"
+        "$mainMod_SHIFT, C, killactive,"
+        "$mainMod, B, exec, pkill waybar || waybar &"
 
-          # Program bindings
-          "$mainMod_SHIFT, RETURN, exec, $terminal"
-          "$mainMod, P, exec, $menu"
-          "$mainMod_SHIFT, P, exec, $menu_term"
-          "$CTRL_ALT, P, exec, mypassmenu"
-          "$mainMod, E, exec, $fileManager"
-          "$mainMod, INSERT, exec, clipman pick -t wofi"
-          "$mainMod, F8, exec, emacs &"
+        # Program bindings
+        "$mainMod_SHIFT, RETURN, exec, $terminal"
+        "$mainMod, P, exec, $menu"
+        "$mainMod_SHIFT, P, exec, $menu_term"
+        "$CTRL_ALT, P, exec, mypassmenu"
+        "$mainMod, E, exec, $fileManager"
+        "$mainMod, INSERT, exec, clipman pick -t wofi"
+        "$mainMod, F8, exec, emacs &"
 
-          # Layouts
-          "$mainMod, F, togglefloating, "
-          "$mainMod, P, pseudo" # dwindle
-          "$mainMod, M, fullscreen, 1"
+        # Layouts
+        "$mainMod, F, togglefloating, "
+        "$mainMod, P, pseudo" # dwindle
+        "$mainMod, M, fullscreen, 1"
 
-          # Orientations
-          "$mainMod, T, layoutmsg, orientationleft"
-          "$mainMod, H, layoutmsg, orientationtop"
-          "$mainMod, SPACE, layoutmsg, orientationnext"
+        # Orientations
+        "$mainMod, T, layoutmsg, orientationleft"
+        "$mainMod, H, layoutmsg, orientationtop"
+        "$mainMod, SPACE, layoutmsg, orientationnext"
 
-          # Move focus with mainMod + vim keys
-          "$mainMod, Left, movefocus, l"
-          "$mainMod, J, layoutmsg, cyclenext"
-          "$mainMod, K, layoutmsg, cycleprev"
-          "$mainMod, Right, movefocus, r"
+        # Move focus with mainMod + vim keys
+        "$mainMod, Left, movefocus, l"
+        "$mainMod, J, layoutmsg, cyclenext"
+        "$mainMod, K, layoutmsg, cycleprev"
+        "$mainMod, Right, movefocus, r"
 
-          # toggle opacity
-          # "$mainMod, O, toggleopaque"
+        # toggle opacity
+        # "$mainMod, O, toggleopaque"
 
-          # Move windows
-          "$mainMod_SHIFT, J, layoutmsg, swapnext"
-          "$mainMod_SHIFT, K, layoutmsg, swapprev"
-          "$mainMod, RETURN, layoutmsg, swapwithmaster"
+        # Move windows
+        "$mainMod_SHIFT, J, layoutmsg, swapnext"
+        "$mainMod_SHIFT, K, layoutmsg, swapprev"
+        "$mainMod, RETURN, layoutmsg, swapwithmaster"
 
-          # Switch workspaces with mainMod + [0-9]
-          "$mainMod, 1, workspace, 1"
-          "$mainMod, 2, workspace, 2"
-          "$mainMod, 3, workspace, 3"
-          "$mainMod, 4, workspace, 4"
-          "$mainMod, 5, workspace, 5"
-          "$mainMod, 6, workspace, 6"
-          "$mainMod, 7, workspace, 7"
-          "$mainMod, 8, workspace, 8"
-          "$mainMod, 9, workspace, 9"
-          "$mainMod, 0, workspace, 10"
+        # Switch workspaces with mainMod + [0-9]
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
+        "$mainMod, 0, workspace, 10"
 
-          # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          "$mainMod SHIFT, 1, movetoworkspace, 1"
-          "$mainMod SHIFT, 2, movetoworkspace, 2"
-          "$mainMod SHIFT, 3, movetoworkspace, 3"
-          "$mainMod SHIFT, 4, movetoworkspace, 4"
-          "$mainMod SHIFT, 5, movetoworkspace, 5"
-          "$mainMod SHIFT, 6, movetoworkspace, 6"
-          "$mainMod SHIFT, 7, movetoworkspace, 7"
-          "$mainMod SHIFT, 8, movetoworkspace, 8"
-          "$mainMod SHIFT, 9, movetoworkspace, 9"
-          "$mainMod SHIFT, 0, movetoworkspace, 10"
+        # Move active window to a workspace with mainMod + SHIFT + [0-9]
+        "$mainMod SHIFT, 1, movetoworkspace, 1"
+        "$mainMod SHIFT, 2, movetoworkspace, 2"
+        "$mainMod SHIFT, 3, movetoworkspace, 3"
+        "$mainMod SHIFT, 4, movetoworkspace, 4"
+        "$mainMod SHIFT, 5, movetoworkspace, 5"
+        "$mainMod SHIFT, 6, movetoworkspace, 6"
+        "$mainMod SHIFT, 7, movetoworkspace, 7"
+        "$mainMod SHIFT, 8, movetoworkspace, 8"
+        "$mainMod SHIFT, 9, movetoworkspace, 9"
+        "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-          # Example special workspace (scratchpad)
-          "$mainMod, S, togglespecialworkspace, magic"
-          "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # Example special workspace (scratchpad)
+        "$mainMod, S, togglespecialworkspace, magic"
+        "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
-        ];
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
+      ];
 
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        bindm = [
-          "$mainMod, mouse:272, movewindow"
-          "$mainMod, mouse:273, resizewindow"
-        ];
+      # Move/resize windows with mainMod + LMB/RMB and dragging
+      bindm = [
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
+      ];
     };
 
     systemd = {
       enable = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
 
   };

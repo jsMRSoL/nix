@@ -17,6 +17,9 @@
     delve # debugger, bin is dlv
     # rust packages are installed via rustup
     lldb
+    # nixd
+    nixd
+    nixfmt-rfc-style
     # python
     pyright # ? or pylsp
     # python312Packages.debugpy

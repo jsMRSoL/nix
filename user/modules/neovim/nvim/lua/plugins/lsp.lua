@@ -175,6 +175,8 @@ return {
           end,
 
         },
+        -- nix
+        nixd = {},
         -- python
         -- pyright = {}, -- can't get this to work?!
         pyright = {},
