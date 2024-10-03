@@ -21,13 +21,16 @@
       "$mainMod" = "SUPER";
 
       env = [
-        "XCURSOR_SIZE,24"
+        "XCURSOR_SIZE,20"
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
 
       input = {
-        kb_layout = "us";
-        kb_options = "ctrl:nocaps";
+        kb_layout = "us,gr";
+        kb_options = [
+          "ctrl:nocaps"
+          "grp_shifts"
+        ];
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "no";
@@ -43,7 +46,6 @@
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
-        # no_cursor_warps = true;
 
         allow_tearing = false;
       };
@@ -77,10 +79,10 @@
       };
 
       master = {
-        # new_is_master = true;
-        new_on_top = true;
+        new_status = "inherit";
+        new_on_top = false;
         no_gaps_when_only = true;
-        inherit_fullscreen = false;
+        inherit_fullscreen = true;
         mfact = 0.5;
       };
 
@@ -94,7 +96,8 @@
       };
 
       misc = {
-        force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_splash_rendering = true;
+        disable_hyprland_logo = true;
       };
 
       windowrulev2 = [
@@ -138,14 +141,14 @@
 
         # Orientations
         "$mainMod, T, layoutmsg, orientationleft"
-        "$mainMod, H, layoutmsg, orientationtop"
+        "$mainMod, U, layoutmsg, orientationtop"
         "$mainMod, SPACE, layoutmsg, orientationnext"
 
         # Move focus with mainMod + vim keys
-        "$mainMod, Left, movefocus, l"
+        "$mainMod, H, movefocus, l"
         "$mainMod, J, layoutmsg, cyclenext"
         "$mainMod, K, layoutmsg, cycleprev"
-        "$mainMod, Right, movefocus, r"
+        "$mainMod, L, movefocus, r"
 
         # toggle opacity
         # "$mainMod, O, toggleopaque"
@@ -154,6 +157,8 @@
         "$mainMod_SHIFT, J, layoutmsg, swapnext"
         "$mainMod_SHIFT, K, layoutmsg, swapprev"
         "$mainMod, RETURN, layoutmsg, swapwithmaster"
+        "$mainMod, I, layoutmsg, addmaster"
+        "$mainMod, D, layoutmsg, removemaster"
 
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
@@ -210,9 +215,11 @@
       # preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
       # wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
       preload = [
-        "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png" ];
+        "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png"
+      ];
       wallpaper = [
-        ",/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png" ];
+        ",/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png"
+      ];
     };
   };
 
