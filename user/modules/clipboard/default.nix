@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    wofi
+  ];
+
   xdg.configFile."wofi-config" = {
     enable = true;
     source = ./wofi/config;

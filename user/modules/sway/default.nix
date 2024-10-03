@@ -20,7 +20,5 @@
   
   home.packages = with pkgs; [
     swayrbar
-    pulseaudioFull
-    wofi
   ];
 }
