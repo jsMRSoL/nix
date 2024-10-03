@@ -27,10 +27,9 @@
 
       input = {
         kb_layout = "us,gr";
-        kb_options = [
-          "ctrl:nocaps"
-          "grp_shifts"
-        ];
+        kb_variant = ",polytonic";
+        # kb_options = "grp:shifts_toggle";
+        kb_options = "ctrl:nocaps";
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "no";
@@ -102,6 +101,10 @@
         key_press_enables_dpms = true;
       };
 
+      cursor = {
+        hide_on_key_press = true;
+      };
+
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "opacity 0.96 0.9 1.0, class:.*"
@@ -126,6 +129,7 @@
         "$CTRL_SHIFT_ALT, Q, exit"
         "$mainMod_SHIFT, C, killactive,"
         "$mainMod, B, exec, pkill waybar || waybar &"
+        "SHIFT, F2, exec, hyprctl switchxkblayout"
 
         # Program bindings
         "$mainMod_SHIFT, RETURN, exec, $terminal"
