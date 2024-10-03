@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    waybar
+  ];
+
   xdg.configFile."waybar-config" = {
     enable = true;
     source = ./config.jsonc;
