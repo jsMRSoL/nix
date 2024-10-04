@@ -16,8 +16,9 @@
       ];
 
       "$terminal" = "foot";
-      "$menu" = "wofi --show drun";
-      "$menu_term" = "wofi --show run";
+      "$menu" = "wofi --insensitive --show drun";
+      "$menu_term" = "foot -e wofi --insensitive --show run";
+      # "$menu_term" = "wofi --insensitive --show run --term=foot";
       "$mainMod" = "SUPER";
 
       env = [
@@ -158,6 +159,7 @@
 
         # toggle opacity
         # "$mainMod, O, toggleopaque"
+        "$mainMod, O, exec, hyprctl setprop active opaque toggle"
 
         # Move windows
         "$mainMod_SHIFT, J, layoutmsg, swapnext"
@@ -231,7 +233,7 @@
     enable = true;
     settings = {
       splash = true;
-      splash_offset = 0.8;
+      splash_offset = 0.2;
       # preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
       # wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
       preload = [
