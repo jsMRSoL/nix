@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     bacon
@@ -7,6 +7,7 @@
     clipman
     duf
     exiftool
+    fastfetch
     fd
     ffmpeg
     ffmpegthumbnailer
