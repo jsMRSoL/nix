@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
 
   imports = [
@@ -16,7 +17,6 @@
     ../modules/neovim
     ../modules/sway
     ../modules/hyprland
-    ../modules/syncthing
     ../modules/theme
     ../modules/tmux
     ../modules/tmux-scripts
@@ -28,10 +28,14 @@
     username = "simon";
     homeDirectory = "/home/simon";
     stateVersion = "24.05";
-
-    packages = [];
   };
 
-  programs.home-manager.enable = true;
+  gui_programs.handbrake.enable = lib.mkForce false;
+  gui_programs.insomnia.enable = lib.mkForce false;
+  gui_programs.mkvtoolnix.enable = lib.mkForce false;
+  gui_programs.simple-scan.enable = lib.mkForce false;
+  gui_programs.sqlitebrowser.enable = lib.mkForce false;
+  gui_programs.zed-editor.enable = lib.mkForce false;
 
+  programs.home-manager.enable = true;
 }

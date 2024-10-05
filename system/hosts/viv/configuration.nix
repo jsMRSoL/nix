@@ -11,6 +11,7 @@
     # ../../components/sway.nix
     ../../components/hyprland.nix
     ../../components/wayland.nix
+    ../../components/postgres.nix
   ];
 
   hardware.graphics.enable = true;
