@@ -55,6 +55,7 @@
     inputs.mypassmenu.defaultPackage
     killall
     neovim
+    nmap
     nurl # cli tool to generate nix fetcher calls
     pass
     pciutils
