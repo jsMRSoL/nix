@@ -5,9 +5,16 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      22
+      80
+      443
+      631
+    ];
+    allowedUDPPorts = [ ];
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -80,7 +87,11 @@
   users.users.simon = {
     isNormalUser = true;
     description = "Simon";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+    ];
+    packages = [ ];
   };
 }
