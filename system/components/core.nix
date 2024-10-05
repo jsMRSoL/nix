@@ -12,8 +12,12 @@
       80
       443
       631
+      22000 # syncthing
     ];
-    allowedUDPPorts = [ ];
+    allowedUDPPorts = [
+      21027 # syncthing
+      22000 # syncthing
+    ];
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

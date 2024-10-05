@@ -2,21 +2,22 @@
 {
 
   imports = [
-    ../modules/cmdline
     ../modules/atuin
     ../modules/bash
     ../modules/browser
     ../modules/clipboard
+    ../modules/cmdline
     ../modules/dunst
     ../modules/emacs
     ../modules/foot
     ../modules/games
     ../modules/git
     ../modules/gui
+    ../modules/hyprland
     ../modules/languages
     ../modules/neovim
     ../modules/sway
-    ../modules/hyprland
+    ../modules/syncthing
     ../modules/theme
     ../modules/tmux
     ../modules/tmux-scripts

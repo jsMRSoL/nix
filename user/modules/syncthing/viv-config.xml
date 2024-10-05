@@ -8,7 +8,7 @@
         <device id="OVD6IFX-YXMVFB6-YW2D7IL-7S5IJZC-UAIUEUS-RRYVJND-GE23N6V-QX7HXAV" introducedBy="UUXDPNC-6OCWPIQ-VKVJZG7-2LHLANG-7SISCEA-JZ2RVN4-YJX2IFY-ELJI2A6">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="TQ6TTSI-UOFEOYO-NB34A5U-3GWY6Q7-YWDVZNK-PC5VPJZ-HUMSVIT-FBUUFAV" introducedBy="">
+        <device id="SG7HFYH-4WT5NM7-SPDVSUI-CIFNI6O-C3YU453-33DTMLG-OC4GEVB-LGPGWQZ" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <device id="UUXDPNC-6OCWPIQ-VKVJZG7-2LHLANG-7SISCEA-JZ2RVN4-YJX2IFY-ELJI2A6" introducedBy="">
@@ -81,7 +81,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="TQ6TTSI-UOFEOYO-NB34A5U-3GWY6Q7-YWDVZNK-PC5VPJZ-HUMSVIT-FBUUFAV" name="viv" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="SG7HFYH-4WT5NM7-SPDVSUI-CIFNI6O-C3YU453-33DTMLG-OC4GEVB-LGPGWQZ" name="viv" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -200,7 +200,7 @@
     <defaults>
         <folder id="" label="" path="~" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="TQ6TTSI-UOFEOYO-NB34A5U-3GWY6Q7-YWDVZNK-PC5VPJZ-HUMSVIT-FBUUFAV" introducedBy="">
+            <device id="SG7HFYH-4WT5NM7-SPDVSUI-CIFNI6O-C3YU453-33DTMLG-OC4GEVB-LGPGWQZ" introducedBy="">
                 <encryptionPassword></encryptionPassword>
             </device>
             <minDiskFree unit="%">1</minDiskFree>
