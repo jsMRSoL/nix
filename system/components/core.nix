@@ -19,6 +19,11 @@
       22000 # syncthing
     ];
   };
+  networking.extraHosts = ''
+    192.168.1.103     ant
+    192.168.1.112     derek
+    192.168.1.114     viv
+  '';
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
