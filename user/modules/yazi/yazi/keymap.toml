@@ -142,9 +142,10 @@ keymap = [
 	{ on = [ "w" ], run = "tasks_show", desc = "Show the tasks manager" },
 
 	# Goto
-	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the ~ dir" },
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go to the .config dir" },
 	{ on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go to the Documents dir" },
+	{ on = [ "g", "f" ],       run = "cd ~/.dotfiles",     desc = "Go to the .dotfiles dir" },
+	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the ~ dir" },
 	{ on = [ "g", "j" ],       run = "cd ~/Projects",   desc = "Go to the Projects dir" },
 	{ on = [ "g", "m" ],       run = "cd ~/Music",   desc = "Go to the Music dir" },
 	{ on = [ "g", "n" ],       run = "cd ~/.nixos",   desc = "Go to the .nixos dir" },

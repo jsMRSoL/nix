@@ -61,7 +61,7 @@
         cd "$(dirname $file)"
         $EDITOR "$file"
       }
-      
+
       # eval "$(zoxide init bash)"
       [[ -f /home/$USER/.nix-profile/share/bash/bash-preexec.sh ]] && source /home/$USER/.nix-profile/share/bash/bash-preexec.sh
       eval "$(atuin init bash --disable-up-arrow)"
@@ -72,20 +72,23 @@
       in {
       gc = "cd ~/.config";
       gd = "cd ~/Documents";
+      gf = "cd ~/.dotfiles";
       gj = "cd ~/Projects";
       gm = "cd ~/Music";
       gn = "cd ${flakeDir}";
-      go = "cd ~/Downloads";
+      gw = "cd ~/Downloads";
       gp = "cd ~/Pictures";
       gr = "cd ~/Repos";
       gt = "cd /tmp";
       gv = "cd ~/Videos";
-      gs = "git status";
-      gl = "git log --all --graph --decorate";
+      gcm = "git commit -m ";
+      gfi = "git commit -m \"fixup!\"";
+      gst = "git status";
+      gla = "git log --all --graph --decorate";
       gac = "git add . && git commit -m ";
       glo = "git log --all --graph --decorate --oneline";
       gsh = "git show";
-      gcm = "git commit --amend";
+      gca = "git commit --amend";
       gri = "git rebase --interactive";
       # r = "yazi"; Moved to function - see initExtra attribute.
       rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
@@ -93,9 +96,6 @@
       update = "nix flake update ${flakeDir}";
       upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
     };
-    # sessionVariables = {
-    #   EDITOR = "nvim";
-    # };
   };
 
   home.sessionVariables = {
