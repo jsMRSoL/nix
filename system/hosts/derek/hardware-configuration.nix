@@ -8,92 +8,24 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "sdhci_pci" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4e7dc2c6-6284-444d-8409-7b5e86cbf9d5";
+    { device = "/dev/disk/by-uuid/80999860-daad-478c-960c-81b7c1770d14";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0C34-6378";
+    { device = "/dev/disk/by-uuid/46F2-52AD";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-partlabel/DATA";
-    fsType = "ext4";
-  };
-
-  fileSystems."/home/simon/Documents" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Documents";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Downloads" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Downloads";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Music" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Music";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Pictures" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Pictures";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Projects" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Projects";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Repos" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Repos";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/home/simon/Videos" = {
-    depends = [
-      "/home/simon"
-      "/mnt/data"
-    ];
-    device = "/mnt/data/Videos";
-    options = [ "bind" ];
-  };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ae5e84f0-b175-4af8-8f49-62134c58acf0"; }
+    [ { device = "/dev/disk/by-uuid/8cb94473-200a-4b5b-8369-a261bb98df5c"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -101,8 +33,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

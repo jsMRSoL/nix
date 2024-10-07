@@ -23,9 +23,9 @@ in
 
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.dell-bios-fan-control}/bin/dell-bios-fan-control 0";
+      ExecStart = "${dell-bios-fan-control}/bin/dell-bios-fan-control 0";
       RemainAfterExit = true;
-      ExecStop = "${pkgs.dell-bios-fan-control}/bin/dell-bios-fan-control 1";
+      ExecStop = "${dell-bios-fan-control}/bin/dell-bios-fan-control 1";
     };
   };
 
@@ -37,19 +37,21 @@ in
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.sh} -c '${pkgs.sleep} 30 && ${pkgs.systemd} --no-block
+      ExecStart = "sh -c 'sleep 30 && ${pkgs.systemd} --no-block
       restart dell-bios-fan-control.service'";
     };
   };
 
   systemd.services.i8kmon = {
     description = "Dell laptop thermal monitoring";
-    conditionPathExists = "/proc/i8k";
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      ConditionPathExists = "/proc/i8k";
+    };
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.i8kutils}/bin/i8kmon --nouserconfig";
+      ExecStart = "${i8kutils}/bin/i8kmon --nouserconfig";
     };
   };
 }
