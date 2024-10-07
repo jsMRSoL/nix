@@ -1,29 +1,31 @@
 { pkgs, ... }:
 let
   dell-bios-fan-control = pkgs.callPackage ../../user/modules/dell-bios-fan-control/default.nix { };
-  i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
+  # i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
 in
 {
   environment.systemPackages = [
     dell-bios-fan-control
-    i8kutils
   ];
 
   boot.extraModprobeConfig = ''
-    options dell-smm-hwmon restricted=0 force=1
+    options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1
   '';
 
   boot.kernelModules = [ "dell-smm-hwmon" ];
 
   systemd.services.dell-bios-fan-control = {
     description = "Disables BIOS control of fans at boot";
-    before = [ "i8kmon.service" ];
     wants = [ "dell-bios-fan-control-resume.service" ];
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${dell-bios-fan-control}/bin/dell-bios-fan-control 0";
+      ExecStart = ''
+        ${dell-bios-fan-control}/bin/dell-bios-fan-control 0
+        sleep 10 && echo 55 > "$(find /sys/devices -name 'pwm1')"
+        echo 55 > "$(find /sys/devices -name 'pwm2')"
+      '';
       RemainAfterExit = true;
       ExecStop = "${dell-bios-fan-control}/bin/dell-bios-fan-control 1";
     };
@@ -41,29 +43,4 @@ in
       restart dell-bios-fan-control.service'";
     };
   };
-
-  systemd.services.i8kmon = {
-    description = "Dell laptop thermal monitoring";
-    wantedBy = [ "multi-user.target" ];
-    unitConfig = {
-      ConditionPathExists = "/proc/i8k";
-    };
-
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${i8kutils}/bin/i8kmon --nouserconfig";
-    };
-  };
 }
-# [Unit]
-# Description=Dell laptop thermal monitoring
-# Documentation=man:i8kmon
-# ConditionPathExists=/proc/i8k
-#
-# [Service]
-# ExecStart=/usr/bin/i8kmon --nouserconfig
-# Restart=always
-# RestartSec=5
-#
-# [Install]
-# WantedBy=multi-user.target

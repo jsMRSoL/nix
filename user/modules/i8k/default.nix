@@ -25,5 +25,13 @@ stdenv.mkDerivation (finalAttrs: {
     chmod +rx $out/bin/i8kmon
     chmod +rx $out/bin/i8kctl
     chmod +rx $out/bin/i8kfan
+    mkdir -p $out/etc
+    cp i8kmon.conf $out/etc/i8kmon.conf
+    substituteInPlace $out/bin/i8kmon \
+      --replace "/etc/i8kmon.conf" "$out/etc/i8kmon.conf"
+    substituteInPlace $out/bin/i8kmon \
+      --replace "/usr/bin/i8kfan" "$out/bin/i8kfan"
+    substituteInPlace $out/bin/i8kfan \
+      --replace "/usr/bin/i8kctl" "$out/bin/i8kctl"
   '';
 })
