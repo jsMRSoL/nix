@@ -48,6 +48,9 @@
     [Service]
     Restart=always
     RestartSec=10
+    [Unit]
+    Wants=network-online.target
+    After=network-online.target
   '';
 }
 
