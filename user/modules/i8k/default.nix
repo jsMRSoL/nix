@@ -15,7 +15,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-yANw44IvANb5w+HnmoTYevg6ohic0pXBwz8eBlnZjjY=";
   };
 
-  buildInputs = [ pkgs.tclsh ];
+  buildInputs = [ pkgs.tcl ];
 
   installPhase = ''
     mkdir -p $out/bin
