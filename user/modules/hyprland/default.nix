@@ -10,7 +10,7 @@
 
       exec-once = [
         "waybar"
-        "hyprpaper"
+        # "hyprpaper" is started by systemd - see components/hyprland.nix
         "dunst"
         "wl-paste -t text --watch clipman store --no-persist"
       ];
