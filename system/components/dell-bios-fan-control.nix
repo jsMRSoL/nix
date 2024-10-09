@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   dell-bios-fan-control = pkgs.callPackage ../../user/modules/dell-bios-fan-control/default.nix { };
-  # i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
 in
+# i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
 {
   environment.systemPackages = [
     dell-bios-fan-control
@@ -23,11 +23,7 @@ in
 
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = ''
-        ${dell-bios-fan-control}/bin/dell-bios-fan-control 0
-        # sleep 10 && echo 55 > "$(find /sys/devices -name 'pwm1')"
-        # echo 55 > "$(find /sys/devices -name 'pwm2')"
-      '';
+      ExecStart = "${dell-bios-fan-control}/bin/dell-bios-fan-control 0";
       RemainAfterExit = true;
       ExecStop = "${dell-bios-fan-control}/bin/dell-bios-fan-control 1";
     };
@@ -43,6 +39,25 @@ in
       Type = "simple";
       ExecStart = "sh -c 'sleep 30 && ${pkgs.systemd} --no-block
       restart dell-bios-fan-control.service'";
+    };
+  };
+
+  systemd.services.fancontrol = {
+    enable = true;
+    description = "Fan control";
+    wantedBy = [
+      "multi-user.target"
+      "graphical.target"
+      "rescue.target"
+    ];
+
+    unitConfig = {
+      Type = "simple";
+    };
+
+    serviceConfig = {
+      ExecStart = "${pkgs.lm_sensors}/bin/fancontrol";
+      Restart = "always";
     };
   };
 }
