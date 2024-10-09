@@ -6,6 +6,8 @@ in
 {
   environment.systemPackages = [
     dell-bios-fan-control
+    pkgs.lm_sensors
+    pkgs.fan2go
   ];
 
   boot.extraModprobeConfig = ''
@@ -23,8 +25,8 @@ in
       Type = "oneshot";
       ExecStart = ''
         ${dell-bios-fan-control}/bin/dell-bios-fan-control 0
-        sleep 10 && echo 55 > "$(find /sys/devices -name 'pwm1')"
-        echo 55 > "$(find /sys/devices -name 'pwm2')"
+        # sleep 10 && echo 55 > "$(find /sys/devices -name 'pwm1')"
+        # echo 55 > "$(find /sys/devices -name 'pwm2')"
       '';
       RemainAfterExit = true;
       ExecStop = "${dell-bios-fan-control}/bin/dell-bios-fan-control 1";
