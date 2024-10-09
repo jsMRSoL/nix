@@ -1,13 +1,16 @@
 { pkgs, ... }:
 let
   dell-bios-fan-control = pkgs.callPackage ../../user/modules/dell-bios-fan-control/default.nix { };
+
+  fansoff = pkgs.writeShellScriptBin "fansoff.sh" ''
+    echo 60 > "$(find /sys/devices/ -name 'pwm1')"
+    echo 60 > "$(find /sys/devices/ -name 'pwm2')"
+  '';
 in
-# i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
 {
   environment.systemPackages = [
     dell-bios-fan-control
-    pkgs.lm_sensors
-    pkgs.fan2go
+    fansoff
   ];
 
   boot.extraModprobeConfig = ''
@@ -45,19 +48,19 @@ in
   systemd.services.fancontrol = {
     enable = true;
     description = "Fan control";
+    after = [ "dell-bios-fan-control.service" ];
     wantedBy = [
       "multi-user.target"
-      "graphical.target"
-      "rescue.target"
     ];
 
     unitConfig = {
-      Type = "simple";
+      Type = "oneshot";
     };
 
     serviceConfig = {
-      ExecStart = "${pkgs.lm_sensors}/bin/fancontrol";
-      Restart = "always";
+      ExecStart = ''
+        /bin/sh -c "sleep 10 && ${fansoff}/bin/fansoff.sh"
+      '';
     };
   };
 }
