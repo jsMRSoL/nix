@@ -1,7 +1,7 @@
 { osConfig, ... }:
 let
   paths = {
-    "derek" = ./swingvm-config.xml;
+    "derek" = ./derek-config.xml;
     "viv" = ./viv-config.xml;
     "swing" = ./swing-config.xml;
     "swingvm" = ./swingvm-config.xml;
