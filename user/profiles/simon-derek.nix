@@ -31,12 +31,12 @@
     stateVersion = "24.05";
   };
 
-  gui_programs.handbrake.enable = lib.mkForce false;
-  gui_programs.insomnia.enable = lib.mkForce false;
-  gui_programs.mkvtoolnix.enable = lib.mkForce false;
-  gui_programs.simple-scan.enable = lib.mkForce false;
-  gui_programs.sqlitebrowser.enable = lib.mkForce false;
-  gui_programs.zed-editor.enable = lib.mkForce false;
+  # gui_programs.handbrake.enable = lib.mkForce false;
+  # gui_programs.insomnia.enable = lib.mkForce false;
+  # gui_programs.mkvtoolnix.enable = lib.mkForce false;
+  # gui_programs.simple-scan.enable = lib.mkForce false;
+  # gui_programs.sqlitebrowser.enable = lib.mkForce false;
+  # gui_programs.zed-editor.enable = lib.mkForce false;
 
   programs.home-manager.enable = true;
 }
