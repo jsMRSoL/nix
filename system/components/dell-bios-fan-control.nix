@@ -11,6 +11,8 @@ in
   environment.systemPackages = [
     dell-bios-fan-control
     fansoff
+    pkgs.lm_sensors
+    pkgs.fan2go
   ];
 
   boot.extraModprobeConfig = ''
@@ -40,7 +42,7 @@ in
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "sh -c 'sleep 30 && ${pkgs.systemd} --no-block
+      ExecStart = "/bin/sh -c 'sleep 30 && ${pkgs.systemd} --no-block
       restart dell-bios-fan-control.service'";
     };
   };
