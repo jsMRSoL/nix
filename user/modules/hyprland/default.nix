@@ -259,7 +259,7 @@
       listener = [
         {
           timeout = 300;
-          on-timeout = "waylock";
+          on-timeout = "swaylock";
         }
         {
           timeout = 600;
@@ -270,11 +270,23 @@
     };
   };
 
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "808080";
+      font-size = 18;
+      indicator-idle-visible = false;
+      indicator-radius = 100;
+      line-color = "ffffff";
+      show-failed-attempts = true;
+    };
+  };
+
   home.packages = with pkgs; [
     hyprpaper
     waybar
     wlogout
-    waylock
+    swaylock
   ];
 
   # Optional, hint Electron apps to use Wayland:
