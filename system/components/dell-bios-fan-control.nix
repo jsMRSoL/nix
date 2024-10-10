@@ -12,12 +12,10 @@ in
     dell-bios-fan-control
     fansoff
     pkgs.lm_sensors
-    pkgs.fan2go
   ];
 
-    # options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1 fan_max=2
   boot.extraModprobeConfig = ''
-    options dell-smm-hwmon force=1 fan_max=2
+    options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1
   '';
 
   boot.kernelModules = [ "dell-smm-hwmon" ];
@@ -64,36 +62,23 @@ in
       ExecStop = "${pkgs.kmod}/bin/modprobe -r coretemp";
     };
   };
-# fan2go.service
-# [Unit]
-# Description=Advanced Fan Control program
-# After=lm-sensors.service
-#
-# [Service]
-# LimitNOFILE=8192
-# Environment=DISPLAY=:0
-# ExecStart=/usr/bin/fan2go -c /etc/fan2go/fan2go.yaml --no-style
-# Restart=always
-# RestartSec=1s
-#
-# [Install]
-# WantedBy=multi-user.target
-  # systemd.services.fancontrol = {
-  #   enable = true;
-  #   description = "Fan control";
-  #   after = [ "dell-bios-fan-control.service" ];
-  #   wantedBy = [
-  #     "multi-user.target"
-  #   ];
-  #
-  #   unitConfig = {
-  #     Type = "oneshot";
-  #   };
-  #
-  #   serviceConfig = {
-  #     ExecStart = ''
-  #       /bin/sh -c "sleep 10 && ${fansoff}/bin/fansoff.sh"
-  #     '';
-  #   };
-  # };
+
+  systemd.services.fancontrol = {
+    enable = true;
+    description = "Fan control";
+    after = [ "dell-bios-fan-control.service" ];
+    wantedBy = [
+      "multi-user.target"
+    ];
+
+    unitConfig = {
+      Type = "oneshot";
+    };
+
+    serviceConfig = {
+      ExecStart = ''
+        /bin/sh -c "sleep 10 && ${fansoff}/bin/fansoff.sh"
+      '';
+    };
+  };
 }
