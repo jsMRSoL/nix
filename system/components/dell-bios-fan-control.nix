@@ -15,8 +15,9 @@ in
     pkgs.fan2go
   ];
 
+    # options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1 fan_max=2
   boot.extraModprobeConfig = ''
-    options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1 fan_max=2
+    options dell-smm-hwmon force=1 fan_max=2
   '';
 
   boot.kernelModules = [ "dell-smm-hwmon" ];
