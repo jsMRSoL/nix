@@ -120,6 +120,9 @@
         "size 75% 95%,class:(Sxiv)"
         "move 13% 4%,class:(Sxiv)"
         "opacity 1.0,class:(Sxiv)"
+        "float,class:(brave),initialTitle:(save)"
+        "opacity 1.0,class:(brave),initialTitle:(save)"
+        "size 50% 60%,class:(brave),initialTitle:(save)"
       ];
 
       bind = [
