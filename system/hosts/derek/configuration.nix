@@ -13,11 +13,16 @@
     ../../components/hyprland.nix
     ../../components/wayland.nix
     # ../../components/postgres.nix
+    ../../components/virtualization.nix
   ];
 
   hardware.graphics.enable = true;
 
   networking.hostName = "derek"; # Define your hostname.
+
+  users.users.simon.extraGroups = [
+    "libvirtd"
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
