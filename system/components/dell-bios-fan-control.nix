@@ -47,6 +47,23 @@ in
     };
   };
 
+  systemd.services.lm_sensors = {
+    description = "Initialize hardware monitoring sensors";
+    wantedBy = [
+      "multi-user.target"
+    ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = ''
+        ${pkgs.kmod}/bin/modprobe coretemp
+        ${pkgs.lm_sensors}/bin/sensors -s
+      '';
+      ExecStop = "${pkgs.kmod}/bin/modprobe -r coretemp";
+    };
+  };
+
   systemd.services.fancontrol = {
     enable = true;
     description = "Fan control";
