@@ -273,11 +273,12 @@
   programs.swaylock = {
     enable = true;
     settings = {
-      color = "808080";
+      image = "${./../../../assets/nix-wallpaper-binary-black.png}";
+      color = "1e1e2e";
       font-size = 18;
       indicator-idle-visible = false;
       indicator-radius = 100;
-      line-color = "ffffff";
+      line-color = "74c7ec";
       show-failed-attempts = true;
     };
   };
