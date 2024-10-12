@@ -1,5 +1,21 @@
 { pkgs, ... }:
+let
+  wlogout' = pkgs.wlogout.overrideAttrs (
+    finalAttrs: prevAttrs: {
+      postPatch =
+        prevAttrs.postPatch
+        + ''
+          substituteInPlace layout \
+            --replace-fail "loginctl lock-session" "swaylock"
+
+          substituteInPlace layout \
+            --replace-fail  "loginctl terminate-user \$USER" "hyprctl dispatch exit"
+        '';
+    }
+  );
+in
 {
+
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
 
@@ -23,7 +39,9 @@
 
       env = [
         "XCURSOR_SIZE,20"
+        "QT_QPA_PLATFORM,wayland;xcb"
         "QT_QPA_PLATFORMTHEME,qt5ct"
+        "GTK_THEME,catppuccin-mocha"
       ];
 
       input = {
@@ -120,6 +138,9 @@
         "size 75% 95%,class:(Sxiv)"
         "move 13% 4%,class:(Sxiv)"
         "opacity 1.0,class:(Sxiv)"
+        "float,class:(brave),initialTitle:(save)"
+        "opacity 1.0,class:(brave),initialTitle:(save)"
+        "size 50% 60%,class:(brave),initialTitle:(save)"
       ];
 
       bind = [
@@ -131,6 +152,7 @@
         "$mainMod_SHIFT, C, killactive,"
         "$mainMod, B, exec, pkill waybar || waybar &"
         "SHIFT, F2, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+        "SHIFT, F2, exec, hyprctl switchxkblayout usb-hid-keyboard next"
 
         # Program bindings
         "$mainMod_SHIFT, RETURN, exec, $terminal"
@@ -245,11 +267,45 @@
     };
   };
 
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        ignore_dbus_inhibit = false;
+        ignore_systemd_inhibit = false;
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "swaylock";
+        }
+        {
+          timeout = 600;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      image = "${./../../../assets/nix-wallpaper-binary-black.png}";
+      color = "1e1e2e";
+      font-size = 18;
+      indicator-idle-visible = false;
+      indicator-radius = 100;
+      line-color = "74c7ec";
+      show-failed-attempts = true;
+    };
+  };
+
   home.packages = with pkgs; [
     hyprpaper
     waybar
-    wlogout
-    waylock
+    wlogout'
+    swaylock
   ];
 
   # Optional, hint Electron apps to use Wayland:

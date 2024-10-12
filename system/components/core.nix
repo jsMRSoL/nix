@@ -60,6 +60,7 @@
     fira-code-nerdfont
     source-code-pro
     hack-font
+    font-awesome
   ];
 
   nixpkgs.config.allowUnfree = true;

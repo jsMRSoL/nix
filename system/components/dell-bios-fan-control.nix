@@ -1,23 +1,39 @@
 { pkgs, ... }:
 let
   dell-bios-fan-control = pkgs.callPackage ../../user/modules/dell-bios-fan-control/default.nix { };
-  i8kutils = pkgs.callPackage ../../user/modules/i8k/default.nix { };
+
+  fansoff = pkgs.writeShellScriptBin "fansoff.sh" ''
+    echo 60 > "$(find /sys/devices/ -name 'pwm1')"
+    echo 60 > "$(find /sys/devices/ -name 'pwm2')"
+  '';
+  fanson = pkgs.writeShellScriptBin "fanson.sh" ''
+    if [[ "$1" = "full" ]]; then
+      echo "setting fans on full"
+      power=200
+    else
+      echo "setting fans on low"
+      power=70
+    fi
+    echo "$power" > "$(find /sys/devices/ -name 'pwm1')"
+    echo "$power" > "$(find /sys/devices/ -name 'pwm2')"
+  '';
 in
 {
   environment.systemPackages = [
     dell-bios-fan-control
-    i8kutils
+    fansoff
+    fanson
+    pkgs.lm_sensors
   ];
 
   boot.extraModprobeConfig = ''
-    options dell-smm-hwmon restricted=0 force=1
+    options dell-smm-hwmon restricted=0 ignore_dmi=1 force=1
   '';
 
   boot.kernelModules = [ "dell-smm-hwmon" ];
 
   systemd.services.dell-bios-fan-control = {
     description = "Disables BIOS control of fans at boot";
-    before = [ "i8kmon.service" ];
     wants = [ "dell-bios-fan-control-resume.service" ];
     wantedBy = [ "multi-user.target" ];
 
@@ -37,33 +53,44 @@ in
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "sh -c 'sleep 30 && ${pkgs.systemd} --no-block
+      ExecStart = "/bin/sh -c 'sleep 30 && ${pkgs.systemd} --no-block
       restart dell-bios-fan-control.service'";
     };
   };
 
-  systemd.services.i8kmon = {
-    description = "Dell laptop thermal monitoring";
-    wantedBy = [ "multi-user.target" ];
+  systemd.services.lm_sensors = {
+    description = "Initialize hardware monitoring sensors";
+    wantedBy = [
+      "multi-user.target"
+    ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = ''
+        ${pkgs.kmod}/bin/modprobe coretemp
+        ${pkgs.lm_sensors}/bin/sensors -s
+      '';
+      ExecStop = "${pkgs.kmod}/bin/modprobe -r coretemp";
+    };
+  };
+
+  systemd.services.fancontrol = {
+    enable = true;
+    description = "Fan control";
+    after = [ "dell-bios-fan-control.service" ];
+    wantedBy = [
+      "multi-user.target"
+    ];
+
     unitConfig = {
-      ConditionPathExists = "/proc/i8k";
+      Type = "oneshot";
     };
 
     serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.i8kutils}/bin/i8kmon --nouserconfig";
+      ExecStart = ''
+        /bin/sh -c "sleep 10 && ${fansoff}/bin/fansoff.sh"
+      '';
     };
   };
 }
-# [Unit]
-# Description=Dell laptop thermal monitoring
-# Documentation=man:i8kmon
-# ConditionPathExists=/proc/i8k
-#
-# [Service]
-# ExecStart=/usr/bin/i8kmon --nouserconfig
-# Restart=always
-# RestartSec=5
-#
-# [Install]
-# WantedBy=multi-user.target
