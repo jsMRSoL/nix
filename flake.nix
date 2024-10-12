@@ -19,13 +19,34 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
   let
       system = "x86_64-linux";
+
+      vivConfig = {
+        termFontSize = 16;
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
+      derekConfig = {
+        termFontSize = 14;
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
+      swingConfig = {
+        termFontSize = 12;
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
+      swingvmConfig = {
+        termFontSize = 12;
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
   in {
       nixosConfigurations = {
 
         pistol = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./system/hosts/pistol/configuration.nix 
+            ./system/hosts/pistol/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

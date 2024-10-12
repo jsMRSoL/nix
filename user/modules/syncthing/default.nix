@@ -1,21 +1,8 @@
 { osConfig, ... }:
 let
-  paths = {
-    "derek" = ./derek-config.xml;
-    "viv" = ./viv-config.xml;
-    "swing" = ./swing-config.xml;
-    "swingvm" = ./swingvm-config.xml;
-  };
-
-  lookup = attrs: key: default:
-    if attrs ? "${key}" then attrs."${key}" else default;
-
   currentSystem = osConfig.networking.hostName;
-
-  configPath = lookup paths currentSystem paths.swingvm;
-
+  configPath = ./. + "/${currentSystem}-config.xml";
 in
-
 {
   services.syncthing.enable = true;
 
