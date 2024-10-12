@@ -1,7 +1,16 @@
 { pkgs, ... }:
+let
+  sddm-chili-theme' = pkgs.sddm-chili-theme.override {
+    themeConfig = {
+      background = "${../../assets/nix-wallpaper-nineish-dark-gray.png}";
+      ScreenWidth = 1920;
+      ScreenHeight = 1080;
+    };
+  };
+in
 {
-  environment.systemPackages = with pkgs; [
-    sddm-chili-theme
+  environment.systemPackages = [
+    sddm-chili-theme'
   ];
 
   services.displayManager = {
