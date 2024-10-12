@@ -6,11 +6,23 @@ let
     echo 60 > "$(find /sys/devices/ -name 'pwm1')"
     echo 60 > "$(find /sys/devices/ -name 'pwm2')"
   '';
+  fanson = pkgs.writeShellScriptBin "fanson.sh" ''
+    if [[ "$1" = "full" ]]; then
+      echo "setting fans on full"
+      power=200
+    else
+      echo "setting fans on low"
+      power=70
+    fi
+    echo "$power" > "$(find /sys/devices/ -name 'pwm1')"
+    echo "$power" > "$(find /sys/devices/ -name 'pwm2')"
+  '';
 in
 {
   environment.systemPackages = [
     dell-bios-fan-control
     fansoff
+    fanson
     pkgs.lm_sensors
   ];
 
