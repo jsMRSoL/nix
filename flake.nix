@@ -31,16 +31,6 @@
         keyboardType = "at-translated-set-2-keyboard";
       };
 
-      vivConfig = {
-        termFontSize = "16";
-        keyboardType = "at-translated-set-2-keyboard";
-      };
-
-      derekConfig = {
-        termFontSize = "14";
-        keyboardType = "at-translated-set-2-keyboard";
-      };
-
       swingConfig = {
         termFontSize = "12";
         keyboardType = "at-translated-set-2-keyboard";
@@ -48,6 +38,16 @@
 
       swingvmConfig = {
         termFontSize = "12";
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
+      vivConfig = {
+        termFontSize = "16";
+        keyboardType = "at-translated-set-2-keyboard";
+      };
+
+      derekConfig = {
+        termFontSize = "14";
         keyboardType = "at-translated-set-2-keyboard";
       };
 
