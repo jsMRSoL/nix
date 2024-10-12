@@ -27,7 +27,7 @@ let
   '';
 
   sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer.sh" ''
-    
+
     function tmux_attached() {
       attached="$(${pkgs.tmux}/bin/tmux list-sessions -F \
         '#{session_attached} #{session_name}' | grep ^1)"
