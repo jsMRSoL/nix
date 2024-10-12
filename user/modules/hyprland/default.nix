@@ -23,7 +23,9 @@
 
       env = [
         "XCURSOR_SIZE,20"
+        "QT_QPA_PLATFORM,wayland;xcb"
         "QT_QPA_PLATFORMTHEME,qt5ct"
+        "GTK_THEME,catppuccin-mocha"
       ];
 
       input = {
