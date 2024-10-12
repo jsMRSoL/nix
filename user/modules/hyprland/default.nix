@@ -1,5 +1,21 @@
 { pkgs, ... }:
+let
+  wlogout' = pkgs.wlogout.overrideAttrs (
+    finalAttrs: prevAttrs: {
+      postPatch =
+        prevAttrs.postPatch
+        + ''
+          substituteInPlace layout \
+            --replace-fail "loginctl lock-session" "swaylock"
+
+          substituteInPlace layout \
+            --replace-fail  "loginctl terminate-user \$USER" "hyprctl dispatch exit"
+        '';
+    }
+  );
+in
 {
+
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
 
@@ -288,7 +304,7 @@
   home.packages = with pkgs; [
     hyprpaper
     waybar
-    wlogout
+    wlogout'
     swaylock
   ];
 
