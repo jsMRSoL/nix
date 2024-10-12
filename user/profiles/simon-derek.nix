@@ -16,7 +16,7 @@
     ../modules/hyprland
     ../modules/languages
     ../modules/neovim
-    ../modules/sway
+    # ../modules/sway
     ../modules/syncthing
     ../modules/theme
     ../modules/tmux
