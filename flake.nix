@@ -48,7 +48,7 @@
 
       derekConfig = {
         termFontSize = "14";
-        keyboardType = "at-translated-set-2-keyboard";
+        keyboardType = "usb-hid-keyboard";
       };
 
     in
