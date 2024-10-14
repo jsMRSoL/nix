@@ -20,6 +20,7 @@
   environment.systemPackages = with pkgs; [
     st
     (callPackage ../../user/modules/dmenu/dmenu.nix {})
+    sxhkd
   ];
 
   # Configure keymap in X11

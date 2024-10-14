@@ -1,15 +1,17 @@
 { config, pkgs, ...}: {
 
   imports = [
-    ../modules/cmdline
     ../modules/atuin
     ../modules/bash
     ../modules/browser
+    ../modules/cmdline
     ../modules/dunst
     ../modules/dwm-status
-    ../modules/foot
+    ../modules/emacs
     ../modules/games
     ../modules/git
+    ../modules/neovim
+    ../modules/x11
     ../modules/yazi
   ];
 
