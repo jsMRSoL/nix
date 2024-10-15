@@ -1,13 +1,4 @@
 { pkgs, ... }:
-let
-  st' = pkgs.st.override {
-    patches = [
-      ../../user/modules/st/patches/st-clipboard-0.8.3.diff
-      # ../../user/modules/st/patches/st-scrollback-0.9.2.diff
-    ];
-    conf = builtins.readFile ../../user/modules/st/config.h;
-  };
-in
 {
   services.xserver = {
     enable = true;
@@ -28,7 +19,7 @@ in
 
   environment.systemPackages = with pkgs; [
     (callPackage ../../user/modules/dmenu/dmenu.nix { })
-    st'
+    (callPackage ../../user/modules/st/default.nix { })
     sxhkd
   ];
 
