@@ -123,4 +123,10 @@
       ExecReload = "${pkgs.util-linux}/bin/kill -SIGUSR1 $MAINPID";
     };
   };
+
+  home.file.wallpaper = {
+    enable = true;
+    source = ../../../assets/nixos-wallpaper-catppuccin-mocha.png;
+    target = ".background-image";
+  };
 }
