@@ -17,6 +17,7 @@
     ../modules/languages
     ../modules/neovim
     # ../modules/sway
+    ../modules/scripts
     ../modules/syncthing
     ../modules/theme
     ../modules/tmux

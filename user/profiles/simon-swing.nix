@@ -14,6 +14,7 @@
     ../modules/gui
     ../modules/languages
     ../modules/neovim
+    ../modules/scripts
     ../modules/sway
     ../modules/syncthing
     ../modules/theme
@@ -27,7 +28,7 @@
     homeDirectory = "/home/simon";
     stateVersion = "24.05";
 
-    packages = [];
+    packages = [ ];
   };
 
   programs.home-manager.enable = true;

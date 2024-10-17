@@ -31,7 +31,8 @@ edit = [
 	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
 ]
 open = [
-	{ run = 'sxiv -a -s f -- "$@"',         desc = "Open", for = "linux" },
+	# { run = 'sxiv -a -s f -- "$@"',         desc = "Open", for = "linux" },
+	{ run = 'sxiv-handler -- "$@"',         desc = "Open", for = "linux" },
 	{ run = 'xdg-open "$@"',                desc = "Open", for = "linux" },
 ]
 open_pdf = [
