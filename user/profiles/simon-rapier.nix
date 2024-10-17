@@ -11,6 +11,7 @@
     ../modules/games
     ../modules/git
     ../modules/neovim
+    ../modules/scripts
     ../modules/x11
     ../modules/yazi
   ];

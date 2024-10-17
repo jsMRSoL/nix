@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./sxiv-handler.nix
+  ];
+}
