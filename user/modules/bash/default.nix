@@ -2,7 +2,7 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    historyControl = ["ignoreboth"];
+    historyControl = [ "ignoreboth" ];
     initExtra = ''
       set -o vi
       bind -m vi-command ".":insert-last-argument
@@ -62,6 +62,9 @@
         $EDITOR "$file"
       }
 
+      # source api keys
+      [[ -f ~/.api_keys ]] && . ~/.api_keys
+
       # eval "$(zoxide init bash)"
       [[ -f /home/$USER/.nix-profile/share/bash/bash-preexec.sh ]] && source /home/$USER/.nix-profile/share/bash/bash-preexec.sh
       eval "$(atuin init bash --disable-up-arrow)"
@@ -69,33 +72,34 @@
     shellAliases =
       let
         flakeDir = "~/.nixos/";
-      in {
-      gc = "cd ~/.config";
-      gd = "cd ~/Documents";
-      gf = "cd ~/.dotfiles";
-      gj = "cd ~/Projects";
-      gm = "cd ~/Music";
-      gn = "cd ${flakeDir}";
-      gw = "cd ~/Downloads";
-      gp = "cd ~/Pictures";
-      gr = "cd ~/Repos";
-      gt = "cd /tmp";
-      gv = "cd ~/Videos";
-      gcm = "git commit -m ";
-      gfi = "git commit -m \"fixup!\"";
-      gst = "git status";
-      gla = "git log --all --graph --decorate";
-      gac = "git add . && git commit -m ";
-      glo = "git log --all --graph --decorate --oneline";
-      gsh = "git show";
-      gca = "git commit --amend";
-      gri = "git rebase --interactive";
-      # r = "yazi"; Moved to function - see initExtra attribute.
-      rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
-      rehome = "home-manager switch --flake ${flakeDir}";
-      update = "nix flake update ${flakeDir}";
-      upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
-    };
+      in
+      {
+        gc = "cd ~/.config";
+        gd = "cd ~/Documents";
+        gf = "cd ~/.dotfiles";
+        gj = "cd ~/Projects";
+        gm = "cd ~/Music";
+        gn = "cd ${flakeDir}";
+        gw = "cd ~/Downloads";
+        gp = "cd ~/Pictures";
+        gr = "cd ~/Repos";
+        gt = "cd /tmp";
+        gv = "cd ~/Videos";
+        gcm = "git commit -m ";
+        gfi = "git commit -m \"fixup!\"";
+        gst = "git status";
+        gla = "git log --all --graph --decorate";
+        gac = "git add . && git commit -m ";
+        glo = "git log --all --graph --decorate --oneline";
+        gsh = "git show";
+        gca = "git commit --amend";
+        gri = "git rebase --interactive";
+        # r = "yazi"; Moved to function - see initExtra attribute.
+        rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
+        rehome = "home-manager switch --flake ${flakeDir}";
+        update = "nix flake update ${flakeDir}";
+        upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
+      };
   };
 
   home.sessionVariables = {
