@@ -4,7 +4,7 @@ function M:peek()
   local child = Command("docx2txt")
       :args({
         tostring(self.file.url),
-        "-"
+        "| sed'/^[[:space]]*$/d'"
       })
       :stdout(Command.PIPED)
       :stderr(Command.PIPED)
