@@ -162,6 +162,8 @@ in
         "$mainMod, E, exec, $fileManager"
         "$mainMod, INSERT, exec, clipman pick -t wofi"
         "$mainMod, F8, exec, emacs &"
+        "$SHIFT, F10, exec, grimshot save window"
+        "$SHIFT_ALT, F10, exec, grimshot save area"
 
         # Layouts
         "$mainMod, F, togglefloating, "
