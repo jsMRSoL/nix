@@ -27,7 +27,6 @@
     papirus-icon-theme
     ripgrep
     rsync
-    sway-contrib.grimshot
     sxiv
     tesseract
     trash-cli

@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   xdg.configFile."sway" = {
     enable = true;
@@ -17,8 +17,9 @@
     source = ./swayrbar-config.toml;
     target = "swayrbar/config.toml";
   };
-  
+
   home.packages = with pkgs; [
+    sway-contrib.grimshot
     swayrbar
   ];
 }

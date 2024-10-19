@@ -162,8 +162,8 @@ in
         "$mainMod, E, exec, $fileManager"
         "$mainMod, INSERT, exec, clipman pick -t wofi"
         "$mainMod, F8, exec, emacs &"
-        "$SHIFT, F10, exec, grimshot save window"
-        "$SHIFT_ALT, F10, exec, grimshot save area"
+        "$SHIFT, F10, exec, hyprshot -m window"
+        "$SHIFT_ALT, F10, exec, hyprshot -m region"
 
         # Layouts
         "$mainMod, F, togglefloating, "
@@ -305,11 +305,15 @@ in
 
   home.packages = with pkgs; [
     hyprpaper
+    hyprshot
+    swaylock
     waybar
     wlogout'
-    swaylock
   ];
 
-  # Optional, hint Electron apps to use Wayland:
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
+  home.sessionVariables = {
+    HYPRSHOT_DIR = "/home/simon/Pictures/screenshots";
+    # Optional, hint Electron apps to use Wayland:
+    NIXOS_OZONE_WL = "1";
+  };
 }
