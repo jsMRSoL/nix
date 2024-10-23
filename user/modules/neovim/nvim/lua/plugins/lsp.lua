@@ -176,7 +176,25 @@ return {
 
         },
         -- nix
-        nixd = {},
+        nixd = {
+          cmd = { 'nixd' },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = 'import <nixpkgs> { }',
+              },
+              formatting = {
+                command = { 'nixfmt' },
+              },
+              options = {
+                nixos = {
+                  expr =
+                  '(builtins.getFlake \"/home/simon/.nixos\").nixosConfigurations.viv.options'
+                },
+              },
+            },
+          },
+        },
         -- python
         -- pyright = {}, -- can't get this to work?!
         pyright = {},
