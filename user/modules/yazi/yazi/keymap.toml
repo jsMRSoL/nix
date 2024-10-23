@@ -147,6 +147,7 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "cd ~/.dotfiles",     desc = "Go to the .dotfiles dir" },
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the ~ dir" },
 	{ on = [ "g", "j" ],       run = "cd ~/Projects",   desc = "Go to the Projects dir" },
+	{ on = [ "g", "l" ],       run = "cd ~/.local",   desc = "Go to the .local dir" },
 	{ on = [ "g", "m" ],       run = "cd ~/Music",   desc = "Go to the Music dir" },
 	{ on = [ "g", "n" ],       run = "cd ~/.nixos",   desc = "Go to the .nixos dir" },
 	{ on = [ "g", "o" ],       run = "cd ~/Downloads",   desc = "Go to the Downloads dir" },
