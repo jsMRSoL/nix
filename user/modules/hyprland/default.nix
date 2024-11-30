@@ -57,8 +57,8 @@ in
       };
 
       general = {
-        gaps_in = 2;
-        gaps_out = 4;
+        gaps_in = 1;
+        gaps_out = 2;
         border_size = 2;
         "col.active_border" = "rgba(f38ba8ff)";
         "col.inactive_border" = "rgba(595959aa)";
@@ -75,10 +75,10 @@ in
           size = 3;
           passes = 1;
         };
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        # drop_shadow = "yes";
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -99,7 +99,7 @@ in
       master = {
         new_status = "inherit";
         new_on_top = false;
-        no_gaps_when_only = true;
+        # no_gaps_when_only = true;
         inherit_fullscreen = true;
         mfact = 0.5;
       };
@@ -141,6 +141,9 @@ in
         "float,class:(brave),initialTitle:(save)"
         "opacity 1.0,class:(brave),initialTitle:(save)"
         "size 50% 60%,class:(brave),initialTitle:(save)"
+        # no border if only window
+        "noborder, onworkspace:w[tv1] f[-1], floating:0"
+        "noborder, onworkspace:f[1], floating:0"
       ];
 
       bind = [
