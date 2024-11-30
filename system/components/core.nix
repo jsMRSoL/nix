@@ -57,7 +57,7 @@
 
   # Set fonts
   fonts.packages = with pkgs; [
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     source-code-pro
     hack-font
     font-awesome

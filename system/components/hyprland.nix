@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    qt5ct
+    libsForQt5.qt5ct
     qt6ct
   ];
   programs.hyprland = {
