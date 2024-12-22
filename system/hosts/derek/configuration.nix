@@ -2,6 +2,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../components/bluetooth.nix
     ../../components/bootloader_systemd_efi.nix
     ../../components/core.nix
     ../../components/backlight.nix
