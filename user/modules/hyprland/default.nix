@@ -141,6 +141,7 @@ in
         "float,class:(brave),initialTitle:(save)"
         "opacity 1.0,class:(brave),initialTitle:(save)"
         "size 50% 60%,class:(brave),initialTitle:(save)"
+        "fullscreenstate 0 2,class:(brave)"
         # no border if only window
         "noborder, onworkspace:w[tv1] f[-1], floating:0"
         "noborder, onworkspace:f[1], floating:0"

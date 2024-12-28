@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
 
   imports = [
@@ -40,4 +40,8 @@
   # gui_programs.zed-editor.enable = lib.mkForce false;
 
   programs.home-manager.enable = true;
+
+  home.packages = [
+    pkgs.blender
+  ];
 }
