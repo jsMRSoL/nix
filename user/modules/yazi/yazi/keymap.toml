@@ -49,14 +49,23 @@ keymap = [
 	{ on = [ "<Right>" ], run = "enter",    desc = "Enter the child directory" },
 
 	{ on = [ "g", "g" ], run = "arrow top", desc = "Move cursor to the top" },
-	{ on = [ "G" ],      run = "arrow bottom",  desc = "Move cursor to the bottom" },
+	{ on = [ "G" ],      run = "arrow bot",  desc = "Move cursor to the bottom" },
 
-	# Selection
-	{ on = [ "<Space>" ], run = [ "select --state=none", "arrow 1" ], desc = "Toggle the current selection state" },
-	{ on = [ "v" ],       run = "visual_mode",                        desc = "Enter visual mode (selection mode)" },
-	{ on = [ "V" ],       run = "visual_mode --unset",                desc = "Enter visual mode (unset mode)" },
-	{ on = [ "<C-a>" ],   run = "select_all --state=true",            desc = "Select all files" },
-	{ on = [ "<C-r>" ],   run = "select_all --state=none",            desc = "Inverse selection of all files" },
+	# # Selection
+	# { on = [ "<Space>" ], run = [ "select --state=true", "arrow 1" ], desc = "Toggle the current selection state" },
+	# { on = [ "v" ],       run = "visual_mode",                        desc = "Enter visual mode (selection mode)" },
+	# { on = [ "V" ],       run = "visual_mode --unset",                desc = "Enter visual mode (unset mode)" },
+	# { on = [ "<C-a>" ],   run = "select_all --state=true",            desc = "Select all files" },
+	# { on = [ "<C-r>" ],   run = "select_all --state=none",            desc = "Inverse selection of all files" },
+
+	# Toggle
+	{ on = "<Space>", run = [ "toggle", "arrow 1" ], desc = "Toggle the current selection state" },
+	{ on = "<C-a>",   run = "toggle_all --state=on",    desc = "Select all files" },
+	{ on = "<C-r>",   run = "toggle_all",               desc = "Invert selection of all files" },
+
+	# Visual mode
+	{ on = "v", run = "visual_mode",         desc = "Enter visual mode (selection mode)" },
+	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
 
 	# Operation
 	{ on = [ "o" ],         run = "open",                       desc = "Open the selected files" },
