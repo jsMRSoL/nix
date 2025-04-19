@@ -2,13 +2,14 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../components/bluetooth.nix
     ../../components/bootloader_systemd_efi.nix
     ../../components/core.nix
     ../../components/backlight.nix
     ../../components/garbage_collection.nix
     ../../components/sddm.nix
     ../../components/sound.nix
-    ../../components/dell-bios-fan-control.nix
+    # ../../components/dell-bios-fan-control.nix
     # ../../components/sway.nix
     ../../components/hyprland.nix
     ../../components/wayland.nix
