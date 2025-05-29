@@ -138,9 +138,9 @@ in
         "size 75% 95%,class:(Sxiv)"
         "move 13% 4%,class:(Sxiv)"
         "opacity 1.0,class:(Sxiv)"
-        "float,class:(brave),initialTitle:(save)"
-        "opacity 1.0,class:(brave),initialTitle:(save)"
-        "size 50% 60%,class:(brave),initialTitle:(save)"
+        "float,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
+        "opacity 1.0,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
+        "size 50% 60%,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
         "fullscreenstate 0 2,class:(brave)"
         # no border if only window
         "noborder, onworkspace:w[tv1] f[-1], floating:0"
@@ -313,6 +313,7 @@ in
     swaylock
     waybar
     wlogout'
+    xdg-desktop-portal-gtk
   ];
 
   home.sessionVariables = {
