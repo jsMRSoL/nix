@@ -14,7 +14,7 @@ in
 {
   options = {
     gui_programs.filezilla.enable = OptionYes;
-    gui_programs.gimp.enable = OptionYes;
+    gui_programs.gimp3.enable = OptionYes;
     gui_programs.gthumb.enable = OptionYes;
     gui_programs.handbrake.enable = OptionYes;
     gui_programs.insomnia.enable = OptionYes;
@@ -31,7 +31,7 @@ in
   config = {
     home.packages =
       optionThis "filezilla"
-      ++ optionThis "gimp"
+      ++ optionThis "gimp3"
       ++ optionThis "gthumb"
       ++ optionThis "handbrake"
       ++ optionThis "insomnia"
