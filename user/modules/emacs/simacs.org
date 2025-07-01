@@ -1190,31 +1190,60 @@
   #+begin_src emacs-lisp
 
     (setq org-capture-templates
-	  '(("t" "Tasks / Projects / Appointments")
-	    ("tt" "Task" entry (file+olp "~/Documents/org/tasks.org" "To organise")
-	     "* TODO  %^{Title}\n  :LOGBOOK:\n  - Created: %U\n   :END:\n  :SUBTASKS:\n  - [ ]  %?\n  :END:\n  %a\n  %i" :empty-lines 1)
-	    ("ta" "Appointment" entry (file+olp "~/Documents/org/tasks.org" "Appointments")
-	     "* TODO  %^{Title} %?\n  :LOGBOOK:\n  - Created: %U\n   :END:\n  :SUBTASKS:\n  - [ ]  \n  :END:\n  %a\n  %i" :empty-lines 1)
-	    ("j" "Journal Entries")
-	    ("jj" "Journal" entry (file+olp+datetree "~/Documents/org/journal.org")
-	     "\n* %<%I:%M %p> - Journal :journal:\n**  %?\n\n" :empty-lines 1)
-	    ("jl" "Log" entry (file+olp+datetree "~/Documents/org/journal.org")
-	     "\n* %<%I:%M %p> - LOG :journal:log:\n** DONE  %?\nCLOSED: %U\n" :empty-lines 1)
-	    ("jn" "Notes" entry (file+olp+datetree "~/Documents/org/journal.org")
-	     "\n* %<%I:%M %p> - LOG :notes:\n** NOTE  %?\n%U\n" :empty-lines 1)
-	    ("b" "Book log")
-	    ("br" "Read" entry (file+headline "~/Documents/org/Books.org" "2021")
-	     "* %^{Title}\n:PROPERTIES:\n:Title: %\\1\n:Author: %^{Author}\n:Pages: ?\n:Started: %U\n:Finished: ?\n:Sessions: ?\n:Notes: %^{Notes} %?\n:END:"
-	     :kill-buffer t)
-	    ("m" "Metrics Capture")
-	    ("mw" "Weight" table-line (file+headline "~/Documents/org/metrics.org" "Weight")
-	     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
-	    ("mg" "Guitar" table-line (file+headline "~/Documents/org/metrics.org" "Guitar")
-	     "| %U | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)
-	    ("mp" "Piano" table-line (file+headline "~/Documents/org/metrics.org" "Piano")
-	     "| %U | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)
-	    ("mr" "Reading" table-line (file+headline "~/Documents/org/metrics.org" "Reading")
-	     "| %U | %^{Book} | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)))
+          `(("t" "Tasks / Projects / Appointments")
+    	("tt" "Task" entry (file+olp "~/Documents/org/tasks.org" "To organise")
+    	 "* TODO  %^{Title}\n  :LOGBOOK:\n  - Created: %U\n   :END:\n  :SUBTASKS:\n  - [ ]  %?\n  :END:\n  %a\n  %i" :empty-lines 1)
+    	("ta" "Appointment" entry (file+olp "~/Documents/org/tasks.org" "Appointments")
+    	 "* TODO  %^{Title} %?\n  :LOGBOOK:\n  - Created: %U\n   :END:\n  :SUBTASKS:\n  - [ ]  \n  :END:\n  %a\n  %i" :empty-lines 1)
+    	("j" "Journal Entries")
+    	("jj" "Journal" entry (file+olp+datetree "~/Documents/org/journal.org")
+    	 "\n* %<%I:%M %p> - Journal :journal:\n**  %?\n\n" :empty-lines 1)
+    	("jl" "Log" entry (file+olp+datetree "~/Documents/org/journal.org")
+    	 "\n* %<%I:%M %p> - LOG :journal:log:\n** DONE  %?\nCLOSED: %U\n" :empty-lines 1)
+    	("jn" "Notes" entry (file+olp+datetree "~/Documents/org/journal.org")
+    	 "\n* %<%I:%M %p> - LOG :notes:\n** NOTE  %?\n%U\n" :empty-lines 1)
+    	;; Daily Journal
+    	("jd" "Daily Journal Entry"
+    	 entry
+    	 (file+olp "~/Documents/org/journal.org" "Journal" "Daily")
+    	 ,(concat "* Journal Entry %<%Y-%m-%d>\n"
+    		  ":PROPERTIES:\n"
+    		  ":CREATED:  %U\n"
+    		  ":END:\n\n"
+    		  "** What did I do today?\n- \n\n"
+    		  "** What went well? Why?\n- \n\n"
+    		  "** What could I improve?\n- \n\n"
+    		  "** What did I avoid or put off?\n- \n\n"
+    		  "** What did I learn about myself today?\n- \n\n"
+    		  "** Plan for tomorrow\n- [ ] \n\n"
+    		  "** Morning Intention (optional)\n"
+    		  "- Intention for the day:\n"
+    		  "- What would make today a success?\n"
+    		  "- What am I likely to avoid—and how will I respond?\n")
+    	 :empty-lines 1)
+    	("jw" "Journal Weekly Review"
+    	 entry
+    	 (file+olp "~/Documents/org/journal.org" "Journal" "Weekly Reviews")
+    	 ,(concat "* Weekly Review [Week of %<%Y-%m-%d>]\n"
+    		  "** Highlights of the week\n- \n\n"
+    		  "** Patterns of success\n- \n\n"
+    		  "** Patterns of avoidance/resistance\n- \n\n"
+    		  "** One change for next week\n- \n\n"
+    		  "** Experiments to try\n- \n\n")
+    	 :empty-lines 1)
+    	("b" "Book log")
+    	("br" "Read" entry (file+headline "~/Documents/org/Books.org" "2021")
+    	 "* %^{Title}\n:PROPERTIES:\n:Title: %\\1\n:Author: %^{Author}\n:Pages: ?\n:Started: %U\n:Finished: ?\n:Sessions: ?\n:Notes: %^{Notes} %?\n:END:"
+    	 :kill-buffer t)
+    	("m" "Metrics Capture")
+    	("mw" "Weight" table-line (file+headline "~/Documents/org/metrics.org" "Weight")
+    	 "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
+    	("mg" "Guitar" table-line (file+headline "~/Documents/org/metrics.org" "Guitar")
+    	 "| %U | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)
+    	("mp" "Piano" table-line (file+headline "~/Documents/org/metrics.org" "Piano")
+    	 "| %U | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)
+    	("mr" "Reading" table-line (file+headline "~/Documents/org/metrics.org" "Reading")
+    	 "| %U | %^{Book} | %^{Time spent (m)} | %^{Notes} |" :kill-buffer t)))
 
   #+end_src
 
