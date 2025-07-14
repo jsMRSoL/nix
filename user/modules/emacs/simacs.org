@@ -1049,17 +1049,19 @@
    #+end_src
 
 ** Cosmetics
-  #+begin_src emacs-lisp
+#+begin_src emacs-lisp
 
-    (use-package org-bullets
-      :after org
-      :hook (org-mode . org-bullets-mode)
-      :custom
-      (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  (use-package org-bullets
+    :after org
+    :hook (org-mode . org-bullets-mode)
+    :custom
+    (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-    (setq org-ellipsis " ▾")
+  (setq org-ellipsis " ▾")
 
-  #+end_src
+  (setq org-tags-column -70)
+
+#+end_src
 
 ** Tables
 #+begin_src emacs-lisp
@@ -1104,16 +1106,18 @@
         '((:startgroup)
           ; Put mutually exclusive tags here
           (:endgroup)
-          ("@errand" . ?e)
-          ("@home" . ?h)
-          ("@garage" . ?g)
-          ("@work" . ?w)
-          ("@family" . ?f)
-          ("@note" . ?n)
-          ("@fun" . ?F)
-          ("@urgent" . ?u)
-          ("@computing" . ?c)
-          ("@idea" . ?i)))
+          ("daily" . ?d)
+          ("weekly" . ?w)
+          ("errand" . ?e)
+          ("home" . ?h)
+          ("garage" . ?g)
+          ("work" . ?W)
+          ("family" . ?f)
+          ("note" . ?n)
+          ("fun" . ?F)
+          ("urgent" . ?u)
+          ("computing" . ?c)
+          ("idea" . ?i)))
    #+end_src
 
 ** Agenda views
@@ -1189,7 +1193,7 @@
   Clocking and other properties here: https://orgmode.org/manual/Template-elements.html#Template-elements
   #+begin_src emacs-lisp
 
-    (setq org-capture-templates
+    (setq org-capture-templates 
           `(("t" "Tasks / Projects / Appointments")
     	("tt" "Task" entry (file+olp "~/Documents/org/tasks.org" "To organise")
     	 "* TODO  %^{Title}\n  :LOGBOOK:\n  - Created: %U\n   :END:\n  :SUBTASKS:\n  - [ ]  %?\n  :END:\n  %a\n  %i" :empty-lines 1)
@@ -1202,11 +1206,11 @@
     	 "\n* %<%I:%M %p> - LOG :journal:log:\n** DONE  %?\nCLOSED: %U\n" :empty-lines 1)
     	("jn" "Notes" entry (file+olp+datetree "~/Documents/org/journal.org")
     	 "\n* %<%I:%M %p> - LOG :notes:\n** NOTE  %?\n%U\n" :empty-lines 1)
-    	;; Daily Journal
-    	("jd" "Daily Journal Entry"
+    	("p" "Progress Journal Entries")
+    	("pd" "Daily Journal Entry"
     	 entry
-    	 (file+olp "~/Documents/org/journal.org" "Journal" "Daily")
-    	 ,(concat "* Journal Entry %<%Y-%m-%d>\n"
+    	 (file+olp "~/Documents/org/progress.org" "Journal" "Daily")
+    	 ,(concat "* Journal Entry %<%Y-%m-%d>   :journal:daily:\n"
     		  ":PROPERTIES:\n"
     		  ":CREATED:  %U\n"
     		  ":END:\n\n"
@@ -1221,9 +1225,9 @@
     		  "- What would make today a success?\n"
     		  "- What am I likely to avoid—and how will I respond?\n")
     	 :empty-lines 1)
-    	("jw" "Journal Weekly Review"
+    	("pw" "Progress Journal Weekly Review"
     	 entry
-    	 (file+olp "~/Documents/org/journal.org" "Journal" "Weekly Reviews")
+    	 (file+olp "~/Documents/org/progress.org" "Journal" "Weekly Reviews")
     	 ,(concat "* Weekly Review [Week of %<%Y-%m-%d>]\n"
     		  "** Highlights of the week\n- \n\n"
     		  "** Patterns of success\n- \n\n"
@@ -1232,7 +1236,7 @@
     		  "** Experiments to try\n- \n\n")
     	 :empty-lines 1)
     	("b" "Book log")
-    	("br" "Read" entry (file+headline "~/Documents/org/Books.org" "2021")
+    	("br" "Read" entry (file+headline "~/Documents/org/Books.org" "Log")
     	 "* %^{Title}\n:PROPERTIES:\n:Title: %\\1\n:Author: %^{Author}\n:Pages: ?\n:Started: %U\n:Finished: ?\n:Sessions: ?\n:Notes: %^{Notes} %?\n:END:"
     	 :kill-buffer t)
     	("m" "Metrics Capture")
