@@ -1084,6 +1084,7 @@
 	   '("~/Documents/org/tasks.org"
 	     "~/Documents/org/ideas.org"
 	     "~/Documents/org/journal.org"
+	     "~/Documents/org/progress.org"
 	     "~/Documents/org/calendar.org"
 	     ))
 
