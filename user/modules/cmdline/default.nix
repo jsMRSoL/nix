@@ -33,6 +33,7 @@
     tree
     unpaper
     vim
+    visidata
     wipe
     unar
     xdg-utils
