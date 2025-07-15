@@ -30,16 +30,23 @@ edit = [
 	{ run = 'code "%*"',    orphan = true, desc = "code",         for = "windows" },
 	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
 ]
-open = [
-	# { run = 'sxiv -a -s f -- "$@"',         desc = "Open", for = "linux" },
+open_csv = [
+  { run = '${EDITOR:=nvim} "$@"', desc = "nvim", block = true, for = "unix" },
+  { run = 'visidata "$@"',   desc = "visidata", block = true, for = "unix" },
+]
+open_image = [
 	{ run = 'sxiv-handler -- "$@"',         desc = "Open", for = "linux" },
 	{ run = 'xdg-open "$@"',                desc = "Open", for = "linux" },
 ]
 open_pdf = [
 	{ run = 'mupdf -- "$@"',                desc = "Open", for = "linux" },
 ]
+open_html = [
+  { run = 'brave "$@"', desc = "Brave", orphan = true, for = "unix" },
+  { run = '${EDITOR:=nvim} "$@"', desc = "nvim", block = true, for = "unix" },
+]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
+	{ run = 'xdg-open "$(dirname "$1")"',            desc = "Reveal", for = "linux" },
 	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
@@ -49,13 +56,17 @@ play = [
 	{ run = 'mpv "$@"', orphan = true, for = "unix" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
+open = [
+  { run = 'xdg-open "$@"', desc = "xdg-open", for = "unix" },
+]
 
 [open]
 rules = [
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
-
+  { mime = "text/csv", use = [ "open_csv", "reveal" ] },
+  { mime = "text/html", use = [ "open_html", "reveal" ] },
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
-	{ mime = "image/*",         use = [ "open", "reveal" ] },
+	{ mime = "image/*",         use = [ "open_image", "reveal" ] },
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	{ mime = "inode/x-empty",   use = [ "edit", "reveal" ] },
 
