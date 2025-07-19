@@ -34,6 +34,7 @@
     unpaper
     vim
     visidata
+    wakeonlan
     wipe
     unar
     xdg-utils
