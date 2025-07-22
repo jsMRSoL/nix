@@ -265,12 +265,13 @@
       (?\[ . ("[" . "]"))
       (?\/ . ("/" . "/"))
       (?\* . ("*" . "*"))
+      (?\+ . ("+" . "+"))
       "An alist of common pairs to facilitate word wrapping."))
 
   (defun sp/wrap-word (char)
     "Wrap the word under cursor.
     Word here is any A to Z, a to z, and low line _"
-    (interactive "cPick wrapping character: [\"] ['] [`] [<] [(] [{] [[]")
+    (interactive "cPick wrapping character: [\"] ['] [`] [<] [(] [{] [[] [/] [*] [+]")
     (let (
 	  p1
 	  p2
