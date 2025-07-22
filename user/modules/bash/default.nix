@@ -6,8 +6,8 @@
     initExtra = ''
       set -o vi
       bind -m vi-command ".":insert-last-argument
-      bind -m vi-command '"\e-":yank-nth-arg'
-      bind -m vi-insert '"\e=":edit-and-execute-command'
+      bind -m vi-command '"-":yank-nth-arg'
+      bind -m vi-command "=":edit-and-execute-command
 
       function r() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
