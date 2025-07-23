@@ -1372,6 +1372,10 @@
   	    (push (cons tag (match-string 1)) tag-values)
   	  (push (cons tag "n/a") tag-values))))
 
+      ;; fail early if not a PGN or missing date
+      (if (string=  (cdr (assoc "Date" tag-values)) "n/a")
+  	(user-error "Not a valid PGN format or missing Date tag"))
+
       ;; create variables for reuse later
       (let* ((utc-date (cdr (assoc "Date" tag-values)))
   	   (utc-time (car (split-string (cdr (assoc "EndTime" tag-values)) " ")))
