@@ -1183,6 +1183,7 @@
      (setq org-refile-targets
 	   '((org-agenda-files . (:maxlevel . 1))
 	     ("journal.org" . (:maxlevel . 3))
+	     ("~/Documents/org/Chess/games-2025.org" . (:maxlevel . 3))
 	     ("archive.org" . (:maxlevel . 1))))
      ;; save org buffers after refiling!
      (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -1354,13 +1355,72 @@
 
   #+end_src
   
+* Chess functions
+#+begin_src emacs-lisp
+
+  (defun sp/pgn-to-org ()
+    "Parse chess.com PGN and create org file entry."
+    (interactive)
+    (let ((tags '("Date" "EndTime" "White" "Black" "Result" "CurrentPosition" "ECO" "ECOUrl" "WhiteElo" "BlackElo" "TimeControl" "Link"))
+  	tag-values)
+      ;; Collect tag values
+      (dolist (tag tags)
+        ;; construct the regex
+        (goto-char (point-min))
+        (let ((regex (concat "\\[" tag " \"\\(.*?\\)\"\\]")))
+  	(if (re-search-forward regex nil t)
+  	    (push (cons tag (match-string 1)) tag-values)
+  	  (push (cons tag "n/a") tag-values))))
+
+      ;; create variables for reuse later
+      (let* ((utc-date (cdr (assoc "Date" tag-values)))
+  	   (utc-time (car (split-string (cdr (assoc "EndTime" tag-values)) " ")))
+  	   (time-string (subst-char-in-string ?: ?- utc-time))
+  	   (filename (format "/home/simon/Documents/org/Chess/pgn/%s_%s.pgn" utc-date time-string)))
+
+        ;; write to a pgn file
+        (goto-char (point-min))
+        (write-region
+         (- (search-forward "[") 1)
+         (point-max)
+         filename)
+
+        ;; Insert org-style template at point
+        ;; First clear scratch buffer
+        (erase-buffer)
+        (insert (format "* %s %s\n" utc-date utc-time))
+        (insert ":PROPERTIES:\n")
+        (sp/pgn-insert-prop "Date" "Date" tag-values)
+        (sp/pgn-insert-prop "White" "White" tag-values)
+        (sp/pgn-insert-prop "Black" "Black" tag-values)
+        (sp/pgn-insert-prop "Result" "Result" tag-values)
+        (sp/pgn-insert-prop "White Elo" "WhiteElo" tag-values)
+        (sp/pgn-insert-prop "Black Elo" "BlackElo" tag-values)
+        (sp/pgn-insert-prop "Time Control" "TimeControl" tag-values)
+        (sp/pgn-insert-prop "ECO" "ECO" tag-values)
+        (insert (format ":%-14s [[%s][Link]]\n" "ECO Url" (cdr (assoc "ECOUrl" tag-values))))
+        (insert ":END:\n\n")
+        (insert "** Strengths\n- \n\n")
+        (insert "** Weaknesses\n- \n\n")
+        (insert "** Targets\n- \n")
+        (line-move-1 -7)
+        (forward-char 2)
+        (org-mode)
+        (when (featurep 'evil)
+  	(evil-insert 1)))))
+
+  (defun sp/pgn-insert-prop (label key alist)
+    (insert (format ":%-14s %s\n" label (cdr (assoc key alist)))))
+#+end_src
+
+#+RESULTS:
+: sp/pgn-insert-prop
+
 * Startup finished tweak
   #+begin_src emacs-lisp
     ;; Make GC pauses faster by decreasing the threshold.
     (setq gc-cons-threshold (* 2 1000 1000))
   #+end_src
-  
-  
 
 * Start screen
 #+begin_src emacs-lisp
