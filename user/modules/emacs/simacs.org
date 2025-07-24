@@ -1377,10 +1377,11 @@
   	(user-error "Not a valid PGN format or missing Date tag"))
 
       ;; create variables for reuse later
-      (let* ((utc-date (cdr (assoc "Date" tag-values)))
+      (let* ((utc-date (sp/sanitise-pgn-date (cdr (assoc "Date" tag-values))))
   	   (utc-time (car (split-string (cdr (assoc "EndTime" tag-values)) " ")))
   	   (time-string (subst-char-in-string ?: ?- utc-time))
-  	   (filename (format "/home/simon/Documents/org/Chess/pgn/%s_%s.pgn" utc-date time-string)))
+  	   (filename (format "/home/simon/Documents/org/Chess/pgn/%s_%s.pgn" utc-date time-string))
+  	   (eco-url (cdr (assoc "ECOUrl" tag-values))))
 
         ;; write to a pgn file
         (goto-char (point-min))
@@ -1390,11 +1391,10 @@
          filename)
 
         ;; Insert org-style template at point
-        ;; First clear scratch buffer
         (erase-buffer)
         (insert (format "* %s %s\n" utc-date utc-time))
         (insert ":PROPERTIES:\n")
-        (sp/pgn-insert-prop "Date" "Date" tag-values)
+        (insert (format ":%-14s %s\n" "Date" utc-date))
         (sp/pgn-insert-prop "White" "White" tag-values)
         (sp/pgn-insert-prop "Black" "Black" tag-values)
         (sp/pgn-insert-prop "Result" "Result" tag-values)
@@ -1402,7 +1402,9 @@
         (sp/pgn-insert-prop "Black Elo" "BlackElo" tag-values)
         (sp/pgn-insert-prop "Time Control" "TimeControl" tag-values)
         (sp/pgn-insert-prop "ECO" "ECO" tag-values)
-        (insert (format ":%-14s [[%s][Link]]\n" "ECO Url" (cdr (assoc "ECOUrl" tag-values))))
+        (unless (string= "n/a" eco-url)
+  	(insert (format ":%-14s [[%s][Link]]\n" "ECO Url" eco-url)))
+        (insert (format ":%-14s [[%s][Link]]\n" "PGN file" filename))
         (insert ":END:\n\n")
         (insert "** Strengths\n- \n\n")
         (insert "** Weaknesses\n- \n\n")
@@ -1415,6 +1417,11 @@
 
   (defun sp/pgn-insert-prop (label key alist)
     (insert (format ":%-14s %s\n" label (cdr (assoc key alist)))))
+
+  (defun sp/sanitise-pgn-date (date-string)
+    (if (string-match "[0-9][0-9][0-9][0-9]\\.[0-9][0-9]\\.[0-9][0-9]" date-string)
+        date-string
+      (format-time-string "%Y.%m.%d")))
 #+end_src
 
 #+RESULTS:
