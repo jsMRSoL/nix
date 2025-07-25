@@ -1378,7 +1378,7 @@
 
       ;; create variables for reuse later
       (let* ((utc-date (sp/sanitise-pgn-date (cdr (assoc "Date" tag-values))))
-  	   (utc-time (car (split-string (cdr (assoc "EndTime" tag-values)) " ")))
+  	   (utc-time (sp/sanitise-pgn-time (car (split-string (cdr (assoc "EndTime" tag-values)) " "))))
   	   (time-string (subst-char-in-string ?: ?- utc-time))
   	   (filename (format "/home/simon/Documents/org/Chess/pgn/%s_%s.pgn" utc-date time-string))
   	   (eco-url (cdr (assoc "ECOUrl" tag-values))))
@@ -1422,6 +1422,11 @@
     (if (string-match "[0-9][0-9][0-9][0-9]\\.[0-9][0-9]\\.[0-9][0-9]" date-string)
         date-string
       (format-time-string "%Y.%m.%d")))
+
+  (defun sp/sanitise-pgn-time (time-string)
+    (if (string-match "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]" time-string)
+        time-string
+      (format-time-string "%H:%M:%S")))
 #+end_src
 
 #+RESULTS:
