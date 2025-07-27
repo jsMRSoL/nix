@@ -14,19 +14,31 @@
   ];
 
   boot.initrd.availableKernelModules = [
+    "nvme"
     "xhci_pci"
-    "ehci_pci"
+    # "ehci_pci"
     "ahci"
-    "usb_storage"
+    # "usb_storage"
     "usbhid"
     "sd_mod"
-    "sr_mod"
-    "sdhci_pci"
-    "rtsx_pci_sdmmc"
+    # "sr_mod"
+    # "sdhci_pci"
+    # "rtsx_pci_sdmmc"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  # boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ 
+    "kvm-amd"
+    "i2c-dev"
+    "ddcci_backlight"
+  ];
+  boot.kernelParams = [
+    "acpi_backlight=video"
+  ];
   boot.extraModulePackages = [ ];
+  services.udev.extraRules = ''
+    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+  '';
 
   fileSystems."/" = {
     # device = "/dev/disk/by-uuid/80999860-daad-478c-960c-81b7c1770d14";

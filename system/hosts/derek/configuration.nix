@@ -18,10 +18,12 @@
   ];
 
   hardware.graphics.enable = true;
+  hardware.i2c.enable = true;
 
   networking.hostName = "derek"; # Define your hostname.
 
   users.users.simon.extraGroups = [
+    "i2c"
     "libvirtd"
   ];
 

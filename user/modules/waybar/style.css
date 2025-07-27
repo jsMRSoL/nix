@@ -59,6 +59,7 @@ button:hover {
 #clock,
 #wireplumber,
 #network,
+#custom-backlight,
 #backlight {
   /* color: #ffffff; */
   background-color: transparent;
@@ -85,6 +86,7 @@ button:hover {
 #memory,
 #temperature,
 #backlight,
+#custom-backlight,
 #network,
 #pulseaudio,
 #wireplumber,

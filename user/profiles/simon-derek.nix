@@ -43,5 +43,6 @@
 
   home.packages = [
     pkgs.blender
+    pkgs.ddcutil
   ];
 }
