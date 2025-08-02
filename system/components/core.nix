@@ -32,7 +32,10 @@
   services.upower.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.epson-escpr ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
