@@ -2,6 +2,10 @@
 #+STARTUP: overview
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
+* Lexical Binding
+#+begin_src emacs-lisp
+;;; init.el -*- lexical-binding: t; -*-
+#+end_src
 * Package system setup
   #+begin_src emacs-lisp
     (defvar bootstrap-version)
@@ -22,6 +26,15 @@
     (setq straight-use-package-by-default t)
   #+end_src
 
+* Benchmark-init
+#+begin_src emacs-lisp
+  ;; Benchmark startup time
+  ;; Load benchmark-init early
+  (straight-use-package 'benchmark-init)
+  (require 'benchmark-init)
+  (benchmark-init/activate)
+  (add-hook 'after-init-hook #'benchmark-init/deactivate)
+#+end_src
 * Basic UI Configuration
   #+begin_src emacs-lisp
 
@@ -51,27 +64,33 @@
     (global-auto-revert-mode 1)
     (setq global-auto-revert-non-file-buffers t)
 
-    (setq warning-minimum-level :error)
+    (setq warning-minimum-level :warning)
   #+end_src   
 
 * Theming
   #+begin_src emacs-lisp
 
     (use-package catppuccin-theme
-      :init (load-theme 'catppuccin t))
+      :defer t)
 
-    (add-hook 'after-make-frame-functions (lambda (frame)
-					    (with-selected-frame frame
-					      (load-theme 'catppuccin t))))
+    (defun sp/load-theme ()
+      (load-theme 'catppuccin t))
+
+    (if (daemonp)
+        (add-hook 'after-make-frame-functions (lambda (frame)
+                                                (with-selected-frame frame
+                                                  (sp/load-theme))))
+      (sp/load-theme))
+
+    ;; (use-package doom-modeline
+    ;;   :init (doom-modeline-mode 1))
 
     (use-package doom-modeline
-      :init (doom-modeline-mode 1))
+      :defer t
+      :hook (emacs-startup . doom-modeline-mode))
 
-    (custom-set-faces '(default ((t
-				  (:family "FiraCode Nerd Font Propo"
-					   :foundry "CTDB" :slant normal
-					   :weight normal :height 160
-					   :width normal)))))
+    (when (member "FiraCode Nerd Font Propo" (font-family-list))
+      (set-face-attribute 'default nil :font "FiraCode Nerd Font Propo" :height 160))
 
     (when (string= "derek" (system-name))
       (set-frame-font "FiraCode Nerd Font Propo-14"))
@@ -84,6 +103,7 @@
 #+begin_src emacs-lisp
 
   (use-package visual-fill-column
+    :defer t
     :init
     (setq visual-fill-column-width 82)
     (setq visual-fill-column-center-text t)
@@ -105,68 +125,76 @@
 
   #+end_src
 * Text editing: Evil etc.
-  #+begin_src emacs-lisp
-    ;; (defun sp/evil-hook ()
-    ;;   (dolist (mode '(dashboard-mode
-    ;; 		  ))
-    ;;     (add-to-list 'evil-emacs-state-modes mode)))
+#+begin_src emacs-lisp
+  ;; (defun sp/evil-hook ()
+  ;;   (dolist (mode '(dashboard-mode
+  ;; 		  ))
+  ;;     (add-to-list 'evil-emacs-state-modes mode)))
 
-    (use-package evil
-      :init
-      (setq evil-want-integration t)
-      (setq evil-want-keybinding nil)
-      (setq evil-want-C-u-scroll t)
-      (setq evil-want-C-i-jump t)
-      (setq evil-undo-system 'undo-tree)
-      ;; :hook (evil-mode . sp/evil-hook)
-      :config
-      (evil-mode 1)
-      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-      ;; Use visual line motions
-      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-      (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-      (evil-set-initial-state 'dashboard-mode 'normal)
-      (evil-set-initial-state 'help-mode 'normal)
-      (evil-set-initial-state 'messages-buffer-mode 'normal)
-      (evil-set-initial-state 'rustic-popup-mode 'emacs))
+  (use-package evil
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump t)
+    (setq evil-undo-system 'undo-tree)
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    ;; Use visual line motions
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+    (evil-set-initial-state 'dashboard-mode 'normal)
+    (evil-set-initial-state 'help-mode 'normal)
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'rustic-popup-mode 'emacs))
 
 
-    (use-package evil-escape
-      :init
-      (evil-escape-mode 1)
-      :config
-      (setq-default evil-escape-key-sequence "fd"
-		    evil-escape-delay 0.2))
+  (use-package evil-escape
+    :after evil
+    :hook (evil-mode . evil-escape-mode)
+    :config
+    (setq-default evil-escape-key-sequence "fd"
+  		evil-escape-delay 0.2))
 
-    (use-package evil-collection
-      :after evil
-      :config
-      (evil-collection-init))
+  (use-package evil-collection
+    :after evil
+    :defer t
+    :hook (after-init . evil-collection-init))
 
-    (use-package evil-numbers
-      :after evil
-      :init
-    	(global-set-key (kbd "C-c C-=") 'evil-numbers/inc-at-pt)
-    	(global-set-key (kbd "C-c C--") 'evil-numbers/dec-at-pt))
+  (use-package evil-numbers
+    :after evil
+    :hook (evil-mode . evil-numbers-mode)
+    :bind (("C-c C-=" . evil-numbers/inc-at-pt)
+  	   ("C-c C--" . evil-numbers/dec-at-pt)))
 
-    (use-package smartparens
-      :init
-      (require 'smartparens-config))
+  (use-package smartparens
+    :defer t
+    :commands (smartparens-mode)
+    :init
+    ;; enable smartparens in programming modes
+    (add-hook 'prog-mode-hook 'smartparens-mode)
+    :config (require 'smartparens-config))
 
-    (use-package avy)
+  (use-package avy
+    :defer t
+  :commands (avy-goto-char-2 avy-goto-line))
 
-    (use-package evil-nerd-commenter
-      :init
-      (evil-define-key 'normal 'global
-    	"gcc" 'evilnc-comment-or-uncomment-lines
-    	"gcp" 'evilnc-copy-and-comment-lines))
+  (use-package evil-nerd-commenter
+    :defer t
+    :bind (:map evil-normal-state-map
+                ("gcc" . evilnc-comment-or-uncomment-lines)
+                ("gcp" . evilnc-copy-and-comment-lines)))
 
-    (use-package expand-region)
+  (use-package expand-region
+    :defer t
+    :commands (er/expand-region))
 
-    (use-package popup-kill-ring
-      :bind (("M-y" . popup-kill-ring)))
+  (use-package popup-kill-ring
+    :defer t
+    :bind (("M-y" . popup-kill-ring)))
 
-  #+end_src
+#+end_src
   
 * Multiple cursors
   #+begin_src emacs-lisp
@@ -403,13 +431,22 @@
 
 * Completion
 #+begin_src emacs-lisp
-
   (use-package yasnippet
+    :defer t
     ;; the minor mode is necessary for jumping fields
-    :hook (prog-mode . yas-minor-mode)
+    :hook ((prog-mode . yas-minor-mode)
+           (text-mode . yas-minor-mode))
     :config (yas-reload-all))
 
-  (use-package yasnippet-snippets)
+  (use-package yasnippet-snippets
+    :after yasnippet)
+
+  ;; (use-package yasnippet
+  ;;   ;; the minor mode is necessary for jumping fields
+  ;;   :hook (prog-mode . yas-minor-mode)
+  ;;   :config (yas-reload-all))
+
+  ;; (use-package yasnippet-snippets)
 
   ;; corfu (short for COmpletion in Region FUnction)
   ;; provides a minimal, modular, and performant completion UI,
@@ -739,48 +776,70 @@
   #+end_src
   
 * File management: Dired
-  #+begin_src emacs-lisp
+#+begin_src emacs-lisp
 
-      (use-package dired
-	:straight nil
-	:commands (dired dired-jump)
-	:custom ((dired-listing-switches "-agho --group-directories-first"))
-	:config
-	(evil-collection-define-key 'normal 'dired-mode-map
-	  "h" 'dired-single-up-directory
-	  "l" 'dired-single-buffer
-	  (kbd "SPC") nil))
+  ;; (use-package dired
+  ;; 	:straight nil
+  ;; 	:commands (dired dired-jump)
+  ;; 	:custom ((dired-listing-switches "-agho --group-directories-first"))
+  ;; 	:config
+  ;; 	(with-eval-after-load 'evil-collection
+  ;; 	  (evil-collection-define-key 'normal 'dired-mode-map
+  ;; 	    "h" 'dired-single-up-directory
+  ;; 	    "l" 'dired-single-buffer
+  ;; 	    (kbd "SPC") nil)))
 
-      (use-package dired-single)
+  ;; (use-package dired-single)
 
-      (use-package all-the-icons-dired
-	:hook (dired-mode . all-the-icons-dired-mode))
+  ;; (use-package all-the-icons-dired
+  ;; 	:hook (dired-mode . all-the-icons-dired-mode))
 
-      (use-package dired-hide-dotfiles
-	:hook (dired-mode . dired-hide-dotfiles-mode)
-	:config
-	(evil-collection-define-key 'normal 'dired-mode-map
-	  "H" 'dired-hide-dotfiles-mode))
+  ;; (use-package dired-hide-dotfiles
+  ;; 	:hook (dired-mode . dired-hide-dotfiles-mode)
+  ;; 	:config
+  ;; 	(with-eval-after-load 'evil-collection
+  ;; 	  (evil-collection-define-key 'normal 'dired-mode-map
+  ;; 	    "H" 'dired-hide-dotfiles-mode)))
 
-    (defvar sp-common-dirs
-      `((?h . "/home/simon/")
-	(?d . "/home/simon/Documents/")
-	(?o . "/home/simon/Downloads/")
-	(?r . "/home/simon/Documents/org/")
-	(?f . "/home/simon/.dotfiles/")
-	(?e . ,user-emacs-directory)
-	(?c . "/home/simon/.config/")
-	(?b . "/home/simon/.local/usr/bin/")
-	(?j . "/home/simon/Projects")
-	(?y . "/home/simon/Projects/python/"))
-      "An alist of common-dirs to facilitate quick navigation.")
+  (use-package dired
+    :straight nil
+    :commands (dired dired-jump)
+    :init
+    (setq dired-listing-switches "-agho --group-directories-first")
+    :config
+    (use-package dired-single
+      :after dired)
 
-    (defun sp/dired-jump-dir(char)
-      "Jump to a directory in my common directories list."
-      (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, [c]onfig, .[b]in, pro[j]ects, p[y]thon")
-      (dired-jump nil (alist-get char sp-common-dirs)))
+    (use-package dired-hide-dotfiles
+      :hook (dired-mode . dired-hide-dotfiles-mode))
 
-  #+end_src
+    (with-eval-after-load 'evil-collection
+      (evil-collection-define-key 'normal 'dired-mode-map
+        "h" 'dired-single-up-directory
+        "l" 'dired-single-buffer
+        "H" 'dired-hide-dotfiles-mode
+        (kbd "SPC") nil)))
+
+
+  (defvar sp-common-dirs
+    `((?h . "/home/simon/")
+      (?d . "/home/simon/Documents/")
+      (?o . "/home/simon/Downloads/")
+      (?r . "/home/simon/Documents/org/")
+      (?f . "/home/simon/.dotfiles/")
+      (?e . ,user-emacs-directory)
+      (?c . "/home/simon/.config/")
+      (?b . "/home/simon/.local/usr/bin/")
+      (?j . "/home/simon/Projects")
+      (?y . "/home/simon/Projects/python/"))
+    "An alist of common-dirs to facilitate quick navigation.")
+
+  (defun sp/dired-jump-dir(char)
+    "Jump to a directory in my common directories list."
+    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, [c]onfig, .[b]in, pro[j]ects, p[y]thon")
+    (dired-jump nil (alist-get char sp-common-dirs)))
+
+#+end_src
   
 * Internal files
   #+begin_src emacs-lisp
@@ -934,10 +993,10 @@
 ** Python
 #+begin_src emacs-lisp
   (use-package pyvenv
-    :defer)
+    :defer t)
 
   (use-package lsp-pyright
-    :defer)
+    :defer t)
 
   (use-package yapfify)
 
@@ -963,7 +1022,7 @@
      "= r" '(yapfify-region-or-buffer :which-key "format region")))
 
   (use-package python-mode
-    :defer
+    :defer t
     :mode "\\.py\\'"
     :hook (python-mode . sp/setup-python-lsp)
     :custom
@@ -1020,7 +1079,8 @@
    
 ** Go
 #+begin_src emacs-lisp
-(use-package go-mode)
+  (use-package go-mode
+    :mode "\\.go\\'")
 #+end_src
 ** Web
    #+begin_src emacs-lisp
@@ -1040,7 +1100,8 @@
    #+end_src
 ** Lua
 #+begin_src emacs-lisp
-  (use-package lua-mode)
+  (use-package lua-mode
+    :mode "\\.lua\\'")
 
   ;; (with-eval-after-load 'lsp-clients
   ;;   (setq lsp-clients-lua-language-server-command
@@ -1094,11 +1155,98 @@
   
 * Org
 #+begin_src emacs-lisp
+  (use-package ob-rust
+    :defer t)
+
+  (use-package ob-go
+    :defer t)
+
+  (use-package org
+    :straight nil
+    :init
+    (setq org-modules
+                '(org-id
+                  org-info
+                  org-habit
+                  org-inlinetask
+                  org-protocol
+                  org-w3m)))
+
+  (defvar sp/org-babel-languages-loaded nil)
+
+  (defun sp/org-babel-lazy-load-languages ()
+    (unless sp/org-babel-languages-loaded
+      (require 'ob-go)
+      (require 'ob-rust)
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((go . t)
+         (python . t)
+         (lua . t)
+         (shell . t)
+         (rust . t)
+         (emacs-lisp . t)))
+      (setq sp/org-babel-languages-loaded t)))
+
+  (advice-add 'org-babel-execute-src-block :before #'sp/org-babel-lazy-load-languages)
+
+  ;; (use-package ob-rust
+  ;;   :defer t)
+  ;; (use-package ob-go
+  ;;   :defer t)
+
+  ;; (use-package org
+  ;;   :straight nil
+  ;;   :init
+  ;;   (setq org-modules
+  ;;         (delq 'ol-gnus
+  ;;               '(org-bbdb
+  ;;                 org-bibtex
+  ;;                 org-crypt
+  ;;                 org-gnus
+  ;;                 org-id
+  ;;                 org-info
+  ;;                 org-jsinfo
+  ;;                 org-habit
+  ;;                 org-inlinetask
+  ;;                 org-irc
+  ;;                 org-mew
+  ;;                 org-protocol
+  ;;                 org-rmail
+  ;;                 org-w3m))))
+
+  ;; (defun sp/org-babel-lazy-load-languages ()
+  ;;   (require 'ob-go)
+  ;;   (require 'ob-rust)
+  ;;   (org-babel-do-load-languages
+  ;;    'org-babel-load-languages
+  ;;    '((go . t)
+  ;;      (python . t)
+  ;;      (lua . t)
+  ;;      (shell . t)
+  ;;      (rust . t)
+  ;;      (emacs-lisp . t))))
+
+  ;; (advice-add 'org-babel-execute-src-block :before #'sp/org-babel-lazy-load-languages)
+
+    ;; :config
+    ;; (require 'ob-go)
+    ;; (require 'ob-rust)
+    ;; (org-babel-do-load-languages
+    ;;  'org-babel-load-languages
+    ;;  '((go . t)
+    ;;    (python . t)
+    ;;    (lua . t)
+    ;;    (shell . t)
+    ;;    (rust . t)
+    ;;    (emacs-lisp . t)))) ; or whatever subset you need
+
   (add-hook 'org-mode-hook #'visual-line-mode)
+
   (setq org-hide-emphasis-markers t)
   (setq electric-pair-inhibit-predicate
-	(lambda (c)
-	  (if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
+        (lambda (c)
+  	(if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
 #+end_src
 
 ** Headings
@@ -1322,18 +1470,6 @@
 ** Org babel
 #+begin_src emacs-lisp
 
-  (use-package ob-rust)
-  (use-package ob-go)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (python . t)
-     ;; (javascript . t)
-     (shell . t)
-     (go . t)
-     (lua . t)
-     (rust . t)))
-
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -1407,9 +1543,11 @@
 	"#+EMAIL: " user-mail-address "\n")
   #+end_src
 
+
 * Ledger
 #+begin_src emacs-lisp
-  (use-package ledger-mode)
+  (use-package ledger-mode
+    :mode "\\.ledger\\'")
 #+end_src
 * LSJ2 mode
   #+begin_src emacs-lisp
@@ -1498,10 +1636,17 @@
 : sp/pgn-insert-prop
 
 * Startup finished tweak
-  #+begin_src emacs-lisp
-    ;; Make GC pauses faster by decreasing the threshold.
-    (setq gc-cons-threshold (* 2 1000 1000))
-  #+end_src
+#+begin_src emacs-lisp
+  ;; Make GC pauses faster by decreasing the threshold.
+  ;; (setq gc-cons-threshold (* 2 1000 1000))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "Emacs ready in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+#+end_src
 
 * Start screen
 #+begin_src emacs-lisp

@@ -1,11 +1,16 @@
-;;; init.el -*- lexical-binding: t; -*-
+;;; early-init.el -*- lexical-binding: t; -*-
 
 ;; Increase the GC threshold for faster startup
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 100 1000 1000))
+(add-hook 'emacs-startup-hook
+          (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
+
+;; I'm using a tiling window manager, so
+(setq frame-inhibit-implied-resize t)
 
 ;; Don't use package.el, we'll use straight.el instead
-;; (setq package-enable-at-startup t)
+(setq package-enable-at-startup nil)
 
 ;; Remove some unneeded UI elements (the user can turn back on anything they wish)
 (setq inhibit-startup-message t)
