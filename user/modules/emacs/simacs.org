@@ -1190,63 +1190,15 @@
 
   (advice-add 'org-babel-execute-src-block :before #'sp/org-babel-lazy-load-languages)
 
-  ;; (use-package ob-rust
-  ;;   :defer t)
-  ;; (use-package ob-go
-  ;;   :defer t)
-
-  ;; (use-package org
-  ;;   :straight nil
-  ;;   :init
-  ;;   (setq org-modules
-  ;;         (delq 'ol-gnus
-  ;;               '(org-bbdb
-  ;;                 org-bibtex
-  ;;                 org-crypt
-  ;;                 org-gnus
-  ;;                 org-id
-  ;;                 org-info
-  ;;                 org-jsinfo
-  ;;                 org-habit
-  ;;                 org-inlinetask
-  ;;                 org-irc
-  ;;                 org-mew
-  ;;                 org-protocol
-  ;;                 org-rmail
-  ;;                 org-w3m))))
-
-  ;; (defun sp/org-babel-lazy-load-languages ()
-  ;;   (require 'ob-go)
-  ;;   (require 'ob-rust)
-  ;;   (org-babel-do-load-languages
-  ;;    'org-babel-load-languages
-  ;;    '((go . t)
-  ;;      (python . t)
-  ;;      (lua . t)
-  ;;      (shell . t)
-  ;;      (rust . t)
-  ;;      (emacs-lisp . t))))
-
-  ;; (advice-add 'org-babel-execute-src-block :before #'sp/org-babel-lazy-load-languages)
-
-    ;; :config
-    ;; (require 'ob-go)
-    ;; (require 'ob-rust)
-    ;; (org-babel-do-load-languages
-    ;;  'org-babel-load-languages
-    ;;  '((go . t)
-    ;;    (python . t)
-    ;;    (lua . t)
-    ;;    (shell . t)
-    ;;    (rust . t)
-    ;;    (emacs-lisp . t)))) ; or whatever subset you need
-
   (add-hook 'org-mode-hook #'visual-line-mode)
 
+  (add-hook 'org-mode-hook #'save-place-local-mode)
+
   (setq org-hide-emphasis-markers t)
+
   (setq electric-pair-inhibit-predicate
-        (lambda (c)
-  	(if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
+  	(lambda (c)
+  	  (if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
 #+end_src
 
 ** Headings
