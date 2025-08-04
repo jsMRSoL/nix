@@ -152,7 +152,8 @@
 
   (use-package evil-escape
     :after evil
-    :hook (evil-mode . evil-escape-mode)
+    :defer t
+    :hook (after-init . evil-escape-mode)
     :config
     (setq-default evil-escape-key-sequence "fd"
   		evil-escape-delay 0.2))
