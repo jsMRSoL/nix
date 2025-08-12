@@ -7,6 +7,7 @@ M.setup = function()
   require("config.core.autocommands")
   require("config.core.globals")
   require("config.core.lua-funcs")
+  require("config.lsp")
   require("config.lazy")
 end
 
