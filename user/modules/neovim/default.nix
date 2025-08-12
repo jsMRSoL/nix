@@ -22,6 +22,8 @@
     nixfmt-rfc-style
     # python
     pyright # ? or pylsp
+    uv
+    ruff
     # python312Packages.debugpy
     # js / ts
     prettierd

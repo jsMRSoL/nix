@@ -197,7 +197,19 @@ return {
         },
         -- python
         -- pyright = {}, -- can't get this to work?!
-        pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                ignore = { '*' },
+              },
+            },
+          },
+        },
+        ruff = {},
         -- ts/js
         ts_ls = {
           init_options = {
