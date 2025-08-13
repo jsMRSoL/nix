@@ -199,8 +199,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       'Workspace symbols')
 
     -- diagnostics
-    nmap('[d', vim.diagnostic.goto_next, 'Next diagnostic')
-    nmap(']d', vim.diagnostic.goto_prev, 'Previous diagnostic')
+    nmap('[d', '<cmd> lua vim.diagnostic.jump({ count = 1, float = true })',
+      'Next diagnostic')
+    nmap(']d', '<cmd> lua vim.diagnostic.jump({ count = -1, float = true })',
+      'Previous diagnostic')
 
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
