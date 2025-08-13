@@ -19,6 +19,7 @@
     libnotify
     makemkv
     mediainfo
+    mprocs
     mpv
     mupdf
     # neovim
