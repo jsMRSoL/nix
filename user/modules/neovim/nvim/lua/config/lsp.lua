@@ -75,28 +75,28 @@ local servers = {
       -- })
 
       local wk = require('which-key')
-      wk.register({
-        ['<leader>lt'] = { name = '+tags' },
-        ['<leader>lT'] = { name = '+tests' },
-        ['<leader>lm'] = { name = '+mod' },
+      wk.add({
+        { '<leader>lt', group = '+tags' },
+        { '<leader>lT', group = '+tests' },
+        { '<leader>lm', group = '+mod' },
       })
 
       local keymap = {
-        { '<space>lg',  ':GoGet ' },
-        { '<space>lI',  ':GoImpl ' },
-        { '<space>ltj', '<cmd>GoTagAdd json<CR>' },
-        { '<space>lty', '<cmd>GoTagAdd yaml<CR>' },
-        { '<space>lTa', '<cmd>GoTestsAll<CR>' },
-        { '<space>lTA', '<cmd>GoTestAdd<CR>' },
-        { '<space>lTe', '<cmd>GoTestsExp<CR>' },
-        { '<space>lD',  '<cmd>GoCmt' },
-        { '<space>li',  '<cmd>GoIfErr<CR>' },
-        { '<space>lmi', ':GoMod init ' },
-        { '<space>lmt', '<cmd>GoMod tidy<CR>' },
+        { '<leader>lg',  ':GoGet ' },
+        { '<leader>lI',  ':GoImpl ' },
+        { '<leader>ltj', '<cmd>GoTagAdd json<CR>' },
+        { '<leader>lty', '<cmd>GoTagAdd yaml<CR>' },
+        { '<leader>lTa', '<cmd>GoTestsAll<CR>' },
+        { '<leader>lTA', '<cmd>GoTestAdd<CR>' },
+        { '<leader>lTe', '<cmd>GoTestsExp<CR>' },
+        { '<leader>lD',  '<cmd>GoCmt' },
+        { '<leader>li',  '<cmd>GoIfErr<CR>' },
+        { '<leader>lmi', ':GoMod init ' },
+        { '<leader>lmt', '<cmd>GoMod tidy<CR>' },
         -- { '<leader>lTT', '<cmd>GoRunThisTest<CR>' },
         -- { '<leader>lTG', '<cmd>GoRunAllTests<CR>' },
-        { ';tt',        '<cmd>GoRunThisTest<CR>' },
-        { ';td',        '<cmd>GoRunAllTests<CR>' },
+        { ';tt',         '<cmd>GoRunThisTest<CR>' },
+        { ';td',         '<cmd>GoRunAllTests<CR>' },
       }
 
       for _, v in pairs(keymap) do
