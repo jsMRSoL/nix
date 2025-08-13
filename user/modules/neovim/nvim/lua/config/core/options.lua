@@ -63,6 +63,7 @@ local opts = {
   undolevels = 10000,
   updatetime = 200,
   wildmode = 'longest:full,full',
+  winborder = 'rounded',
   -- winminwidth = 5,
   virtualedit = 'block',
   wrap = false,
