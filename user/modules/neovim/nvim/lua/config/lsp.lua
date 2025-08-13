@@ -66,7 +66,7 @@ local servers = {
     cmd = { 'gopls' },
     filetypes = { 'go' },
     on_attach = function (_, bufnr)
-      require('gopher').setup()
+      require('gopher').setup({})
 
       -- require('gotestit').setup({
       --   commands = {
@@ -131,6 +131,7 @@ local servers = {
   pyright = {
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
+    root_markers = { '.git', 'setup.py', 'pyproject.toml' },
     settings = {
       pyright = {
         disableOrganizeImports = true,
@@ -139,11 +140,12 @@ local servers = {
         analysis = {
           ignore = { '*' },
         },
+        venvPath = { '.venv' },
       },
     },
   },
   ruff = {
-    cmd = { 'ruff',  'server' },
+    cmd = { 'ruff', 'server' },
     filetypes = { 'python' },
   },
   -- ts/js
