@@ -6,6 +6,7 @@ return {
     config = function ()
       local opts = {
         defaults = {
+          -- border = false,
           layout_strategy = 'horizontal',
           layout_config = {
             horizontal = {
@@ -14,8 +15,10 @@ return {
             },
             vertical = { width = 0.99, height = 0.99 },
           },
-          file_sorter = function (...) return require('telescope.sorters')
-            .get_fzy_sorter(...) end,
+          file_sorter = function (...)
+            return require('telescope.sorters')
+              .get_fzy_sorter(...)
+          end,
           path_display = {
             'smart',
           },

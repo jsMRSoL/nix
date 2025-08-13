@@ -27,6 +27,18 @@ vim.diagnostic.config({
   },
 })
 
+--- hack to allow Telescope to look nice
+--- but have rounded borders on hover windows
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function ()
+  return hover({
+    border = 'rounded',
+    max_width = math.floor(vim.o.columns * 0.7),
+    max_height = math.floor(vim.o.lines * 0.7),
+  })
+end
+
 local servers = {
   lua_ls = {
     cmd = { 'lua-language-server' },
