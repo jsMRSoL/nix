@@ -10,6 +10,7 @@ vim.lsp.config('*', {
 })
 
 vim.diagnostic.config({
+  virtual_lines = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '✘',
@@ -199,12 +200,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>lws',
       require('telescope.builtin').lsp_dynamic_workspace_symbols,
       'Workspace symbols')
-
-    -- diagnostics
-    nmap('[d', '<cmd> lua vim.diagnostic.jump({ count = 1, float = true })',
-      'Next diagnostic')
-    nmap(']d', '<cmd> lua vim.diagnostic.jump({ count = -1, float = true })',
-      'Previous diagnostic')
 
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
