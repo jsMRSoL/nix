@@ -140,7 +140,6 @@ local servers = {
     },
   },
   -- python
-  -- pyright = {}, -- can't get this to work?!
   pyright = {
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
