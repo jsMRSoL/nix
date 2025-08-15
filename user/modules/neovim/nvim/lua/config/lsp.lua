@@ -9,8 +9,15 @@ vim.lsp.config('*', {
   root_markers = { '.git' },
 })
 
+local virtual_lines_enabled = false
+
+function ToggleVirtualLines()
+  virtual_lines_enabled = not virtual_lines_enabled
+  vim.diagnostic.config({ virtual_lines = virtual_lines_enabled })
+end
+
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_lines = virtual_lines_enabled,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '✘',

@@ -122,6 +122,7 @@ local mappings = {
   { 'n', '<leader>lxL', '<cmd>Trouble loclist toggle<cr>',                               { desc = 'Location list (Trouble)' } },
   { 'n', '<leader>lxq', '<cmd>Trouble qflist toggle<cr>',                                { desc = 'Quickfix list (Trouble)' } },
   { 'n', '<leader>lxr', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',    { desc = 'LSP defs/refs/... (Trouble)' } },
+  { 'n', '<leader>lv',  '<cmd>lua ToggleVirtualLines()<cr>',                             { desc = 'Toggle virtual lines' } },
   -- Trouble -- jump to the next item, skipping the groups
   { 'n', '<leader>lxn', '<cmd>TroubleSkipNext<cr>',                                      { desc = 'jump next', } },
   -- Trouble -- jump to the previous item, skipping the groups
