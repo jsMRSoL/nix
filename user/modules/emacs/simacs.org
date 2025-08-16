@@ -1157,7 +1157,7 @@
 
   (defvar sp/org-babel-languages-loaded nil)
 
-  (defun sp/org-babel-lazy-load-languages ()
+  (defun sp/org-babel-lazy-load-languages (&rest _args)
     (unless sp/org-babel-languages-loaded
       (require 'ob-go)
       (require 'ob-rust)
