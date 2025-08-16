@@ -21,7 +21,18 @@
           pkgs.gopls
           pkgs.delve
         ];
+
+        # Make everything project-local
         shellHook = ''
+          # Ensure Go cache directory exists
+          if [ ! -d .go ]; then
+            mkdir .go
+            echo "# ignore everything in this directory" > .go/.gitignore
+            echo "*" >> .go/.gitignore
+          fi
+          export GOPATH="$PWD/.go"
+          export GOMODCACHE="$GOPATH/pkg/mod"
+          export PATH="$GOPATH/bin:$PATH"
           echo "🦫 Entered Go dev shell."
           echo "Run 'go build .' or 'go test ./...'."
         '';
