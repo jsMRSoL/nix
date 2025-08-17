@@ -20,6 +20,7 @@
           pkgs.go
           pkgs.gopls
           pkgs.delve
+          pkgs.air
         ];
 
         # Make everything project-local
@@ -33,8 +34,17 @@
           export GOPATH="$PWD/.go"
           export GOMODCACHE="$GOPATH/pkg/mod"
           export PATH="$GOPATH/bin:$PATH"
-          echo "🦫 Entered Go dev shell."
-          echo "Run 'go build .' or 'go test ./...'."
+          echo
+          echo "  🦫  Welcome to your Go dev shell!"
+          echo
+          echo "  Available commands:"
+          echo "  🧱  go mod init <module> → initialize a new Go module"
+          echo "  🧹  go mod tidy          → clean and update go.mod + go.sum"
+          echo "  🛠️  go build             → build the project"
+          echo "  ▶️  go run <file>        → run a Go source file"
+          echo "  ✅  go test ./...        → run all tests"
+          echo "  🔄  air                  → auto-run on changes"
+          echo
         '';
       };
 

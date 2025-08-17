@@ -19,6 +19,8 @@
         packages = [
           pkgs.python3
           pkgs.uv
+          pkgs.python3Packages.pytest
+          pkgs.python3Packages.pytest-cov
           # libffi
           # openssl
           # zlib
@@ -27,15 +29,23 @@
         shellHook = ''
           export UV_CACHE_DIR="$PWD/.uv-cache"
           if [ ! -d ./.venv ]; then
-            echo "📦 Created virtualenv at ./.venv."
+            echo "  📦 Created virtualenv at ./.venv."
             uv venv
           fi
           source ./.venv/bin/activate
-          echo "🐍 Entered dev shell."
-          echo "📜 Install deps with 'uv add <package>' (updates pyproject.toml)."
-          echo "   or uv pip install -r pyproject.toml"
-          echo "✨ When finished, run deps2nix to extract dependencies from"
-          echo "   pyproject.toml for inclusion in propagatedBuildInputs."
+          echo
+          echo "  🐍 Welcome to your Python dev shell!"
+          echo
+          echo "  Available commands:"
+          echo "  🧱 uv init                           → initialise a new project"
+          echo "  📦 uv add <package>                  → install a dependency"
+          echo "  🗑️ uv remove <package>               → remove a dependency"
+          echo "  ⚡ uv pip install -r pyproject.toml  → install all dependencies"
+          echo "  🧹 uv cache clean                    → remove installed packages"
+          echo "  ▶️ uv run <file>                     → run py file"
+          echo "  🧪 uv run pytest                     → run tests using pytest"
+          echo "  🔧 deps2nix                          → extract dependencies for propagatedBuildInputs"
+          echo
         '';
       };
 

@@ -28,6 +28,7 @@
           pkgs.rustfmt
           pkgs.clippy
           pkgs.rust-analyzer
+          pkgs.cargo-watch
         ] ++ myBuildInputs;
 
         nativeBuildInputs = myNativeBuildInputs;
@@ -35,17 +36,34 @@
         env.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
         shellHook = ''
-          echo "🦀 Welcome to your Rust dev shell!"
+          if [ ! -d .cargo ]; then
+            mkdir .cargo
+            echo "* " > .cargo/.gitignore
+          fi
+          if [ ! -d .rustup ]; then
+            mkdir .rustup
+            echo "* " > .rustup/.gitignore
+          fi
+          if [ ! -f .ignore ]; then
+            echo ".cargo" > .ignore
+            echo ".rustup" > .ignore
+            echo "target" >> .ignore
+          fi
+          export CARGO_HOME="$PWD/.cargo"
+          export PATH="$CARGO_HOME/bin:$PATH"
+          export RUSTUP_HOME="$PWD/.rustup"
           echo
-          echo "Available commands:"
-          echo "  cargo build       → build the project"
-          echo "  cargo run         → run the project"
-          echo "  cargo test        → run tests"
+          echo "  🦀  Welcome to your Rust dev shell!"
           echo
-          echo "Environment:"
-          echo "  RUST_SRC_PATH = $RUST_SRC_PATH"
+          echo "  Available commands:"
+          echo "  🛠️  cargo build         → build the project"
+          echo "  ▶️  cargo run           → run the project"
+          echo "  ✅  cargo test          → run tests"
+          echo "  🔄  cargo watch -x run  → auto-run on changes"
           echo
-          echo "Tip: use 'cargo watch -x run' to auto-run on changes if installed"
+          echo "  Environment:"
+          echo "    RUST_SRC_PATH = $RUST_SRC_PATH"
+          echo
         '';
       };
 
