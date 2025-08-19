@@ -270,11 +270,13 @@
     :bind (("C-`" . popper-toggle)
   	 ("M-`" . popper-cycle)
   	 ("C-M-`" . popper-toggle-type))
-    :init (setq popper-mode-line nil
+    :init (setq popper-mode-line (propertize " POP" 'face 'mode-line-emphasis)
   	      popper-display-control nil
   	      popper-reference-buffers '(
   					 "\\*Messages\\*"
   					 "Output\\*$"
+  					 "\\*helpful"
+  					 "\\*Warnings\\*"
   					 help-mode
   					 compilation-mode)))
 #+end_src
