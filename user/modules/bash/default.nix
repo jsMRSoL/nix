@@ -97,7 +97,7 @@
         # r = "yazi"; Moved to function - see initExtra attribute.
         rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
         rehome = "home-manager switch --flake ${flakeDir}";
-        update = "nix flake update ${flakeDir}";
+        update = "nix flake update --flake ${flakeDir}";
         upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
       };
   };
