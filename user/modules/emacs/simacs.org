@@ -191,10 +191,6 @@
     :defer t
     :commands (er/expand-region))
 
-  (use-package popup-kill-ring
-    :defer t
-    :bind (("M-y" . popup-kill-ring)))
-
 #+end_src
   
 * Multiple cursors
@@ -270,11 +266,13 @@
     :bind (("C-`" . popper-toggle)
   	 ("M-`" . popper-cycle)
   	 ("C-M-`" . popper-toggle-type))
-    :init (setq popper-mode-line nil
+    :init (setq popper-mode-line (propertize " POP" 'face 'mode-line-emphasis)
   	      popper-display-control nil
   	      popper-reference-buffers '(
   					 "\\*Messages\\*"
   					 "Output\\*$"
+  					 "\\*helpful"
+  					 "\\*Warnings\\*"
   					 help-mode
   					 compilation-mode)))
 #+end_src
@@ -388,51 +386,53 @@
 
   (setq enable-recursive-minibuffers t)
 
-  (use-package consult)
+  (use-package consult
+    :bind (("M-y" . consult-yank-pop)))
 
-  (use-package marginalia
-    :config
-    (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-    :init
-    (marginalia-mode 1))
 
-  ;; (use-package embark
-  ;;   :bind
-  ;;   (("C-9" . embark-act))
-  ;;   :config
+    (use-package marginalia
+      :config
+      (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+      :init
+      (marginalia-mode 1))
 
-  ;;   ;; Hide the mode line of the Embark live/completions buffers
-  ;;   (add-to-list 'display-buffer-alist
-  ;; 		   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-  ;; 		     nil
-  ;; 		     (window-parameters (mode-line-format . none)))))
-  ;; (use-package ivy
-  ;;   :diminish
-  ;;   :bind (
-  ;; 	 :map ivy-minibuffer-map
-  ;; 	 ("TAB" . ivy-alt-done)
-  ;; 	 ("C-l" . ivy-alt-done)
-  ;; 	 ("C-j" . ivy-next-line)
-  ;; 	 ("C-k" . ivy-previous-line)
-  ;; 	 :map ivy-switch-buffer-map
-  ;; 	 ("C-k" . ivy-previous-line)
-  ;; 	 ("C-l" . ivy-done)
-  ;; 	 ("C-d" . ivy-switch-buffer-kill)
-  ;; 	 :map ivy-reverse-i-search-map
-  ;; 	 ("C-k" . ivy-previous-line)
-  ;; 	 ("C-d" . ivy-reverse-i-search-kill))
-  ;;   :config
-  ;;   (setq ivy-use-selectable-prompt t)
-  ;;   (ivy-mode 1))
+    ;; (use-package embark
+    ;;   :bind
+    ;;   (("C-9" . embark-act))
+    ;;   :config
 
-  ;; (use-package ivy-rich
-  ;;   :init
-  ;;   (ivy-rich-mode 1))
+    ;;   ;; Hide the mode line of the Embark live/completions buffers
+    ;;   (add-to-list 'display-buffer-alist
+    ;; 		   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+    ;; 		     nil
+    ;; 		     (window-parameters (mode-line-format . none)))))
+    ;; (use-package ivy
+    ;;   :diminish
+    ;;   :bind (
+    ;; 	 :map ivy-minibuffer-map
+    ;; 	 ("TAB" . ivy-alt-done)
+    ;; 	 ("C-l" . ivy-alt-done)
+    ;; 	 ("C-j" . ivy-next-line)
+    ;; 	 ("C-k" . ivy-previous-line)
+    ;; 	 :map ivy-switch-buffer-map
+    ;; 	 ("C-k" . ivy-previous-line)
+    ;; 	 ("C-l" . ivy-done)
+    ;; 	 ("C-d" . ivy-switch-buffer-kill)
+    ;; 	 :map ivy-reverse-i-search-map
+    ;; 	 ("C-k" . ivy-previous-line)
+    ;; 	 ("C-d" . ivy-reverse-i-search-kill))
+    ;;   :config
+    ;;   (setq ivy-use-selectable-prompt t)
+    ;;   (ivy-mode 1))
 
-  ;; (use-package counsel
-  ;;   :bind (("M-x" . counsel-M-x))
-  ;;   :config
-  ;;   (setq ivy-initial-inputs-alist nil))
+    ;; (use-package ivy-rich
+    ;;   :init
+    ;;   (ivy-rich-mode 1))
+
+    ;; (use-package counsel
+    ;;   :bind (("M-x" . counsel-M-x))
+    ;;   :config
+    ;;   (setq ivy-initial-inputs-alist nil))
 #+end_src
 
 * Helpful Help Commands
