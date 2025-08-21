@@ -33,6 +33,7 @@
 
   gui_programs.handbrake.enable = lib.mkForce false;
   gui_programs.insomnia.enable = lib.mkForce false;
+  gui_programs.makemkv.enable = lib.mkForce false;
   gui_programs.mkvtoolnix.enable = lib.mkForce false;
   gui_programs.simple-scan.enable = lib.mkForce false;
   gui_programs.sqlitebrowser.enable = lib.mkForce false;

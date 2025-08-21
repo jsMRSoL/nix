@@ -19,6 +19,7 @@ in
     gui_programs.handbrake.enable = OptionYes;
     gui_programs.insomnia.enable = OptionYes;
     gui_programs.libreoffice-fresh.enable = OptionYes;
+    gui_programs.makemkv.enable = OptionYes;
     gui_programs.mkvtoolnix.enable = OptionYes;
     gui_programs.pavucontrol.enable = OptionYes;
     gui_programs.pdfarranger.enable = OptionYes;
@@ -36,6 +37,7 @@ in
       ++ optionThis "handbrake"
       ++ optionThis "insomnia"
       ++ optionThis "libreoffice-fresh"
+      ++ optionThis "makemkv"
       ++ optionThis "mkvtoolnix"
       ++ optionThis "pavucontrol"
       ++ optionThis "pdfarranger"

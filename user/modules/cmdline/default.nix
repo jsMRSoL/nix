@@ -17,7 +17,6 @@
     lazygit
     ledger
     libnotify
-    makemkv
     mediainfo
     mprocs
     mpv
