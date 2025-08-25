@@ -23,7 +23,8 @@
         local dir
         dir="$( fd --type d -H -d 5 | fzf )"
         [[ -z $dir ]] && return
-        yazi $dir
+        cd "$dir"
+        yazi
       }
 
       # fuzzy search for a file in the current directory and open it in $EDITOR.
@@ -44,7 +45,6 @@
 
         cd "$(dirname $file)"
         $EDITOR "$file"
-        cd ~/
       }
 
       # fuzzy search for a file in a directory under $HOME
