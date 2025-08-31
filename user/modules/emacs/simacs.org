@@ -144,7 +144,7 @@
     ;; Use visual line motions
     (evil-global-set-key 'motion "j" 'evil-next-visual-line)
     (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-    (evil-set-initial-state 'dashboard-mode 'normal)
+    (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-set-initial-state 'help-mode 'normal)
     (evil-set-initial-state 'messages-buffer-mode 'normal)
     (evil-set-initial-state 'rustic-popup-mode 'emacs))
@@ -571,9 +571,12 @@
     (general-evil-setup t)
 
     (general-create-definer sp/leader-keys
-      :keymaps '(normal insert visual emacs dashboard)
+      :states '(normal insert visual emacs)
+      :keymaps 'override
       :prefix "SPC"
       :global-prefix "C-SPC"))
+
+  (general-override-mode 1)
 
   (defun sp/open-init ()
     "Open init.el for simacs."
@@ -816,8 +819,8 @@
       (evil-collection-define-key 'normal 'dired-mode-map
         "h" 'dired-single-up-directory
         "l" 'dired-single-buffer
-        "H" 'dired-hide-dotfiles-mode
-        (kbd "SPC") nil)))
+        "H" 'dired-hide-dotfiles-mode)))
+        ;; (kbd "SPC") 'sp/leader-keys)))
 
 
   (defvar sp-common-dirs
@@ -1207,6 +1210,11 @@
 
   (use-package org
     :straight nil
+    :general
+    (:keymaps 'org-agenda-mode-map
+     :states 'normal
+             "gr" 'org-agenda-redo
+             "q" 'org-agenda-quit)
     :init
     (setq org-modules
           '(org-id
@@ -1242,7 +1250,7 @@
 
   (setq electric-pair-inhibit-predicate
         (lambda (c)
-  	(if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
+    	(if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
 #+end_src
 
 ** Headings
