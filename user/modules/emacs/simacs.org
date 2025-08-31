@@ -635,8 +635,11 @@
     "cc" '(comment-line :which-key "comment")
     "f" '(:ignore t :which-key "files")
     "fed" '(sp/open-init :which-key "edit init.el")
-    "ff" '(find-file :which-key "find file")
+    "ff" '(sp/fzf-find-file :which-key "find file (fuzzy)")
+    "fa" '(sp/fzf-find-file-anywhere :which-key "find file anywhere (fuzzy)")
+    "fd" '(sp/fzf-find-dir :which-key "find directory (fuzzy)")
     "fj" '(find-file-other-tab :which-key "find file new tab")
+    "fp" '(sp/fzf-find-project-file :which-key "find Project file (fuzzy)")
     "fr" '(consult-recent-file :which-key "find recent")
     "fs" '(save-buffer :which-key "save")
     "fw" '(write-file :which-key "save as")
@@ -837,6 +840,59 @@
 
 #+end_src
   
+* File & directory navigation
+#+begin_src emacs-lisp
+
+  (use-package fzf)
+
+  (defun sp/fzf-find-file (&optional prefix)
+    "find file or fuzzy find file across default directories"
+
+    (interactive "P")
+    (if prefix
+        ;; With C-u: build a find command across multiple dirs
+        (let* ((dirs sp/fzf-default-dirs)
+               (cmd (mapconcat (lambda (d)
+                                 (format "find %s -type f" (shell-quote-argument (expand-file-name d))))
+                               dirs " ; " )))
+          (fzf-with-command cmd 'find-file))
+      ;; Without C-u: just run normally in current dir
+      (call-interactively 'find-file)))
+
+  (defvar sp/fzf-default-dirs
+    '("/home/simon/Documents"
+      "/home/simon/Downloads"
+      "/home/simon/Projects"))
+
+  (defun sp/fzf-find-file-anywhere(char)
+    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, [c]onfig, [b]uffer, pro[j]ects")
+    (let ((target-dir (if (char-equal char ?b)
+    			default-directory
+    		      (alist-get char sp/fzf-common-dirs))))
+      (fzf-find-file target-dir)))
+
+
+  (defvar sp/fzf-common-dirs
+    `((?h . "/home/simon/")
+      (?d . "/home/simon/Documents/")
+      (?o . "/home/simon/Downloads/")
+      (?r . "/home/simon/Documents/org/")
+      (?f . "/home/simon/.dotfiles/")
+      (?e . ,user-emacs-directory)
+      (?c . "/home/simon/.config/")
+      (?j . "/home/simon/Projects"))
+    "An alist of common-dirs to facilitate quick navigation.")
+
+
+  (defun sp/fzf-find-project-file ()
+    (interactive)
+    (fzf-with-command "find ~/Projects -type f" 'find-file))
+
+  (defun sp/fzf-find-dir ()
+    (interactive)
+    (fzf-with-command "find ~/ -type d" 'dired))
+#+end_src
+
 * Internal files
 #+begin_src emacs-lisp
 
