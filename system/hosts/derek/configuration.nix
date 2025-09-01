@@ -15,6 +15,7 @@
     ../../components/wayland.nix
     ../../components/postgres.nix
     ../../components/virtualization.nix
+    ../../components/nfs.nix
   ];
 
   hardware.graphics.enable = true;
