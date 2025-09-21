@@ -283,6 +283,7 @@
   					 "Output\\*$"
   					 "\\*helpful"
   					 "\\*Warnings\\*"
+  					 "\\*grep\\*"
   					 help-mode
   					 compilation-mode)))
 #+end_src
@@ -406,43 +407,6 @@
       :init
       (marginalia-mode 1))
 
-    ;; (use-package embark
-    ;;   :bind
-    ;;   (("C-9" . embark-act))
-    ;;   :config
-
-    ;;   ;; Hide the mode line of the Embark live/completions buffers
-    ;;   (add-to-list 'display-buffer-alist
-    ;; 		   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-    ;; 		     nil
-    ;; 		     (window-parameters (mode-line-format . none)))))
-    ;; (use-package ivy
-    ;;   :diminish
-    ;;   :bind (
-    ;; 	 :map ivy-minibuffer-map
-    ;; 	 ("TAB" . ivy-alt-done)
-    ;; 	 ("C-l" . ivy-alt-done)
-    ;; 	 ("C-j" . ivy-next-line)
-    ;; 	 ("C-k" . ivy-previous-line)
-    ;; 	 :map ivy-switch-buffer-map
-    ;; 	 ("C-k" . ivy-previous-line)
-    ;; 	 ("C-l" . ivy-done)
-    ;; 	 ("C-d" . ivy-switch-buffer-kill)
-    ;; 	 :map ivy-reverse-i-search-map
-    ;; 	 ("C-k" . ivy-previous-line)
-    ;; 	 ("C-d" . ivy-reverse-i-search-kill))
-    ;;   :config
-    ;;   (setq ivy-use-selectable-prompt t)
-    ;;   (ivy-mode 1))
-
-    ;; (use-package ivy-rich
-    ;;   :init
-    ;;   (ivy-rich-mode 1))
-
-    ;; (use-package counsel
-    ;;   :bind (("M-x" . counsel-M-x))
-    ;;   :config
-    ;;   (setq ivy-initial-inputs-alist nil))
 #+end_src
 
 * Helpful Help Commands
