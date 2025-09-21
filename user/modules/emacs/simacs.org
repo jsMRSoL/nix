@@ -262,7 +262,14 @@
   	     '("\\*Org Agenda\\*"
   	       (display-buffer-in-side-window)
   	       (side . right)
-  	       (window-width . 70)))
+  	       (window-width . 40)))
+
+  (add-to-list 'display-buffer-alist
+               '("\\*grep\\*"
+                 (display-buffer-reuse-window display-buffer-in-side-window)
+                 (side . right)
+                 (window-width . 0.5)
+                 (reusable-frames . visible)))
 
   (use-package popper
     :hook (after-init . popper-mode)
