@@ -191,6 +191,9 @@
     :defer t
     :commands (er/expand-region))
 
+  (use-package wgrep
+    :defer t
+    :commands (wgrep-change-to-wgrep-mode))
 #+end_src
   
 * Multiple cursors
