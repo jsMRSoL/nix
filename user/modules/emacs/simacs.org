@@ -806,16 +806,16 @@
       (?o . "/home/simon/Downloads/")
       (?r . "/home/simon/Documents/org/")
       (?f . "/home/simon/.dotfiles/")
+      (?n . "/home/simon/.nixos/")
       (?e . ,user-emacs-directory)
       (?c . "/home/simon/.config/")
       (?b . "/home/simon/.local/usr/bin/")
-      (?j . "/home/simon/Projects")
-      (?y . "/home/simon/Projects/python/"))
+      (?j . "/home/simon/Projects"))
     "An alist of common-dirs to facilitate quick navigation.")
 
   (defun sp/dired-jump-dir(char)
     "Jump to a directory in my common directories list."
-    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, [c]onfig, .[b]in, pro[j]ects, p[y]thon")
+    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, .[n]ixos, [c]onfig, .[b]in, pro[j]ects")
     (dired-jump nil (alist-get char sp-common-dirs)))
 
 #+end_src
