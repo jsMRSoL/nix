@@ -17,7 +17,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
-(push '(background-color . "#000000") default-frame-alist)
+(push '(background-color . "#1e1e2e") default-frame-alist)
 (push '(foreground-color . "#FFFFFF") default-frame-alist)
 (push '(mouse-color . "white") default-frame-alist)
 
