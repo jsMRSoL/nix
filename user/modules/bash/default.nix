@@ -104,6 +104,7 @@
 
   home.sessionVariables = {
     XDG_SCREENSHOTS_DIR = "/home/simon/Pictures/screenshots";
+    ASPELL_LANG = "en_GB-ise";
   };
 
   home.file.inputrc = {

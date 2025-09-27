@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    aspell
+    aspellDicts.en
     bacon
     bash-preexec
     bat
