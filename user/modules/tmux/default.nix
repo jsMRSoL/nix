@@ -34,7 +34,11 @@
       bind m display-message "Test works!"
       bind-key C-y display-popup -w 40% -h 30% -T "tmux-menu" -E "menu.tmx"
       run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
-      set -g @catppuccin_status_modules_right "date_time application user session host"
+      set -g status-right-length 100
+      set -g status-right ""
+      set -g status-left-length 100
+      set -g status-left ""
+      set -ag status-left "#{E:@catppuccin_status_session}"
     '';
     keyMode = "vi";
     mouse = true;
