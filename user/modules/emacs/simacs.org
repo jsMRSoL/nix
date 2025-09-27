@@ -620,7 +620,7 @@
     "fr" '(consult-recent-file :which-key "find recent")
     "fs" '(save-buffer :which-key "save")
     "fw" '(write-file :which-key "save as")
-    "ft" '(treemacs :which-key "treemacs")
+    "ft" '(dired-sidebar-toggle-sidebar :which-key "file tree")
     "g" '(:ignore t :which-key "git")
     "gs" '(magit-status :which-key "status")
     "gg" '(sp/magit-dotfiles-other-frame :which-key "dotfiles")
@@ -794,6 +794,15 @@
       (with-eval-after-load 'evil-collection
         (evil-collection-define-key 'normal 'dired-mode-map
   	"H" 'dired-hide-dotfiles-mode)))
+
+    (use-package dired-sidebar
+      :commands (dired-sidebar-toggle-sidebar)
+      :bind
+      (("<space>ft" . dired-sidebar-toggle-sidebar))
+      :config
+      (setq dired-sidebar-use-term-integration t) ;; icons vs ascii
+      (setq dired-sidebar-width 30)
+      (setq dired-sidebar-show-hidden-files t))
 
     (with-eval-after-load 'evil-collection
       (evil-collection-define-key 'normal 'dired-mode-map
@@ -998,9 +1007,6 @@
     :hook (lsp-mode . lsp-ui-mode)
     :custom
     (lsp-ui-doc-position 'bottom))
-
-  (use-package lsp-treemacs
-    :after lsp)
 
   (defun sp/prog-mode-setup ()
     ;; nice things
