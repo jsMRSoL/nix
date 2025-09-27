@@ -704,7 +704,7 @@
     "sg" '(grep :which-key "grep")
     "sG" '(consult-grep :which-key "consult-grep")
     "sp" '(consult-line :which-key "swiper")
-    "ss" '(avy-goto-char-2 :which-key "char2")
+    "ss" '(consult-fd :which-key "consult-fd")
     "sl" '(avy-goto-line :which-key "line")
     "t" '(:ignore t :which-key "tabs")
     "tn" '(tab-bar-new-tab :which-key "new")
@@ -845,10 +845,10 @@
       "/home/simon/Projects"))
 
   (defun sp/fzf-find-file-anywhere(char)
-    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, [c]onfig, [b]uffer, pro[j]ects")
+    (interactive "c[h]ome, [d]ocs, d[o]wnloads, [e]macs, o[r]g, dot[f]iles, .[n]ixos, [c]onfig, .[b]in, pro[j]ects")
     (let ((target-dir (if (char-equal char ?b)
     			default-directory
-    		      (alist-get char sp/fzf-common-dirs))))
+    		      (alist-get char sp-common-dirs))))
       (fzf-find-file target-dir)))
 
 
