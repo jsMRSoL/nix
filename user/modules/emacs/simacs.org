@@ -1011,7 +1011,7 @@
   	       ;; the lambda function ensures that the list is
   	       ;; populated as it is needed and avoids a stale value
   	       (lambda ()
-  		 (cape-super-capf
+  		 (cape-capf-super
   		  (when (fboundp 'lsp-completion-at-point) #'lsp-completion-at-point)
   		  #'cape-dabbrev
   		  #'cape-keyword
