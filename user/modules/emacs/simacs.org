@@ -810,7 +810,7 @@
       (?e . ,user-emacs-directory)
       (?c . "/home/simon/.config/")
       (?b . "/home/simon/.local/usr/bin/")
-      (?j . "/home/simon/Projects"))
+      (?j . "/home/simon/Projects/"))
     "An alist of common-dirs to facilitate quick navigation.")
 
   (defun sp/dired-jump-dir(char)
