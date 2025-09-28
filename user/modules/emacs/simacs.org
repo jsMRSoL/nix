@@ -591,12 +591,10 @@
     "SPC" '(:ignore t :which-key "M-x")
     ":" '(eval-expression :which-key "M-:")
     "TAB" '(evil-buffer :which-key "last buffer")
-    "u" '(universal-argument :which-key "c-u")
     "`" '(org-capture :which-key "org capture")
     "a" '(:ignore t :which-key "apps")
-    "ac" '(calc :which-key "calc")
+    "ac" '(calculator :which-key "calc")
     "ad" '(dired :which-key "dired")
-    "aj" '(dired-jump :which-key "dired-jump")
     "at" '(vterm :which-key "terminal")
     "au" '(undo-tree-visualize :which-key "undo-tree")
     "ax" '(org-capture :which-key "org capture")
@@ -608,10 +606,6 @@
     "bb" '(consult-buffer :which-key "switch")
     "bd" '(kill-buffer-and-window :which-key "delete")
     "bs" '((lambda () (interactive) (switch-to-buffer "*scratch*")) :which-key "scratch")
-    "bh" '((lambda () (interactive) (switch-to-buffer "*dashboard*")) :which-key "dashboard")
-    "bm" '((lambda () (interactive) (switch-to-buffer "*Messages*")) :which-key "messages")
-    "c" '(:ignore t :which-key "code")
-    "cc" '(comment-line :which-key "comment")
     "f" '(:ignore t :which-key "files")
     "fed" '(sp/open-init :which-key "edit init.el")
     "ff" '(sp/fzf-find-file :which-key "find file (fuzzy)")
@@ -619,23 +613,29 @@
     "fd" '(sp/fzf-find-dir :which-key "find directory (fuzzy)")
     "fj" '(find-file-other-tab :which-key "find file new tab")
     "fp" '(sp/fzf-find-project-file :which-key "find Project file (fuzzy)")
+    "fP" '(consult-project-buffer :which-key "project buffers")
     "fr" '(consult-recent-file :which-key "find recent")
     "fs" '(save-buffer :which-key "save")
     "fw" '(write-file :which-key "save as")
     "ft" '(dired-sidebar-toggle-sidebar :which-key "file tree")
     "g" '(:ignore t :which-key "git")
     "gs" '(magit-status :which-key "status")
-    "gg" '(sp/magit-dotfiles-other-frame :which-key "dotfiles")
     "gm" '(sp/transient--smerge :which-key "(s)merge")
+    "gh" '(:ignore t :which-key "+hunk")
+    "ghd" '(git-gutter:popup-hunk t :which-key "diff")
+    "ghr" '(git-gutter:revert-hunk t :which-key "revert")
     "h" '(:ignore t :which-key "help")
-    "q" '(:ignore t :which-key "quit")
-    "qa" '(evil-quit-all :which-key "quit all")
-    "qq" '(evil-quit :which-key "quit")
-    "qe" '(kill-emacs :which-key "kill emacs")
     "j" '(:ignore t :which-key "jump")
-    "jo" '(sp/dired-jump-dir :which-key "open common")
-    "jj" '(sp/open-journal :which-key "journal.org")
-    "jt" '(sp/open-tasks :which-key "tasks.org")
+    "jo" '(sp/dired-jump-dir :which-key "common dirs")
+    "jj" '(dired-jump :which-key "default dir")
+    "jl" '(consult-line :which-key "line")
+    "ji" '(consult-imenu :which-key "imenu")
+    "jh" '(consult-outline :which-key "headings")
+    "jn" '(consult-goto-line :which-key "line num")
+    "jm" '(consult-mark :which-key "mark")
+    "jM" '(consult-global-mark :which-key "global mark")
+    "jJ" '(sp/open-journal :which-key "journal.org")
+    "jT" '(sp/open-tasks :which-key "tasks.org")
     "k" '(:ignore t :which-key "lisp")
     "kk" '(sp/transient--parens :which-key "parens")
     "ke" '(sp-end-of-sexp :which-key "end")
@@ -685,16 +685,24 @@
     "oo" '(org-open-at-point :which-key "open/follow")
     "oe" '(org-export-dispatch :which-key "export")
     "p" '(projectile-command-map :which-key "projects")
+    "q" '(:ignore t :which-key "quit")
+    "qa" '(evil-quit-all :which-key "quit all")
+    "qq" '(evil-quit :which-key "quit")
+    "qe" '(kill-emacs :which-key "kill emacs")
     "r" '(:ignore t :which-key "registers")
     "rl" '(evil-show-registers :which-key "list")
+    "rs" '(consult-yank-pop :which-key "yank history/search")
     "rp" '(insert-line-and-paste-clipboard :which-key "insert line paste")
+    "rL" '(consult-register :which-key "consult register")
+    "rS" '(consult-register-store :which-key "store register")
+    "rO" '(consult-register-load :which-key "load register")
     "s" '(:ignore t :which-key "search")
-    "sr" '(consult-ripgrep :which-key "ripgrep")
+    "sf" '(consult-find :which-key "find in dir")
+    "sl" '(consult-locate :which-key "locate file")
+    "sw" '(consult-ripgrep :which-key "word (rg)")
+    "sd" '(consult-fd :which-key "file/dir")
     "sg" '(grep :which-key "grep")
-    "sG" '(consult-grep :which-key "consult-grep")
-    "sp" '(consult-line :which-key "swiper")
-    "ss" '(consult-fd :which-key "consult-fd")
-    "sl" '(avy-goto-line :which-key "line")
+    "sG" '(consult-grep :which-key "grep in dir (consult)")
     "t" '(:ignore t :which-key "tabs")
     "tn" '(tab-bar-new-tab :which-key "new")
     "tc" '(tab-bar-close-tab :which-key "close")
@@ -709,15 +717,7 @@
     "vc" '(er/mark-comment :which-key "comment")
     "ve" '(er/mark-email :which-key "email")
     "vu" '(er/mark-url :which-key "url")
-    "w" '(:ignore t :which-key "windows")
-    "wv" '(evil-window-vsplit :which-key "vsplit")
-    "ws" '(evil-window-split :which-key "split")
-    "wh" '(evil-window-left :which-key "go left")
-    "wj" '(evil-window-down :which-key "go down")
-    "wk" '(evil-window-up :which-key "go up")
-    "wl" '(evil-window-right :which-key "go right")
-    "wo" '(delete-other-windows :which-key "only")
-    "wd" '(ace-delete-window :which-key "delete")
+    "w" '(evil-window-map :which-key "windows")
     "wu" '(winner-undo :which-key "winner undo")
     "wU" '(winner-redo :which-key "winner redo")
     "wF" '(make-frame :which-key "new frame")
@@ -735,32 +735,9 @@
 
   (define-key evil-normal-state-map (kbd "s") 'avy-goto-char-timer)
   (general-nmap "SPC h" (general-simulate-key "C-h"))
+  (general-nmap "SPC w" (general-simulate-key "C-w"))
   (general-nmap "SPC SPC" (general-simulate-key "M-x"))
   (general-vmap "SPC SPC" (general-simulate-key "M-x"))
-
-  ;; ;; Multiple cursors
-  ;; (general-def 'normal
-  ;;   "M-n" 'evil-mc-make-and-goto-next-cursor
-  ;;   "M-p" 'evil-mc-make-and-goto-prev-cursor
-  ;;   "C-n" 'evil-mc-make-and-goto-next-match
-  ;;   "C-t" 'evil-mc-skip-and-goto-next-match
-  ;;   "C-p" 'evil-mc-make-and-goto-prev-match
-  ;;   "grm" 'evil-mc-make-all-cursors
-  ;;   "gru" 'evil-mc-undo-last-added-cursor
-  ;;   "grq" 'evil-mc-undo-all-cursors
-  ;;   "grs" 'evil-mc-pause-cursors
-  ;;   "grr" 'evil-mc-resume-cursors
-  ;;   "grf" 'evil-mc-make-and-goto-first-cursor
-  ;;   "grl" 'evil-mc-make-and-goto-last-cursor
-  ;;   "grh" 'evil-mc-make-cursor-here
-  ;;   "grj" 'evil-mc-make-cursor-move-next-line
-  ;;   "grk" 'evil-mc-make-cursor-move-prev-line
-  ;;   "grN" 'evil-mc-skip-and-goto-next-cursor
-  ;;   "grP" 'evil-mc-skip-and-goto-prev-cursor
-  ;;   "grn" 'evil-mc-skip-and-goto-next-match
-  ;;   "grp" 'evil-mc-skip-and-goto-prev-match
-  ;;   "grI" 'evil-mc-make-cursor-in-visual-selection-beg
-  ;;   "grA" 'evil-mc-make-cursor-in-visual-selection-end)
 
 #+end_src
   
