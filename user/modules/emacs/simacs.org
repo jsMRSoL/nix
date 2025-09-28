@@ -1693,11 +1693,12 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     "This is a simpler version of sp/open-with-tasks-and-agenda. It relies
      on there being a setting for Org Agenda in `display-buffer-alist.'"
     (interactive)
-    (org-agenda-list)
-    (other-window 1)
-    (find-file "~/Documents/org/tasks.org"))
+    (unless (seq-some #'buffer-file-name (buffer-list))
+      (org-agenda-list)
+      (other-window 1)
+      (find-file "~/Documents/org/tasks.org")
+      (sp/narrow-other)))
 
-  (sp/open-with-tasks-and-agenda-2)
-  (sp/narrow-other)
- 
+  (add-hook 'emacs-startup-hook #'sp/open-with-tasks-and-agenda-2)
+
 #+end_src
