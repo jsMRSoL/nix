@@ -649,19 +649,6 @@
     "kw[" '(sp-wrap-square :which-key "square")
     "kwu" '(sp-unwrap-sexp :which-key "unwrap next")
     "kwU" '(sp-backward-unwrap-sexp :which-key "unwrap prev")
-    ;; "l" '(:ignore t :which-key "layouts")
-    ;; "la" '(persp-add-buffer :which-key "add buffer")
-    ;; "lA" '(persp-set-buffer :which-key "add buf excl")
-    ;; "lb" '(persp-ivy-switch-buffer :which-key "switch buf")
-    ;; "lc" '(persp-kill :which-key "close layout")
-    ;; "lk" '(persp-remove-buffer :which-key "remove buffer")
-    ;; "ll" '(persp-switch-last :which-key "last layout")
-    ;; "lr" '(persp-rename :which-key "rename layout")
-    ;; "ls" '(persp-switch :which-key "switch layout")
-    ;; "ln" '(persp-next :which-key "next layout")
-    ;; "lp" '(persp-prev :which-key "prev layout")
-    ;; "l C-s" '(persp-state-save :which-key "save layout")
-    ;; "l C-l" '(persp-state-load :which-key "load layout")
     "o" '(:ignore t :which-key "org")
     "oa" '(org-agenda :which-key "agenda")
     "ob" '(:ignore t :which-key "babel")
@@ -940,9 +927,6 @@
     (add-hook 'with-editor-mode-hook #'evil-insert-state))
 
   (setq vc-follow-symlinks t)
-
-  (defun sp/add-magit-layout-switch-key ()
-    (evil-define-key '(normal insert visual) magit-mode-map (kbd "") 'sp/vterm-toggle))
 
   (use-package git-gutter
     :hook ((text-mode . git-gutter-mode)
