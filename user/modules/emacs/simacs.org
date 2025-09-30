@@ -626,6 +626,7 @@
     "bb" '(consult-buffer :which-key "switch")
     "bd" '(kill-buffer-and-window :which-key "delete")
     "bs" '((lambda () (interactive) (switch-to-buffer "*scratch*")) :which-key "scratch")
+    "bi" '(ibuffer :which-key "ibuffer")
     "f" '(:ignore t :which-key "files")
     "fed" '(sp/open-init :which-key "edit init.el")
     "ff" '(sp/fzf-find-file :which-key "find file (fuzzy)")
