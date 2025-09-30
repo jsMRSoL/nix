@@ -881,32 +881,6 @@
   (setq custom-file (concat user-emacs-directory "custom-set-variables-data.el"))
 
 #+end_src
-
-* Opening files in external programs
-#+begin_src emacs-lisp
-
-  ;; (use-package openwith
-  ;;   :config
-  ;;   (setq openwith-associations
-  ;; 	(list
-  ;; 	  (list (openwith-make-extension-regexp
-  ;; 		'("mpg" "mpeg" "mp3" "mp4"
-  ;;                   "m4a"
-  ;; 		  "avi" "wmv" "wav" "mov" "flv"
-  ;; 		  "ogm" "ogg" "mkv"))
-  ;; 		"mpv"
-  ;; 		'(file))
-  ;; 	  (list (openwith-make-extension-regexp
-  ;; 		'("xbm" "pbm" "pgm" "ppm" "pnm"
-  ;; 		  "png" "gif" "bmp" "tif" "jpeg" "jpg"))
-  ;; 		  "sxiv"
-  ;; 		  '(file))
-  ;; 	  (list (openwith-make-extension-regexp
-  ;; 		'("pdf"))
-  ;; 		"mupdf"
-  ;; 		'(file)))))
-
-#+end_src
 * Shell
 #+begin_src emacs-lisp
 
@@ -1541,15 +1515,6 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
 
   (use-package ledger-mode
     :mode "\\.ledger\\'")
-
-#+end_src
-* LSJ2 mode
-#+begin_src emacs-lisp
-
-  ;; (use-package lsj2-mode
-  ;;   :straight nil
-  ;;   :load-path "/home/simon/.simacs_dir/private/LSJ2/local/lsj2-mode/lsj2-mode.el")
-  ;; (load-file "/home/simon/.simacs_dir/private/LSJ2/local/lsj2-mode/lsj2-mode.el")
 
 #+end_src
   
