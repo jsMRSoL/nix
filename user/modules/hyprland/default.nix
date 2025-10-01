@@ -163,6 +163,7 @@ in
         "$CTRL_ALT, P, exec, mypassmenu"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, INSERT, exec, clipman pick -t wofi"
+        "$mainMod, F1, exec, foot -e tmux-sessionizer.sh home &"
         "$mainMod, F8, exec, emacs &"
         "$SHIFT, F10, exec, hyprshot -m window"
         "$SHIFT_ALT, F10, exec, hyprshot -m region"
