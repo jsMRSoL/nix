@@ -105,7 +105,7 @@ in
       };
 
       dwindle = {
-        pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        pseudotile = "yes"; # master switch for pseudotiling.
         preserve_split = "yes"; # you probably want this
       };
 
@@ -141,8 +141,6 @@ in
         "float,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
         "opacity 1.0,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
         "size 50% 60%,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
-        "fullscreenstate 0 2,class:(brave)"
-        # no border if only window
         "noborder, onworkspace:w[tv1] f[-1], floating:0"
         "noborder, onworkspace:f[1], floating:0"
       ];
@@ -171,7 +169,6 @@ in
 
         # Layouts
         "$mainMod, F, togglefloating, "
-        "$mainMod, P, pseudo" # dwindle
         "$mainMod, M, fullscreen, 1"
 
         # Orientations
