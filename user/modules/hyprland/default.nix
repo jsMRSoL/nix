@@ -171,6 +171,7 @@ in
         # Layouts
         "$mainMod, F, togglefloating, "
         "$mainMod, M, fullscreen, 1"
+        "$mainMod_SHIFT, M, fullscreenstate, -1, 3"
 
         # Orientations
         "$mainMod, T, layoutmsg, orientationleft"
