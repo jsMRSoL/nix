@@ -19,6 +19,7 @@
         packages = [
           pkgs.python3
           pkgs.uv
+          pkgs.python3Packages.ipython
           pkgs.python3Packages.pytest
           pkgs.python3Packages.pytest-cov
           pkgs.pyright
