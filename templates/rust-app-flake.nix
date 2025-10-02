@@ -29,7 +29,9 @@
           pkgs.clippy
           pkgs.rust-analyzer
           pkgs.cargo-watch
-        ] ++ myBuildInputs;
+          pkgs.lldb
+        ]
+        ++ myBuildInputs;
 
         nativeBuildInputs = myNativeBuildInputs;
 

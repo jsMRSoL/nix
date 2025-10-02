@@ -21,6 +21,9 @@
           pkgs.uv
           pkgs.python3Packages.pytest
           pkgs.python3Packages.pytest-cov
+          pkgs.pyright
+          pkgs.python3Packages.debugpy
+          pkgs.python3Packages.ruff
           # libffi
           # openssl
           # zlib

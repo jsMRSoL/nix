@@ -19,6 +19,8 @@
         packages = [
           pkgs.nodejs_20
           pkgs.nodePackages.pnpm
+          pkgs.prettierd
+          pkgs.typescript
         ];
 
         # Make everything project-local

@@ -21,6 +21,12 @@
           pkgs.gopls
           pkgs.delve
           pkgs.air
+          pkgs.impl
+          pkgs.gomodifytags
+          pkgs.iferr
+          pkgs.golines
+          pkgs.gotests
+          pkgs.gotestsum
         ];
 
         # Make everything project-local
