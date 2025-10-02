@@ -991,49 +991,34 @@
 * Language-specific settings
 ** Python
 #+begin_src emacs-lisp
+
   (use-package pyvenv
-    :defer t)
+    :defer t
+    :config
+    ;; Automatically track project .venv directories
+    (pyvenv-tracking-mode 1))
 
   (use-package lsp-pyright
-    :defer t)
-
-  (use-package yapfify)
-
-  (defun sp/setup-python-lsp ()
-    (require 'pyvenv)
-    (pyvenv-mode 1)
-    (require 'lsp-pyright)
-    (require 'yapfify)
-    ;; Start LSP
-    (lsp-deferred)
-    ;; Setup CAPEs for completion
-    (setq-local completion-at-point-functions
-                (list (cape-capf-super
-                       #'lsp-completion-at-point
-                       #'cape-dabbrev
-                       #'cape-keyword
-                       #'cape-file)))
-    ;; Optional: bind formatting to keys within lsp-mode-map
-    (general-define-key
-     :keymaps 'lsp-mode-map
-     :prefix lsp-keymap-prefix
-     "= =" '(yapfify-buffer :which-key "format buffer")
-     "= r" '(yapfify-region-or-buffer :which-key "format region")))
-
-  (use-package python-mode
     :defer t
-    :mode "\\.py\\'"
-    :hook (python-mode . sp/setup-python-lsp)
+    :hook (python-mode . lsp-deferred)
     :custom
-    (python-shell-interpreter "ipython")
-    (python-shell-interpreter-args "-i --simple-prompt --no-banner")
-    (python-shell-completion-setup-code "from IPython.core.completerlib import module_completion")
-    (python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n")
-    (python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-    (dap-python-executable "python")
-    (dap-python-debugger 'debugpy)
-    :config
-    (require 'dap-python))
+    (lsp-pyright-auto-import-completions t)
+    (lsp-pyright-use-library-code-for-types t))
+
+  (defun sp/python-format-buffer-or-region ()
+    "Format buffer or active region using LSP."
+    (interactive)
+    (if (use-region-p)
+        (lsp-format-region (region-beginning) (region-end))
+      (lsp-format-buffer)))
+
+  (use-package python
+    :hook (python-mode . (lambda ()
+                           ;; optional: enable LSP here if you like
+                           (lsp-deferred)))
+    :custom
+    (python-shell-interpreter "python")
+    (python-shell-interpreter-args ""))
 
 #+end_src
 
@@ -1072,7 +1057,8 @@
 #+begin_src emacs-lisp
 
   (use-package go-mode
-    :mode "\\.go\\'")
+    :mode "\\.go\\'"
+    :hook (go-mode . lsp-deferred))
 
 #+end_src
 ** Web
@@ -1084,6 +1070,7 @@
   	 ("\\.jsx?\\'"  . web-mode)
   	 ("\\.tsx?\\'"  . web-mode)
   	 ("\\.json\\'"  . web-mode))
+    :hook (web-mode . lsp-deferred)
     :config
     (setq web-mode-markup-indent-offset 2) ; HTML
     (setq web-mode-css-indent-offset 2)    ; CSS
@@ -1095,14 +1082,16 @@
 #+begin_src emacs-lisp
 
   (use-package lua-mode
-    :mode "\\.lua\\'")
+    :mode "\\.lua\\'"
+    :hook (lua-mode . lsp-deferred))
 
 #+end_src
 ** Nix
 #+begin_src emacs-lisp
 
   (use-package nix-mode
-    :mode "\\.nix\\'")
+    :mode "\\.nix\\'"
+    :hook (nix-mode . lsp-deferred))
 
 #+end_src
 
