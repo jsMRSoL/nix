@@ -33,12 +33,23 @@
       bind -n M-p switch-client -p
       bind m display-message "Test works!"
       bind-key C-y display-popup -w 40% -h 30% -T "tmux-menu" -E "menu.tmx"
-      run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
-      set -g status-right-length 100
-      set -g status-right ""
+      # style variables
+      set -g @blue "#89b4fa"
+      set -g @light_grey "#cdd6f4"
+      set -g @grey "#7f849c"
+      set -g @pink "#f5c2e7"
+      set -g @green "#a6e3a1"
+      set -g @mauve "#cba6f7"
+      set -g @peach "#fab387"
+      set -g @sky "#89dceb"
+
+      set -g status-style "bg=default"
+      set -g status-right-length 20
+      set -g status-right " #[fg=#{@light_grey},bold]󰹑 #S "
       set -g status-left-length 100
-      set -g status-left ""
-      set -ag status-left "#{E:@catppuccin_status_session}"
+      set -g status-left " "
+      set -g window-status-current-format "#[fg=#{@green},bold] #[underscore]#I:#W"
+      set -g window-status-format "#[fg=#{@grey},bold]  #I:#W"
     '';
     keyMode = "vi";
     mouse = true;
