@@ -21,6 +21,7 @@
       bind  % split-window -h -c "#{pane_current_path}"
       bind  _ split-window -h -c "#{pane_current_path}"
       bind  - split-window -v -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
       bind 1 select-window -t @0
       bind 2 select-window -t @1
       bind 3 select-window -t @2
