@@ -2,15 +2,13 @@
 let
   wlogout' = pkgs.wlogout.overrideAttrs (
     finalAttrs: prevAttrs: {
-      postPatch =
-        prevAttrs.postPatch
-        + ''
-          substituteInPlace layout \
-            --replace-fail "loginctl lock-session" "swaylock"
+      postPatch = prevAttrs.postPatch + ''
+        substituteInPlace layout \
+          --replace-fail "loginctl lock-session" "swaylock"
 
-          substituteInPlace layout \
-            --replace-fail  "loginctl terminate-user \$USER" "hyprctl dispatch exit"
-        '';
+        substituteInPlace layout \
+          --replace-fail  "loginctl terminate-user \$USER" "hyprctl dispatch exit"
+      '';
     }
   );
 in
@@ -109,9 +107,9 @@ in
         preserve_split = "yes"; # you probably want this
       };
 
-      gestures = {
-        workspace_swipe = "off";
-      };
+      # gestures = {
+      #   workspace_swipe = "off";
+      # };
 
       misc = {
         disable_splash_rendering = true;
