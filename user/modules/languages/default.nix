@@ -6,7 +6,7 @@
     gcc
     # go
     go
-    # python
+    python3
     # python312Full
     # virtualenv
   ];

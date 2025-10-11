@@ -79,8 +79,7 @@ return {
       'rcarriga/nvim-dap-ui',
     },
     config = function ()
-      local install_path = './.venv/bin/python'
-      require('dap-python').setup(install_path)
+      require('dap-python').setup('python3')
 
       vim.keymap.set('n', '<leader>dpr', function ()
         require('dap-python').test_method()

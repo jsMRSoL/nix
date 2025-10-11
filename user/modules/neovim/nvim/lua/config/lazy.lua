@@ -15,4 +15,7 @@ require('lazy').setup({
   spec = { import = 'plugins' },
   -- { install = { colorscheme = "catppucin" } },
   { checker = { enabled = true, notify = true } },
+  rocks = {
+    enabled = false,
+  },
 })
