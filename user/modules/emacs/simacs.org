@@ -198,16 +198,16 @@
     :commands (wgrep-change-to-wgrep-mode))
 #+end_src
   
-* Multiple cursors
+* Search
 #+begin_src emacs-lisp
+  (use-package grep
+    :ensure nil
+    :config
+    (setq grep-command "rg --no-heading --line-number --color never "))
 
-  ;; (use-package evil-multiedit
-  ;;   :config
-  ;;   (evil-multiedit-default-keybinds))
-
-  ;; ;; (use-package evil-mc
-  ;;   :init
-  ;;   (global-evil-mc-mode))
+  (add-hook 'grep-mode-hook
+            (lambda ()
+              (setq truncate-lines t)))
 
 #+end_src
 * Undotree
