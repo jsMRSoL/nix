@@ -105,7 +105,7 @@
   (use-package visual-fill-column
     :defer t
     :init
-    (setq visual-fill-column-width 82)
+    (setq visual-fill-column-width 100)
     (setq visual-fill-column-center-text t)
     :hook (visual-line-mode . visual-fill-column-mode))
 
