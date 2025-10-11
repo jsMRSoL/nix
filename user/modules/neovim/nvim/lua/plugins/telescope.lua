@@ -68,6 +68,12 @@ return {
         end,
         {}
       )
+
+      cmd('CurrentBufferFuzzyFind', function ()
+        require('telescope.builtin').live_grep({
+          search_dirs = { vim.fn.expand('%:p') },
+        })
+      end, {})
     end
   },
 }
