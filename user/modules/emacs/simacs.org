@@ -1582,6 +1582,12 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
       (format-time-string "%H:%M:%S")))
 #+end_src
 
+* Greek alphabet
+#+begin_src emacs-lisp
+  ;; This is not actually the default.
+  ;; It's the default alternative.
+  (setq default-input-method "greek-ibycus4")
+#+end_src
 * Startup finished tweak
 #+begin_src emacs-lisp
   ;; Make GC pauses faster by decreasing the threshold.
