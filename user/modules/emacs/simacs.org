@@ -784,9 +784,19 @@
     :commands (dired dired-jump)
     :init
     (setq dired-listing-switches "-agho --group-directories-first")
+    (setq dired-dwim-target t)
     :config
     (use-package dired-single
       :after dired)
+
+    (use-package diredfl
+      :hook (dired-mode . diredfl-mode)
+      :init
+      (custom-set-faces
+       '(dired-header ((t (:foreground "#89b4fa" :weight bold))))))
+
+    (use-package all-the-icons-dired
+      :hook (dired-mode . all-the-icons-dired-mode))
 
     (use-package dired-hide-dotfiles
       :hook (dired-mode . dired-hide-dotfiles-mode)
@@ -794,7 +804,7 @@
       ;; Bind H after the package is loaded
       (with-eval-after-load 'evil-collection
         (evil-collection-define-key 'normal 'dired-mode-map
-  	"H" 'dired-hide-dotfiles-mode)))
+          "H" 'dired-hide-dotfiles-mode)))
 
     (use-package dired-sidebar
       :commands (dired-sidebar-toggle-sidebar)
@@ -809,6 +819,10 @@
       (evil-collection-define-key 'normal 'dired-mode-map
         "h" 'dired-single-up-directory
         "l" 'dired-single-buffer)))
+
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (setq truncate-lines t)))
 
   (defvar sp-common-dirs
     `((?h . "/home/simon/")
