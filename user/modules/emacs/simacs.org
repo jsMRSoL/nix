@@ -243,6 +243,17 @@
     :config
     (winner-mode))
 
+  (with-eval-after-load 'evil
+    ;; Advice vertical split to focus new window
+    (defadvice evil-window-vsplit (after my/evil-vsplit-move-to-new activate)
+      "After splitting vertically, move to the new right window."
+      (other-window 1))
+
+    ;; Advice horizontal split to focus new window
+    (defadvice evil-window-split (after my/evil-split-move-to-new activate)
+      "After splitting horizontally, move to the new bottom window."
+      (other-window 1)))
+
   (defun sp/vterm-toggle ()
     "Toggle between vterm and the last buffer.
   If no vterm buffer is open, then open it and go to it."
