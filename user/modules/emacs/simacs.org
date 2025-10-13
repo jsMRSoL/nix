@@ -196,6 +196,39 @@
   (use-package wgrep
     :defer t
     :commands (wgrep-change-to-wgrep-mode))
+
+
+  (defun sp/clean-macra ()
+    "A function to replace macra-wearing vowels with their simple forms."
+    (interactive)
+    (replace-regexp "ā" "a" nil (point-min) (point-max))
+    (replace-regexp "ē" "e" nil (point-min) (point-max))
+    (replace-regexp "ī" "i" nil (point-min) (point-max))
+    (replace-regexp "ō" "o" nil (point-min) (point-max))
+    (replace-regexp "ū" "u" nil (point-min) (point-max)))
+
+
+  (defun sp/try-split-principal-parts-and-define (start end verb-root)
+    "A function to turn principal parts into lines to be pasted into online flashcards."
+    (interactive
+     (list
+      (region-beginning)
+      (region-end)
+      (read-string "Give basic English meaning: ")))
+    (if (< start end)
+        (let* ((text (string-trim-right
+  		    (buffer-substring-no-properties start end) "\n"))
+  	     (parts (string-split text "," t " ")))
+  	(delete-region start end)
+  	(insert 
+  	 (concat
+  	  (format "%s : I %s\n" (nth 0 parts) verb-root)
+  	  (format "%s : to %s\n" (nth 1 parts) verb-root)
+  	  (when (>= (length parts) 3)
+  	    (format "%s : I %sed\n" (nth 2 parts) verb-root))
+  	  (when (= (length parts) 4)
+  	    (format "%s : having been %sed\n" (nth 3 parts) verb-root)))))
+      (message "Invalid region selected! Aborting...")))
 #+end_src
   
 * Search
