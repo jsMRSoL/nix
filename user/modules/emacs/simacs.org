@@ -849,14 +849,23 @@
       (setq dired-sidebar-width 30)
       (setq dired-sidebar-show-hidden-files t))
 
+
+    (use-package dired-preview
+      :config
+      (setq dired-preview-delay 0.5
+  	  dired-preview-max-size (* 5 1024 1024) ;; 5 MB
+  	  dired-preview-display-action-alist '((display-buffer-in-side-window)
+  					       (side . right)
+  					       (window-width . 0.5)
+  					       (preserve-size . (t . t)))
+  	  dired-preview-ignored-extensions-regexp
+  	  (concat "\\."
+  		  "\\(gz\\|tar\\|zip\\|iso\\|epub\\)")))
+
     (with-eval-after-load 'evil-collection
       (evil-collection-define-key 'normal 'dired-mode-map
         "h" 'dired-single-up-directory
         "l" 'dired-single-buffer)))
-
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (setq truncate-lines t)))
 
   (defvar sp-common-dirs
     `((?h . "/home/simon/")
