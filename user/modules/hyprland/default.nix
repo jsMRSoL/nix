@@ -43,8 +43,8 @@ in
       ];
 
       input = {
-        kb_layout = "us,gr";
-        kb_variant = ",polytonic";
+        kb_layout = "us,gr,gb";
+        kb_variant = ",polytonic,";
         # kb_options = "grp:shifts_toggle";
         kb_options = "ctrl:nocaps";
         follow_mouse = 1;
