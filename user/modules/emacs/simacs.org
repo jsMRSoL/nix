@@ -815,9 +815,10 @@
   (use-package dired
     :straight nil
     :commands (dired dired-jump)
-    :init
-    (setq dired-listing-switches "-agho --group-directories-first")
-    (setq dired-dwim-target t)
+    :hook (dired-mode . (lambda () (setq-local truncate-lines t)))
+    :custom
+    (dired-listing-switches "-agho --group-directories-first")
+    (dired-dwim-target t)
     :config
     (use-package dired-single
       :after dired)
