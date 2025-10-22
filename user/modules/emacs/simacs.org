@@ -589,11 +589,10 @@
     (find-file "~/Documents/org/tasks.org")
     (org-capture))
 
-  (defun sp/magit-dotfiles-other-frame ()
-    "Open dotfiles in magit in another frame"
+  (defun sp/kill-this-buffer ()
+    "Kill the current buffer."
     (interactive)
-    (with-selected-frame (make-frame)
-      (magit-status "/home/simon/.dotfiles")))
+    (kill-buffer (current-buffer)))
 
   (defun sp/find-dired (dir maxdepth name-pattern &optional type)
     "Run `find-dired` in DIR with MAXDEPTH and NAME-PATTERN.
