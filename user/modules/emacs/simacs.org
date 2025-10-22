@@ -213,16 +213,15 @@
 #+end_src
 * Undotree
 #+begin_src emacs-lisp
-
   (use-package undo-tree
-    :init
-    (setq undo-tree-visualizer-diff nil)
-    (setq undo-tree-visualizer-timestamps t)
-    (setq undo-tree-history-directory-alist
-  	`(("." . ,(concat user-emacs-directory "backup-files")))) 
-    (setq undo-tree-auto-save-history nil)
+    :custom
+    (undo-tree-visualizer-diff nil)
+    (undo-tree-visualizer-timestamps t)
+    (undo-tree-history-directory-alist
+     `(("." . ,(concat user-emacs-directory "backup-files"))))
+    (undo-tree-auto-save-history nil)
+    :config
     (global-undo-tree-mode 1))
-
 #+end_src
 * Window manipulation
 #+begin_src emacs-lisp
