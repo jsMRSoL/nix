@@ -907,59 +907,87 @@
     (fzf-with-command "find ~/ -type d" 'dired))
 #+end_src
 
-* Dired file-processing functions
+* Dired image-processing functions
 #+begin_src emacs-lisp
+  (defun img/dired-sp-rotate-image (arg)
+    "In dired rotate a file by 90, 180 or 270 degrees depending on arg."
+    (interactive "p")
+    (unless (executable-find "magick")
+      (error "The magick executable is not in PATH!"))
+    (let* ((input-file (dired-get-filename 'nodir))
+    	 (degrees (cond
+    		   ((= arg 4) "180")
+    		   ((= arg 16) "270")
+    		   (t "90"))))
+      (when (yes-or-no-p (format "Run command: magick %s -rotate %s %s"
+    			       input-file degrees input-file))
+        (start-process "rotate" nil
+    		     "magick" input-file "-rotate" degrees input-file))))
+
+  (defun img/dired-sp-copy-to-jpg ()
+    "Create a copy of the file in jpg format."
+    (interactive)
+    (unless (executable-find "magick")
+      (error "The magick executable is not in PATH!"))
+    (let* ((input-file (dired-get-filename 'nodir))
+  	 (output-file (concat (file-name-base input-file) ".jpg")))
+      (when (yes-or-no-p (format "Run command: magick %s %s"
+  			       input-file output-file))
+        (start-process "rotate" nil
+  		     "magick" input-file output-file))))
+
   (defun img/dired-sp-convert-to-gif ()
     "Extract part of a video to a high-quality animated gif"
     (interactive)
-    (let* (
-  	 (fps (completing-read "FPS: " '("10" "15" "20" "25") nil t nil nil "15"))
-  	 (dither (completing-read "Dither mode: " '("bayer" "none") nil t nil nil "none"))
-  	 (filename (dired-get-filename))
-  	 (basename (file-name-base filename))
-  	 (newbase (read-string (format "New filename: [%s.gif] " basename) nil nil basename))
-  	 (newname (if (string-suffix-p ".gif" newbase)
-  		      newbase
-  		    (format "%s.gif" newbase)))
-  	 (start (read-string "Start time: (hh:mm:ss) " "00:00:00")) 
-  	 (end (read-string "End time: (hh:mm:ss) " start))
-  	 (palette-file "/tmp/palette%02d.png")
-  	 (cmd (concat
-  	       "ffmpeg -ss " start
-  	       " -to " end
-  	       " -i " filename
-  	       " -vf \"fps=" fps
-  	       ",scale=480:-1:flags=lanczos,palettegen=stats_mode=diff\""
-  	       " -y " palette-file "; "
-  	       "ffmpeg -ss " start
-  	       " -to " end
-  	       " -i " filename
-  	       " -i " palette-file
-  	       " -lavfi \"fps=" fps
-  	       ",scale=480:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=" dither
-  	       "\" -loop 0 -y " newname "; "
-  	       "rm -vf /tmp/palette*.png")))
+    (unless (executable-find "ffmpeg")
+      (error "The ffmpeg executable is not in PATH!"))
+    (let* ((fps (completing-read "FPS: " '("10" "15" "20" "25") nil t nil nil "25"))
+    	 (dither (completing-read "Dither mode: " '("bayer" "none") nil t nil nil "none"))
+    	 (filename (dired-get-filename))
+    	 (basename (file-name-base filename))
+    	 (newbase (read-string (format "New filename: [%s.gif] " basename) nil nil basename))
+    	 (newname (if (string-suffix-p ".gif" newbase)
+    		      newbase
+    		    (format "%s.gif" newbase)))
+    	 (start (read-string "Start time: (hh:mm:ss) " "00:00:00")) 
+    	 (end (read-string "End time: (hh:mm:ss) " start))
+    	 (palette-file "/tmp/palette%02d.png")
+    	 (cmd (concat
+    	       "ffmpeg -ss " start
+    	       " -to " end
+    	       " -i " filename
+    	       " -vf \"fps=" fps
+    	       ",scale=480:-1:flags=lanczos,palettegen=stats_mode=diff\""
+    	       " -y " palette-file "; "
+    	       "ffmpeg -ss " start
+    	       " -to " end
+    	       " -i " filename
+    	       " -i " palette-file
+    	       " -lavfi \"fps=" fps
+    	       ",scale=480:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=" dither
+    	       "\" -loop 0 -y " newname "; "
+    	       "rm -vf /tmp/palette*.png")))
       (start-process "convert-to-gif" "*ffmpeg conversion*" "bash" "-c" cmd)))
 
   (use-package sp-form-funcs
     :straight (sp-form-funcs
-  		:type git
-  		:host github
-  		:repo "jsMRSoL/formalise")
+    	     :type git
+    	     :host github
+    	     :repo "jsMRSoL/formalise")
     :defer)
 
   (use-package sp-buffer-utils
     :straight (sp-buffer-utils
-  		:type git
-  		:host github
-  		:repo "jsMRSoL/treasurechest")
+    	     :type git
+    	     :host github
+    	     :repo "jsMRSoL/treasurechest")
     :defer)
 
   (use-package giffer
     :straight (giffer
-		:type git
-		:host github
-		:repo "jsMRSoL/innagiffy")
+    	     :type git
+    	     :host github
+    	     :repo "jsMRSoL/innagiffy")
     :commands (img/dired-sp-convert-to-gif-windowed))
 #+end_src
 * Internal files
