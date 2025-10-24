@@ -56,6 +56,17 @@
 
   (global-hl-line-mode t)
 
+  (defun sp/disable-hl-line-in-term ()
+    "Disable hl-line in terminal buffers reliably."
+    (setq-local global-hl-line-mode nil) ; prevent the globalized minor mode from re-enabling it
+    (hl-line-mode -1))
+
+  (dolist (hook '(vterm-mode-hook
+                  term-mode-hook
+                  eshell-mode-hook
+                  shell-mode-hook))
+    (add-hook hook #'sp/disable-hl-line-in-term))
+
   ;; display line numbers for programming-derived modes:
   (add-hook 'prog-mode-hook (lambda() (setq display-line-numbers 'relative)))
 
