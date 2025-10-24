@@ -11,9 +11,11 @@
     "custom/backlight",
     "hyprland/submap",
     "idle_inhibitor",
+    "bluetooth",
   ],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
+    "tray",
     "network",
     "cpu",
     "disk",
@@ -21,7 +23,6 @@
     "temperature",
     "battery",
     "clock",
-    "tray",
     "custom/power",
   ],
   // Modules configuration
@@ -60,6 +61,18 @@
   "tray": {
     // "icon-size": 21,
     "spacing": 10,
+  },
+  "bluetooth": {
+  // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+  //"format": " {status}",
+  "format-disabled": "", // an empty format will hide the module
+  "format-off": "", // an empty format will hide the module
+  "format-on": "", // an empty format will hide the module
+  "format-connected": " {num_connections}",
+  "on-click": "blueman-manager",
+  "tooltip-format": "{controller_alias}\t{controller_address}",
+  "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
   },
   "clock": {
     "timezone": "United_Kingdom/London",
