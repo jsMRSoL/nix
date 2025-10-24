@@ -31,4 +31,6 @@ in
     source = ./style.css;
     target = "waybar/style.css";
   };
+
+  services.blueman-applet.enable = false;
 }
