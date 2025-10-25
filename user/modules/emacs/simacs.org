@@ -636,6 +636,7 @@
     "a" '(:ignore t :which-key "apps")
     "ac" '(calculator :which-key "calc")
     "ad" '(dired :which-key "dired")
+    "al" '(calendar :which-key "calendar")
     "at" '(vterm :which-key "terminal")
     "au" '(undo-tree-visualize :which-key "undo-tree")
     "ax" '(org-capture :which-key "org capture")
