@@ -270,12 +270,12 @@
   If no vterm buffer is open, then open it and go to it."
     (interactive)
     (if (equal major-mode 'vterm-mode)
-        (pop-to-buffer (other-buffer))
+        (previous-buffer)
       (sp/vterm-toggle--find-or-open-vterm)))
 
   (defun sp/vterm-toggle--find-or-open-vterm ()
     (let ((shell-buffer (get-buffer "*vterm*")))
-      (if shell-buffer (pop-to-buffer shell-buffer)
+      (if shell-buffer (switch-to-buffer shell-buffer)
         (vterm))))
 
   (with-eval-after-load 'evil
