@@ -23,6 +23,7 @@
     ../modules/tmux
     ../modules/tmux-scripts
     ../modules/waybar
+    ../modules/whisper
     ../modules/yazi
   ];
 
