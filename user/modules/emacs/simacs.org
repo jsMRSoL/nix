@@ -1410,7 +1410,11 @@
 
 #+end_src
 
-** Agenda files
+** Agenda
+#+begin_src emacs-lisp
+  (setq org-agenda-span 30)
+#+end_src
+*** Agenda files
 #+begin_src emacs-lisp
 
   (setq org-agenda-files
@@ -1423,38 +1427,7 @@
 
 #+end_src
 
-** Todos
-#+begin_src emacs-lisp
-
-  (setq org-todo-keywords
-        '((sequence "TODO(t!)" "NEXT(n!)" "|" "DONE(d!)")
-  	(sequence "WAITING(w@/!)" "SOMEDAY(s!)" "PROJ(p!)" "|" "DONE(d!)")
-  	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
-
-#+end_src
-
-** Tags 
-#+begin_src emacs-lisp
-
-  (setq org-tag-alist
-        '((:startgroup)
-  					; Put mutually exclusive tags here
-          (:endgroup)
-          ("daily" . ?d)
-          ("weekly" . ?w)
-          ("errand" . ?e)
-          ("home" . ?h)
-          ("garage" . ?g)
-          ("work" . ?W)
-          ("family" . ?f)
-          ("note" . ?n)
-          ("fun" . ?F)
-          ("urgent" . ?u)
-          ("computing" . ?c)
-          ("idea" . ?i)))
-#+end_src
-
-** Agenda views
+*** Agenda views
 #+begin_src emacs-lisp
 
   (setq org-agenda-custom-commands
@@ -1504,6 +1477,37 @@
   		((org-agenda-overriding-header "Cancelled Projects")
   		 (org-agenda-files org-agenda-files)))))))
 
+#+end_src
+
+** Todos
+#+begin_src emacs-lisp
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t!)" "NEXT(n!)" "|" "DONE(d!)")
+  	(sequence "WAITING(w@/!)" "SOMEDAY(s!)" "PROJ(p!)" "|" "DONE(d!)")
+  	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+#+end_src
+
+** Tags 
+#+begin_src emacs-lisp
+
+  (setq org-tag-alist
+        '((:startgroup)
+  					; Put mutually exclusive tags here
+          (:endgroup)
+          ("daily" . ?d)
+          ("weekly" . ?w)
+          ("errand" . ?e)
+          ("home" . ?h)
+          ("garage" . ?g)
+          ("work" . ?W)
+          ("family" . ?f)
+          ("note" . ?n)
+          ("fun" . ?F)
+          ("urgent" . ?u)
+          ("computing" . ?c)
+          ("idea" . ?i)))
 #+end_src
 
 ** Refiling
