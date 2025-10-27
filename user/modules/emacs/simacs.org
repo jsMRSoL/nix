@@ -212,15 +212,25 @@
   
 * Search
 #+begin_src emacs-lisp
-  (use-package grep
-    :ensure nil
-    :config
-    (setq grep-command "rg --no-heading --line-number --color never "))
-
-  (add-hook 'grep-mode-hook
+  (add-hook
+   'grep-mode-hook
             (lambda ()
               (setq truncate-lines t)))
 
+  (defun sp/ripgrep-here ()
+    "Run ripgrep in the current directory with user-supplied regexp."
+    (interactive) 
+    (let* ((regexp (read-regexp "Search for lines matching: "))
+  	 (cmd (format "rg --no-heading --line-number --color never %s ." regexp)))
+      (grep cmd)))
+
+  (defun sp/ripgrep-dir ()
+    "Run ripgrep in user-supplied directory with user-supplied regexp."
+    (interactive) 
+    (let* ((directory (expand-file-name (read-directory-name "Choose directory: ")))
+    	 (regexp (read-regexp "Search for lines matching: "))
+    	 (cmd (format "rg --no-heading --line-number --color never %s %s" regexp directory)))
+      (grep cmd)))
 #+end_src
 * Undotree
 #+begin_src emacs-lisp
@@ -738,15 +748,13 @@
     "rS" '(consult-register-store :which-key "store register")
     "rO" '(consult-register-load :which-key "load register")
     "s" '(:ignore t :which-key "search")
+    "so" '(occur :which-key "occur")
     "sf" '(sp/find-dired :which-key "find files (dired)")
-    "sL" '(consult-locate :which-key "locate file")
-    "sw" '(consult-ripgrep :which-key "word (rg)")
-    "sd" '(consult-fd :which-key "file/dir")
-    "sF" '(consult-find :which-key "find in dir")
-    "sg" '(grep :which-key "grep in this dir")
-    "sl" '(lgrep :which-key "grep in a dir")
-    "sr" '(rgrep :which-key "recursive grep in a dir")
-    "sG" '(consult-grep :which-key "grep in dir (consult)")
+    "sg" '(sp/ripgrep-here :which-key "rg this dir")
+    "sG" '(sp/ripgrep-dir :which-key "rg other dir")
+    "sd" '(consult-fd :which-key "file/dir (consult)")
+    "sw" '(consult-line :which-key "search buffer (consult)")
+    "sW" '(consult-ripgrep :which-key "search default dir (consult)")
     "t" '(:ignore t :which-key "tabs")
     "tn" '(tab-bar-new-tab :which-key "new")
     "tc" '(tab-bar-close-tab :which-key "close")
