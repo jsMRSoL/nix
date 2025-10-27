@@ -509,17 +509,24 @@
       ("f" "forward" sp-forward-sexp :transient t)
       ("c" "backward" sp-backward-sexp :transient t)
       ("u" "up" sp-up-sexp :transient t)
+      ("o" "out" sp-backward-up-sexp :transient t)
       ("v" "down" sp-down-sexp :transient t)
+      ("a" "beginning" sp-beginning-of-sexp :transient t)
       ("e" "end" sp-end-of-sexp :transient t)
-      ("E" "evaluate" eval-last-sexp :transient t)]
+      ("E" "end of next" sp-end-of-next-sexp :transient t)]
      ["Change"
       ("s" "slurp" sp-forward-slurp-sexp :transient t)
       ("S" "backward slurp" sp-backward-slurp-sexp :transient t)
+      ("t" "transpose" sp-transpose-sexp :transient t)
       ("b" "forward barf" sp-forward-barf-sexp :transient t)
-      ("B" "backward barf" sp-backward-barf-sexp :transient t)]
+      ("B" "backward barf" sp-backward-barf-sexp :transient t)
+      ("W" "unwrap" sp-unwrap-sexp :transient t)
+      ("U" "undo" undo :transient t)
+      ("RET" "evaluate" eval-last-sexp)]
      ["Kill"
       ("d" "kill" sp-kill-sexp :transient t)
-      ("D" "backward kill" sp-backward-kill-sexp :transient t)]]
+      ("D" "backward kill" sp-backward-kill-sexp :transient t)
+      ("k" "kill surrounding" sp-kill-whole-line :transient t)]]
     [("q" "quit parens transient" transient-quit-all)])
 
   (transient-define-prefix sp/transient--zoom ()
