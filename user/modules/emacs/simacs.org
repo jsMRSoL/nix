@@ -1014,27 +1014,6 @@
     	       "\" -loop 0 -y " newname "; "
     	       "rm -vf /tmp/palette*.png")))
       (start-process "convert-to-gif" "*ffmpeg conversion*" "bash" "-c" cmd)))
-
-  (use-package sp-form-funcs
-    :straight (sp-form-funcs
-    	     :type git
-    	     :host github
-    	     :repo "jsMRSoL/formalise")
-    :defer)
-
-  (use-package sp-buffer-utils
-    :straight (sp-buffer-utils
-    	     :type git
-    	     :host github
-    	     :repo "jsMRSoL/treasurechest")
-    :defer)
-
-  (use-package giffer
-    :straight (giffer
-    	     :type git
-    	     :host github
-    	     :repo "jsMRSoL/innagiffy")
-    :commands (img/dired-sp-convert-to-gif-windowed))
 #+end_src
 * Internal files
 #+begin_src emacs-lisp
