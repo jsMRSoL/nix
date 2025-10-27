@@ -1128,6 +1128,28 @@
 #+end_src
   
 * Language-specific settings
+** emacs-lisp
+#+begin_src emacs-lisp
+(use-package emacs-lisp-mode
+  :straight nil
+  :defer t
+  :hook
+  ((emacs-lisp-mode . (lambda ()
+                        ;; Add Elisp CAPF for symbol completion
+                        (add-to-list 'completion-at-point-functions
+                                     #'elisp-completion-at-point)
+                        ;; Optional: enable Corfu manually if not global
+                        (corfu-mode 1))))
+  :config
+  ;; Useful settings for Elisp editing
+  (setq-local tab-width 2)          ;; nicer indentation width
+  (setq-local indent-tabs-mode nil) ;; always use spaces
+  (setq-local electric-indent-mode t)
+  (setq-local lisp-indent-offset 2)
+
+  ;; Optional: show documentation inline
+  (eldoc-mode 1))
+#+end_src
 ** Python
 #+begin_src emacs-lisp
 
