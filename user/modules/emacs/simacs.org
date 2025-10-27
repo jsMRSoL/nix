@@ -638,6 +638,7 @@
     "ad" '(dired :which-key "dired")
     "al" '(calendar :which-key "calendar")
     "at" '(vterm :which-key "terminal")
+    "aT" '(sp/whisper-start-or-end :which-key "transcribe start/end")
     "au" '(undo-tree-visualize :which-key "undo-tree")
     "ax" '(org-capture :which-key "org capture")
     "ae" '(:ignore t :which-key "eww")
@@ -1776,6 +1777,14 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     :commands (sp/split-latin-pps-and-translation))
 
 #+end_src
+
+* Speech to text
+#+begin_src emacs-lisp
+  (use-package whisper
+    :straight (whisper :type git :host github :repo "jsMRSoL/hush")
+    :commands (sp/whisper-start-or-end sp/dired-whisper-transcribe))
+#+end_src
+
 * Startup finished tweak
 #+begin_src emacs-lisp
   ;; Make GC pauses faster by decreasing the threshold.
