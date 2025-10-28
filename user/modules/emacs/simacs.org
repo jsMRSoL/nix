@@ -476,34 +476,6 @@
 * Transients
 #+begin_src emacs-lisp
   (use-package transient)
-  (transient-define-prefix sp/transient--parens ()
-    "Transient for manipulating lisp."
-    [["Navigate"
-      ("n" "next" sp-next-sexp :transient t)
-      ("p" "previous" sp-previous-sexp :transient t)
-      ("f" "forward" sp-forward-sexp :transient t)
-      ("c" "backward" sp-backward-sexp :transient t)
-      ("u" "up" sp-up-sexp :transient t)
-      ("o" "out" sp-backward-up-sexp :transient t)
-      ("v" "down" sp-down-sexp :transient t)
-      ("a" "beginning" sp-beginning-of-sexp :transient t)
-      ("e" "end" sp-end-of-sexp :transient t)
-      ("E" "end of next" sp-end-of-next-sexp :transient t)]
-     ["Change"
-      ("s" "slurp" sp-forward-slurp-sexp :transient t)
-      ("S" "backward slurp" sp-backward-slurp-sexp :transient t)
-      ("t" "transpose" sp-transpose-sexp :transient t)
-      ("b" "forward barf" sp-forward-barf-sexp :transient t)
-      ("B" "backward barf" sp-backward-barf-sexp :transient t)
-      ("W" "unwrap" sp-unwrap-sexp :transient t)
-      ("U" "undo" undo :transient t)
-      ("RET" "evaluate" eval-last-sexp)]
-     ["Kill"
-      ("d" "kill" sp-kill-sexp :transient t)
-      ("D" "backward kill" sp-backward-kill-sexp :transient t)
-      ("k" "kill surrounding" sp-kill-whole-line :transient t)]]
-    [("q" "quit parens transient" transient-quit-all)])
-
   (transient-define-prefix sp/transient--zoom ()
     "Transient to group zoom commands."
     [("j" "zoom in" text-scale-increase :transient t)
@@ -1132,6 +1104,52 @@
 
     ;; Optional: show documentation inline
     (eldoc-mode 1))
+
+  (defun sp/jump-end-of-defun ()
+    "Jump to the end of the current function."
+    (interactive)
+    (let ((good-search
+  	 (or
+  	  (search-backward-regexp "^(" nil t nil)
+  	  (search-backward-regexp "^\\s-*(defun " nil t nil))))
+      (if good-search
+  	(evil-jump-item)
+        (search-backward-regexp "^\\s-+(")
+        (evil-first-non-blank)
+        (message "Can't find the start!"))))
+
+  (transient-define-prefix sp/transient--parens ()
+    "Transient for manipulating lisp."
+    ["Bypass keys"
+     :hide always
+     ("M-x" "M-x" execute-extended-command :transient t)]
+    [["Navigate"
+      ("n" "next" sp-next-sexp :transient t)
+      ("p" "previous" sp-previous-sexp :transient t)
+      ("f" "forward" sp-forward-sexp :transient t)
+      ("c" "backward" sp-backward-sexp :transient t)
+      ("u" "up" sp-up-sexp :transient t)
+      ("o" "out" sp-backward-up-sexp :transient t)
+      ("v" "down" sp-down-sexp :transient t)
+      ("a" "beginning" sp-beginning-of-sexp :transient t)
+      ("j" "jump def end" sp/jump-end-of-defun :transient t)
+      ("e" "end" sp-end-of-sexp :transient t)
+      ("E" "end of next" sp-end-of-next-sexp :transient t)]
+     ["Change"
+      ("s" "slurp" sp-forward-slurp-sexp :transient t)
+      ("S" "backward slurp" sp-backward-slurp-sexp :transient t)
+      ("t" "transpose" sp-transpose-sexp :transient t)
+      ("b" "forward barf" sp-forward-barf-sexp :transient t)
+      ("B" "backward barf" sp-backward-barf-sexp :transient t)
+      ("W" "unwrap" sp-unwrap-sexp :transient t)
+      ("U" "undo" undo :transient t)
+      ("RET" "evaluate" eval-last-sexp)]
+     ["Kill"
+      ("d" "kill" sp-kill-sexp :transient t)
+      ("D" "backward kill" sp-backward-kill-sexp :transient t)
+      ("k" "kill surrounding" sp-kill-whole-line :transient t)]]
+    [("q" "quit parens transient" transient-quit-all)])
+
 #+end_src
 ** Python
 #+begin_src emacs-lisp
