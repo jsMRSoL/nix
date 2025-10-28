@@ -1245,7 +1245,11 @@
 
   (use-package lua-mode
     :mode "\\.lua\\'"
-    :hook (lua-mode . lsp-deferred))
+    :hook (lua-mode . lsp-deferred)
+    :config
+    (setq-local tab-width 2)          ;; nicer indentation width
+    (setq-local indent-tabs-mode nil) ;; always use spaces
+    (setq-local electric-indent-mode t))
 
 #+end_src
 ** Nix
