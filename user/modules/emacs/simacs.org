@@ -899,9 +899,11 @@
     (interactive)
     (fzf-with-command "find ~/Projects -type f" 'find-file))
 
-  (defun sp/fzf-find-dir ()
-    (interactive)
-    (fzf-with-command "find ~/ -type d" 'dired))
+  (defun sp/fzf-find-dir (&optional arg)
+    (interactive "P")
+    (if arg 
+        (fzf-with-command "find ~/ -type d" 'dired-other-window)
+      (fzf-with-command "find ~/ -type d" 'dired)))
 #+end_src
 
 * Dired image-processing functions
