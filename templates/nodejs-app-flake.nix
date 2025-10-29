@@ -19,8 +19,11 @@
         packages = [
           pkgs.nodejs_20
           pkgs.nodePackages.pnpm
-          pkgs.prettierd
+          pkgs.javascript-typescript-langserver
+          pkgs.typescript-language-server
           pkgs.typescript
+          pkgs.eslint 
+          pkgs.prettierd
         ];
 
         # Make everything project-local
