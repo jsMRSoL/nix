@@ -168,14 +168,14 @@ local servers = {
     filetypes = { 'python' },
   },
   -- ts/js
-  -- ts_ls = {
-  --   filetypes = { 'ts' , 'js' },
-  --   init_options = {
-  --     preferences = {
-  --       disableSuggestions = true,
-  --     },
-  --   },
-  -- },
+  ts_ls = {
+    filetypes = { 'ts', 'js' },
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+      },
+    },
+  },
 }
 
 for server, config in pairs(servers) do
