@@ -1584,6 +1584,25 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
   (use-package ledger-mode
     :mode "\\.ledger\\'")
 #+end_src
+* Data formats
+** CSV
+#+begin_src emacs-lisp
+  (use-package csv-mode
+    :defer t)
+#+end_src
+** JSON
+#+begin_src emacs-lisp
+  (use-package js-json-mode
+    :straight nil
+    :defer t
+    :mode "\\.json\\'"
+    :custom
+    (js-indent-level 2)
+    (js-switch-indent-offset 2)
+    (indent-tabs-mode nil)
+    :config
+    (hs-minor-mode 1))
+#+end_src
 * Chess functions
 #+begin_src emacs-lisp
   (defun sp/pgn-to-org ()
