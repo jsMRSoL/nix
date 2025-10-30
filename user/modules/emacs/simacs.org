@@ -611,6 +611,7 @@
     "qa" '(evil-quit-all :which-key "quit all")
     "qq" '(evil-quit :which-key "quit")
     "qe" '(kill-emacs :which-key "kill emacs")
+    "qr" '(restart-emacs :which-key "restart emacs")
     "r" '(:ignore t :which-key "registers")
     "rl" '(evil-show-registers :which-key "list")
     "rs" '(consult-yank-pop :which-key "yank history/search")
