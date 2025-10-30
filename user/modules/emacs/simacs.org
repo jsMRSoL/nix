@@ -1275,17 +1275,17 @@
     :straight nil
     :general
     (:keymaps 'org-agenda-mode-map
-	      :states 'normal
-	      "gr" 'org-agenda-redo
-	      "q" 'org-agenda-quit)
+              :states 'normal
+              "gr" 'org-agenda-redo
+              "q" 'org-agenda-quit)
     :init
     (setq org-modules
-	  '(org-id
-	    org-info
-	    org-habit
-	    org-inlinetask
-	    org-protocol
-	    org-w3m)))
+          '(org-id
+            org-info
+            org-habit
+            org-inlinetask
+            org-protocol
+            org-w3m)))
 
   (defvar sp/org-babel-languages-loaded nil)
 
@@ -1296,11 +1296,11 @@
       (org-babel-do-load-languages
        'org-babel-load-languages
        '((go . t)
-	 (python . t)
-	 (lua . t)
-	 (shell . t)
-	 (rust . t)
-	 (emacs-lisp . t)))
+         (python . t)
+         (lua . t)
+         (shell . t)
+         (rust . t)
+         (emacs-lisp . t)))
       (setq sp/org-babel-languages-loaded t)))
 
   (advice-add 'org-babel-execute-src-block :before #'sp/org-babel-lazy-load-languages)
@@ -1312,8 +1312,8 @@
   (setq org-hide-emphasis-markers t)
 
   (setq electric-pair-inhibit-predicate
-	(lambda (c)
-	(if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
+        (lambda (c)
+        (if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
 #+end_src
 ** Headings
 #+begin_src emacs-lisp
@@ -1734,8 +1734,8 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     (goto-char (point-min))
     (let ((length 0))
       (while (not (eobp))
-	(setq length (max length (- (line-end-position) (line-beginning-position))))
-	(forward-line 1))
+        (setq length (max length (- (line-end-position) (line-beginning-position))))
+        (forward-line 1))
       length))
 
   (defun sp/narrow-other ()
