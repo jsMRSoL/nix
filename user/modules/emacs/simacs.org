@@ -1782,7 +1782,9 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
       (org-agenda-list)
       (other-window 1)
       (find-file "~/Documents/org/tasks.org")
-      (sp/narrow-other)))
+      (sp/narrow-other)
+      (with-current-buffer "*scratch*"
+        (emacs-lisp-mode))))
 
   (add-hook 'emacs-startup-hook #'sp/open-with-tasks-and-agenda-2)
 #+end_src
