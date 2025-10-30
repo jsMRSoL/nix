@@ -1202,10 +1202,9 @@
   (use-package lua-mode
     :mode "\\.lua\\'"
     :hook (lua-mode . lsp-deferred)
-    :config
-    (setq-local tab-width 2)          ;; nicer indentation width
-    (setq-local indent-tabs-mode nil) ;; always use spaces
-    (setq-local electric-indent-mode t))
+    :init
+    (setq lua-indent-level 2)
+    (setq indent-tabs-mode nil))
 #+end_src
 ** Nix
 #+begin_src emacs-lisp
