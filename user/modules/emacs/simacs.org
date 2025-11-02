@@ -1356,7 +1356,6 @@
 #+begin_src emacs-lisp
   (setq org-agenda-files
 	'("~/Documents/org/tasks.org"
-	"~/Documents/org/ideas.org"
 	"~/Documents/org/journal.org"
 	"~/Documents/org/progress.org"
 	"~/Documents/org/calendar.org"
