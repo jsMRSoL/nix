@@ -33,12 +33,12 @@
     tesseract
     trash-cli
     tree
+    unar
     unpaper
     vim
     visidata
     wakeonlan
     wipe
-    unar
     xdg-utils
     xorg.xrdb
   ];
