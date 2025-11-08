@@ -64,6 +64,7 @@
     source-code-pro
     hack-font
     font-awesome
+    noto-fonts
   ];
 
   nixpkgs.config.allowUnfree = true;
