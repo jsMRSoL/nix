@@ -80,32 +80,58 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 
 * Theming
 #+begin_src emacs-lisp
-  (use-package catppuccin-theme
-    :defer t)
+  (defun sp/print-fonts ()
+    "A convenience function to list installed fonts in a dedicated buffer."
+    (interactive)
+    (let ((fonts (font-family-list))
+          (buf (get-buffer-create "*Fonts*")))
+      (evil-goto-line)
+      (with-current-buffer buf
+        (dolist (font fonts)
+          (insert font "\n"))
+        (sort-lines nil (point-min) (point-max))
+        (delete-duplicate-lines (point-min) (point-max)))))
 
-  (defun sp/load-theme ()
-    (load-theme 'catppuccin t))
-
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions (lambda (frame)
-					      (with-selected-frame frame
-						(sp/load-theme))))
-    (sp/load-theme))
-
-  ;; (use-package doom-modeline
-  ;;   :init (doom-modeline-mode 1))
-
-  (use-package doom-modeline
-    :defer t
-    :hook (emacs-startup . doom-modeline-mode))
-
+  ;; Font settings
   (when (member "FiraCode Nerd Font Propo" (font-family-list))
-    (set-face-attribute 'default nil :font "FiraCode Nerd Font Propo" :height 160))
+    (set-face-attribute 'default nil :font "FiraCode Nerd Font Propo" :height 160)
+    (set-face-attribute 'fixed-pitch nil :family "FiraCode Nerd Font Mono" :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family "Noto Sans" :height 1.0))
 
   (when (string= "derek" (system-name))
     (set-frame-font "FiraCode Nerd Font Propo-14"))
 
   (global-prettify-symbols-mode t)
+
+  ;; catppuccin theme settings
+  ;; (use-package catppuccin-theme
+  ;;   :defer t)
+
+  ;; (defun sp/load-theme ()
+  ;;   (load-theme 'catppuccin t))
+  (use-package modus-themes
+    :config
+    (setq modus-themes-mixed-fonts t
+          modus-themes-bold-constructs t
+          modus-themes-italic-constructs t
+          modus-themes-disable-other-themes t
+          modus-themes-org-blocks 'tinted-background))
+
+  (setq sp/theme 'modus-vivendi-tinted)
+
+  (defun sp/load-theme ()
+    (load-theme sp/theme t))
+
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (with-selected-frame frame
+                    (sp/load-theme))))
+    (sp/load-theme))
+
+  (use-package doom-modeline
+    :defer t
+    :hook (emacs-startup . doom-modeline-mode))
 #+end_src
 
 * Visual fill mode
