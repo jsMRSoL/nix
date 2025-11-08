@@ -1824,9 +1824,9 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     (interactive)
     (unless (seq-some #'buffer-file-name (buffer-list))
       (org-agenda-list)
+      (evil-window-set-width 35)
       (other-window 1)
       (find-file "~/Documents/org/tasks.org")
-      (sp/narrow-other)
       (with-current-buffer "*scratch*"
         (emacs-lisp-mode))))
 
