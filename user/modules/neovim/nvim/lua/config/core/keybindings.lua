@@ -26,6 +26,8 @@ local mappings = {
   -- "overpasting"
   { 'v', 'p',             '"_dp' },
   { 'v', 'P',             'p' },
+  { 's', 'p',             'p',                                                                { desc = "Disable 'p' in select mode for LuaSnip" } },
+  { 's', 'P',             'p',                                                                { desc = "Disable 'P' in select mode for LuaSnip" } },
   -- top level on which-key menu
   { 'n', '<leader><Tab>', ':b#<CR>',                                                          { desc = 'Alt buffer' } },
   { 'n', '<leader><cr>',  '@@',                                                               { desc = 'Repeat macro' } },
