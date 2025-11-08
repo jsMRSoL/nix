@@ -1,10 +1,21 @@
 { config, pkgs, ... }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
+
+  deps = [
+      pkgs.libtool
+      pkgs.cmake
+  ];
+
+  simacs = pkgs.symlinkJoin {
+    name = "emacs-wrapper";
+    paths = [ pkgs.emacs ] ++ deps;
+  };
 in
 {
   home.packages = with pkgs; [ 
-    emacs
+    # emacs
+    simacs
     emacs-all-the-icons-fonts
   ];
 
