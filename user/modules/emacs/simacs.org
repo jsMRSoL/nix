@@ -1059,19 +1059,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 
   (defun sp/prog-mode-setup ()
     ;; nice things
-    (electric-pair-mode)
-    ;; completions
-    (setq-local completion-at-point-functions
-  	      (list
-  	       ;; the lambda function ensures that the list is
-  	       ;; populated as it is needed and avoids a stale value
-  	       (lambda ()
-  		 (cape-capf-super
-  		  (when (fboundp 'lsp-completion-at-point) #'lsp-completion-at-point)
-  		  #'cape-dabbrev
-  		  #'cape-keyword
-  		  #'cape-file
-  		  #'cape-yasnippet)))))
+    (electric-pair-mode))
 
   (add-hook 'prog-mode-hook #'sp/prog-mode-setup)
 #+end_src
