@@ -439,25 +439,32 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     :defer t
     ;; the minor mode is necessary for jumping fields
     :hook ((prog-mode . yas-minor-mode)
-	   (text-mode . yas-minor-mode))
+           (text-mode . yas-minor-mode))
     :config (yas-reload-all))
 
   (use-package yasnippet-snippets
     :after yasnippet)
+
+  (use-package yasnippet-capf
+    :after cape
+    :config
+    (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
   ;; corfu (short for COmpletion in Region FUnction)
   ;; provides a minimal, modular, and performant completion UI,
   (use-package corfu
     :init
     (global-corfu-mode)
+    :bind (:map corfu-map
+                ("C-c" . corfu-quit))
     :custom
     (corfu-auto t) ;; Enable auto-completion after typing
     (corfu-cycle t) ;; Enable cycling for completions
     (corfu-preselect 'directory) ;; for file paths
     :config
     (setq corfu-quit-at-boundary t
-	corfu-quit-no-match 'separator
-	corfu-scroll-margin 4))
+          corfu-quit-no-match 'separator
+          corfu-scroll-margin 4))
 
   ;; cape provides extra completion-at-point functions
   (use-package cape
