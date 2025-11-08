@@ -472,9 +472,8 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     :init
     ;; Useful backends
     (setq completion-at-point-functions
-	(append completion-at-point-functions
-		'(cape-dabbrev cape-file cape-keyword)))
-    )
+          (append completion-at-point-functions
+            	'(cape-dabbrev cape-file cape-keyword))))
   ;; Optional: cape-abbrev, cape-symbol, cape-line, cape-tex, etc.
 #+end_src
 
@@ -1044,7 +1043,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     (setq lsp-clients-lua-language-server-command '("lua-language-server"))
     (setq lsp-clients-typescript-server "typescript-language-server")
     :bind (:map lsp-mode-map
-  	      ("K" . lsp-describe-thing-at-point)))
+                ("K" . lsp-describe-thing-at-point)))
 
   (with-eval-after-load 'lsp-mode
     ;; Treat .html files as HTML
@@ -1347,7 +1346,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 
   (setq electric-pair-inhibit-predicate
         (lambda (c)
-        (if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
+          (if (and (equal major-mode 'org-mode) (char-equal c ?\<)) t (electric-pair-default-inhibit c))))
 #+end_src
 ** Headings
 #+begin_src emacs-lisp
