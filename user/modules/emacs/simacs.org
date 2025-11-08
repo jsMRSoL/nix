@@ -27,6 +27,7 @@
 #+end_src
 
 * Benchmark-init
+To use benchmark-init, after startup run `benchmark-init/show-durations-tabulated'. (There are other functions, but I like this one best - the tabulated version is easy to sort.)
 #+begin_src emacs-lisp
   ;; Benchmark startup time
   ;; Load benchmark-init early
