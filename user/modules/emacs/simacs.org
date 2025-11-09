@@ -5,6 +5,7 @@
 * Lexical Binding
 #+begin_src emacs-lisp
   ;;; init.el -*- lexical-binding: t; -*-
+  ;; (setq debug-on-error t)
 #+end_src
 * Package system setup
 #+begin_src emacs-lisp
@@ -115,7 +116,10 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
           modus-themes-bold-constructs t
           modus-themes-italic-constructs t
           modus-themes-disable-other-themes t
-          modus-themes-org-blocks 'tinted-background))
+          modus-themes-org-blocks 'tinted-background
+          modus-themes-common-palette-overrides
+          '((bg-main . ("#1e1e2e"))
+            (fg-main . ("#cdd6f4")))))
 
   (setq sp/theme 'modus-vivendi-tinted)
 
