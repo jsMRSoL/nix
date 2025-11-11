@@ -366,7 +366,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
   		 (search-backward-regexp "\\b")))
   	 (p2 (or (when (region-active-p) (region-end))
   		 (search-forward-regexp "\\w\\b")))
-  	 (word (word-at-point t)))
+  	 (word (buffer-substring p1 p2)))
       (kill-region p1 p2)
       (insert (format "%s%s%s" first word last))))
 
