@@ -1205,22 +1205,25 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 #+begin_src emacs-lisp
   (use-package web-mode
     :mode (("\\.html?\\'" . web-mode)
-	 ("\\.css\\'"   . web-mode)
-	 ("\\.tsx?\\'"  . web-mode)
-	 ("\\.json\\'"  . web-mode))
+           ("\\.css\\'"   . web-mode)
+           ("\\.tsx?\\'"  . web-mode)
+           ("\\.json\\'"  . web-mode))
     :hook (web-mode . lsp-deferred)
     :config
     (setq web-mode-enable-current-element-highlight t
-	web-mode-enable-auto-pairing t
-	web-mode-enable-auto-quoting nil
-	web-mode-markup-indent-offset 2 ; HTML
-	web-mode-css-indent-offset 2    ; CSS
-	web-mode-code-indent-offset 2   ; JS/JSX/TS/TSX
-	web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
+          web-mode-enable-auto-pairing t
+          web-mode-enable-auto-quoting nil
+          web-mode-markup-indent-offset 2 ; HTML
+          web-mode-css-indent-offset 2    ; CSS
+          web-mode-code-indent-offset 2   ; JS/JSX/TS/TSX
+          web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
   (use-package js2-mode
     :mode ("\\.js\\'" . js2-mode)
     :hook (js2-mode . lsp-deferred))
+
+  (use-package rainbow-mode
+    :defer t)
 #+end_src
 ** Lua
 #+begin_src emacs-lisp
