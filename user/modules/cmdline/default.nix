@@ -26,6 +26,7 @@
     # neovim
     # nixvim.packages.x86_64-linux.default
     ncdu
+    pandoc
     papirus-icon-theme
     ripgrep
     rsync
@@ -35,12 +36,14 @@
     tree
     unar
     unpaper
+    unzip
     vim
     visidata
     wakeonlan
     wipe
     xdg-utils
     xorg.xrdb
+    zip
   ];
 
   home.file."Xresources" = {
