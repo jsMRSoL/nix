@@ -701,7 +701,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
   (general-vmap "SPC SPC" (general-simulate-key "M-x"))
 #+end_src
 
-* Pdfs
+* Pdfs and other proprietary formats
 #+begin_src emacs-lisp
   (use-package pdf-tools
     :mode ("\\.pdf\\'" . pdf-view-mode)
@@ -716,23 +716,32 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     "Extract text from a pdf in dired."
     (interactive)
     (let* ((file (dired-get-filename 'nodir))
-	 (text (sp/pdf-extract-text file)))
+         (text (sp/pdf-extract-text file)))
       (with-current-buffer (get-buffer-create "*PDF Text*")
-	(erase-buffer)
-	(insert text)
-	(display-buffer (current-buffer)))))
+        (erase-buffer)
+        (insert text)
+        (display-buffer (current-buffer)))))
 
   (defun sp/pdf-extract-text (file-or-buffer)
     "Extract all text from a PDF FILE-OR-BUFFER using pdf-tools."
     (require 'pdf-tools)
     (let* ((pages (pdf-info-number-of-pages file-or-buffer))
-	   (text ""))
+           (text ""))
       (dotimes (i pages)
-	(setq text
-	      (concat text
-		      (pdf-info-gettext (1+ i) '(0 0 1 1) 'line file-or-buffer)
-		      "\n")))
+        (setq text
+              (concat text
+        	      (pdf-info-gettext (1+ i) '(0 0 1 1) 'line file-or-buffer)
+        	      "\n")))
       text))
+
+  (use-package doc-view
+    :straight nil
+    :general (:keymaps 'doc-view-mode-map
+                       :states '(normal)
+                       "j" 'doc-view-next-line-or-next-page
+                       "k" 'doc-view-previous-line-or-previous-page
+                       "C-j" 'doc-view-scroll-up-or-next-page
+                       "C-k" 'doc-view-scroll-down-or-previous-page))
 #+end_src
 * File management: Dired
 #+begin_src emacs-lisp
