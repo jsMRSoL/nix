@@ -1170,23 +1170,28 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 #+begin_src emacs-lisp
   (defun sp/setup-rust-lsp ()
     (setq-local lsp-eldoc-render-all t
-	        lsp-eldoc-enable-hover nil
-		lsp-idle-delay 0.6
-		lsp-rust-analyzer-server-display-inlay-hints t
-		lsp-rust-analyzer-cargo-watch-command "clippy")
+                lsp-eldoc-enable-hover nil
+                lsp-idle-delay 0.6
+                lsp-rust-analyzer-server-display-inlay-hints t
+                lsp-rust-analyzer-cargo-cfgs ["debug_assertions" "miri"]
+                lsp-rust-analyzer-cargo-watch-command "clippy")
     (lsp-deferred))
+
+  ;; prevent rustic from pulling an external version of project
+  (straight-register-package 
+   '(project :type built-in))
 
   (use-package rustic
     :defer t
     :init
     ;; Use rustic's formatting on save, but disable confirmation prompts
     (setq rustic-lsp-client 'lsp-mode
-	  rustic-format-on-save t
-	  rustic-lsp-format t
-	  rustic-lsp-server 'rust-analyzer
-	  rustic-babel-format-src-block nil)
+          rustic-format-on-save t
+          rustic-lsp-format t
+          rustic-lsp-server 'rust-analyzer
+          rustic-babel-format-src-block nil)
     :hook ((rustic-mode . sp/setup-rust-lsp)
-	   (rustic-mode . electric-pair-local-mode))
+           (rustic-mode . electric-pair-local-mode))
     :config
     ;; Don’t pop up compilation buffer unless there's an error
     (setq rustic-compile-display-method #'ignore)
