@@ -994,11 +994,12 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     (unless (executable-find "tesseract")
       (error "Please install tesseract first!"))
     (let* ((buf (get-buffer-create "*Tesseract*"))
-           (filename (dired-get-filename)))
+           (filename (dired-get-filename))
+           (lang (completing-read "Choose language: " '("grc" "lat" "eng" "grc+eng" "lat+eng"))))
       (make-process
        :name "Tesseract"
        :buffer buf
-       :command `("tesseract" ,filename "stdout" "-l" "grc+lat+eng")
+       :command `("tesseract" ,filename "stdout" "-l" ,lang)
        :sentinel (lambda (p e)
                    (with-current-buffer (process-buffer p)
                      (beginning-of-buffer)
