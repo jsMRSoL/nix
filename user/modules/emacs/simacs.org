@@ -342,6 +342,12 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 #+end_src
 * Text functions
 #+begin_src emacs-lisp
+  (defun sp/delete-all-blank-lines ()
+    (interactive)
+    (save-excursion
+      (goto-char (point-min))
+      (flush-lines "^[[:space:]]*$")))
+
   (defvar sp-common-pairs
     '((?\" . ("\"" . "\""))
       (?\' . ("'" . "'"))
