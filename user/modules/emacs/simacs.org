@@ -984,6 +984,28 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
 	       "rm -vf /tmp/palette*.png")))
       (start-process "convert-to-gif" "*ffmpeg conversion*" "bash" "-c" cmd)))
 #+end_src
+* Dired OCR
+#+begin_src emacs-lisp
+  (defun sp/dired-tesseract ()
+    "Run tesseract on image file at point in dired. Send output to new buffer."
+    (interactive)
+    (unless (eq 'dired-mode major-mode)
+      (error "This function is only to be run in dired."))
+    (unless (executable-find "tesseract")
+      (error "Please install tesseract first!"))
+    (let* ((buf (get-buffer-create "*Tesseract*"))
+           (filename (dired-get-filename)))
+      (make-process
+       :name "Tesseract"
+       :buffer buf
+       :command `("tesseract" ,filename "stdout" "-l" "grc+lat+eng")
+       :sentinel (lambda (p e)
+                   (with-current-buffer (process-buffer p)
+                     (beginning-of-buffer)
+                     (kill-line 1)
+                     (text-mode)
+                     (switch-to-buffer (process-buffer p)))))))
+#+end_src
 * Internal files
 #+begin_src emacs-lisp
   (setq backup-directory-alist
