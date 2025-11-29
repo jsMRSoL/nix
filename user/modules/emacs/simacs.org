@@ -1353,11 +1353,11 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     :init
     (setq org-modules
           '(org-id
-            org-info
+            ;; org-info
+            ;; org-w3m
             org-habit
             org-inlinetask
-            org-protocol
-            org-w3m))
+            org-protocol))
 
     :config
     (set-face-attribute 'org-level-8 nil :height 1.0)
