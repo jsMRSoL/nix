@@ -570,6 +570,7 @@ To use benchmark-init, after startup run `benchmark-init/show-durations-tabulate
     "bd" '((lambda () (interactive) (kill-buffer (current-buffer))) :which-key "delete")
     "bc" '(kill-buffer-and-window :which-key "close buffer and window")
     "bs" '((lambda () (interactive) (switch-to-buffer "*scratch*")) :which-key "scratch")
+    "bm" '((lambda () (interactive) (switch-to-buffer "*Messages*")) :which-key "Messages")
     "bi" '(ibuffer :which-key "ibuffer")
     "f" '(:ignore t :which-key "files")
     "fed" '(sp/open-init :which-key "edit init.el")
