@@ -1770,21 +1770,26 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     "Replace vowels with macra by plain vowels in the buffer."
     (interactive)
     (let ((macra-map '(("ā" . "a")
-		       ("ē" . "e")
-		       ("ī" . "i")
-		       ("ō" . "o")
-		       ("ū" . "u"))))
+                       ("à" . "a")
+                       ("á" . "a")
+        	       ("ē" . "e")
+                       ("é" . "e")
+        	       ("ī" . "i")
+        	       ("ō" . "o")
+                       ("ó" . "o")
+        	       ("ū" . "u")
+                       ("ü" . "u"))))
       (save-excursion
-	(dolist (pair macra-map)
-	  (goto-char (point-min))
-	  (while (search-forward (car pair) nil t)
-	    (replace-match (cdr pair) nil t))))))
+        (dolist (pair macra-map)
+          (goto-char (point-min))
+          (while (search-forward (car pair) nil t)
+            (replace-match (cdr pair) nil t))))))
 
   (use-package latin-principal-parts-writer
     :straight (latin-principal-parts-writer
-	     :type git
-	     :host github
-	     :repo "jsMRSoL/latin-principal-parts-writer.el")
+               :type git
+               :host github
+               :repo "jsMRSoL/latin-principal-parts-writer.el")
     :commands (sp/split-latin-pps-and-translation))
 #+end_src
 * Speech to text
