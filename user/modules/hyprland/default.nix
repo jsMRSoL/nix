@@ -49,7 +49,8 @@ in
         kb_options = "ctrl:nocaps";
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = "no";
+          natural_scroll = false;
+          disable_while_typing = true;
         };
         sensitivity = 0;
       };
