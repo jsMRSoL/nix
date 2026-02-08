@@ -1662,6 +1662,24 @@ Clocking and other properties here: https://orgmode.org/manual/Template-elements
     "#+DATE: " (format-time-string "<%Y-%m-%d %a>")"\n"
     "#+EMAIL: " user-mail-address "\n")
 #+end_src
+* Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :mode ("\\.md\\'" . gfm-mode)
+    :init
+    (setq markdown-hide-markup t
+          markdown-list-item-bullets '("•" "◦" "▪")
+          markdown-fontify-code-blocks-natively t
+          markdown-header-scaling t)
+    :config
+    (set-face-attribute 'markdown-code-face nil :inherit 'fixed-pitch)
+    (set-face-attribute 'markdown-pre-face nil :inherit 'fixed-pitch)
+    (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
+    (set-face-attribute 'markdown-inline-code-face nil :inherit 'fixed-pitch)
+    :hook ((markdown-mode . visual-line-mode)
+           (markdown-mode . variable-pitch-mode)
+           (markdown-mode . visual-fill-column-mode)))
+#+end_src
 * Ledger
 #+begin_src emacs-lisp
   (use-package ledger-mode

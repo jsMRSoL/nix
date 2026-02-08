@@ -28,6 +28,7 @@
     ncdu
     pandoc
     papirus-icon-theme
+    pdfannots2json
     ripgrep
     rsync
     sxiv
