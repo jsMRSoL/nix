@@ -64,7 +64,6 @@
             ./system/hosts/pistol/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-pistol.nix;
               home-manager.extraSpecialArgs = {
@@ -83,7 +82,6 @@
             ./system/hosts/rapier/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-rapier.nix;
               home-manager.extraSpecialArgs = {
@@ -102,7 +100,6 @@
             ./system/hosts/swing/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-swing.nix;
               home-manager.extraSpecialArgs = {
@@ -121,7 +118,6 @@
             ./system/hosts/swingvm/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-swing.nix;
               home-manager.extraSpecialArgs = {
@@ -140,7 +136,6 @@
             ./system/hosts/viv/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-viv.nix;
               home-manager.extraSpecialArgs = {
@@ -159,7 +154,6 @@
             ./system/hosts/derek/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.simon = import ./user/profiles/simon-derek.nix;
               home-manager.extraSpecialArgs = {
