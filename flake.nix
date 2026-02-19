@@ -80,6 +80,7 @@
           };
           modules = [
             ./system/hosts/rapier/configuration.nix
+            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -98,6 +99,7 @@
           };
           modules = [
             ./system/hosts/swing/configuration.nix
+            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -116,6 +118,7 @@
           };
           modules = [
             ./system/hosts/swingvm/configuration.nix
+            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -134,6 +137,7 @@
           };
           modules = [
             ./system/hosts/viv/configuration.nix
+            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -152,6 +156,7 @@
           };
           modules = [
             ./system/hosts/derek/configuration.nix
+            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
