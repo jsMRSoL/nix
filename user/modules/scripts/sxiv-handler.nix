@@ -67,7 +67,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.xorg.xrdb}/bin/xrdb %h/.Xresources";
+        ExecStart = "${pkgs.xrdb}/bin/xrdb %h/.Xresources";
       };
     };
   };
