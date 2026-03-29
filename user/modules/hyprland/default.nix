@@ -144,6 +144,11 @@ in
         "noborder, onworkspace:f[1], floating:0"
       ];
 
+      bindl = [
+      # Suspend when lid is closed
+        ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
+      ];
+      
       bind = [
         "$mainMod, Delete, exec, systemctl suspend"
         "$mainMod_SHIFT, Delete, exec, systemctl poweroff"
