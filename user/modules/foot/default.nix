@@ -6,7 +6,7 @@
       main = {
         font = "FiraCode Nerd Font Mono:size=${hostConfig.termFontSize},FontAwesome:size=${hostConfig.termFontSize}";
       };
-      colors = {
+      colors-dark = {
         foreground = "cdd6f4";
         background = "1e1e2e";
         regular0 = "45475a";
