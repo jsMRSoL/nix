@@ -259,14 +259,18 @@ in
     enable = true;
     settings = {
       splash = true;
-      splash_offset = 0.2;
+      splash_offset = 1;
       # preload = [ "/home/simon/.nixos/assets/salty_mountains.png" ];
       # wallpaper = [ ",/home/simon/.nixos/assets/salty_mountains.png" ];
       preload = [
         "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png"
       ];
       wallpaper = [
-        ",/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png"
+        {
+          monitor = "eDP-1";
+          path = "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png";
+          fit_mode = "cover";
+        }
       ];
     };
   };
