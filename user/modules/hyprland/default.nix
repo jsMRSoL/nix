@@ -266,6 +266,11 @@ in
           path = "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png";
           fit_mode = "cover";
         }
+        {
+          monitor = "";
+          path = "/home/simon/.nixos/assets/nixos-wallpaper-catppuccin-mocha.png";
+          fit_mode = "cover";
+        }
       ];
     };
   };
