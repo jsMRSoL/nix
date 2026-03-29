@@ -2,6 +2,6 @@
 {
   home.packages = with pkgs; [
     pingus
-    superTux
+    supertux
   ];
 }

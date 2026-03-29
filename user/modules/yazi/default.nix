@@ -1,6 +1,9 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
-  programs.yazi.enable = true;
+  programs.yazi = {
+    enable = true;
+    shellWrapperName = "yy";
+  };
 
   xdg.configFile."yazi-configs" = {
     enable = true;
@@ -16,4 +19,3 @@
     odt2txt
   ];
 }
-

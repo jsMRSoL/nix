@@ -98,8 +98,6 @@ in
       master = {
         new_status = "inherit";
         new_on_top = false;
-        # no_gaps_when_only = true;
-        inherit_fullscreen = true;
         mfact = 0.5;
       };
 
@@ -123,32 +121,29 @@ in
         hide_on_key_press = true;
       };
 
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-        "opacity 0.96 0.9 1.0, class:.*"
-        # "fakefullscreen, class:^(GIMP)"
-        "float,class:(pavucontrol)"
-        "size 50% 80%,class:(pavucontrol)"
-        "float,class:(mpv)"
-        "opacity 1.0,class:(mpv)"
-        "size 75% 95%,class:(mpv)"
-        "move 13% 4%,class:(mpv)"
-        "float,class:(org.freedesktop.impl.portal.desktop.kde)"
-        "size 75% 95%,class:(Sxiv)"
-        "move 13% 4%,class:(Sxiv)"
-        "opacity 1.0,class:(Sxiv)"
-        "float,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
-        "opacity 1.0,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
-        "size 50% 60%,class:(xdg-desktop-portal-gtk),initialTitle:(.*)(save)"
-        "noborder, onworkspace:w[tv1] f[-1], floating:0"
-        "noborder, onworkspace:f[1], floating:0"
+      windowrule = [
+        "match:float true,match:class pavucontrol"
+        "size 50% 80%,match:class pavucontrol"
+        "match:float true,match:class mpv"
+        "opacity 1.0,match:class mpv"
+        "size 75% 95%,match:class mpv"
+        "move 13% 4%,match:class mpv"
+        "match:float true,match:class org.freedesktop.impl.portal.desktop.kde"
+        "size 75% 95%,match:class Sxiv"
+        "move 13% 4%,match:class Sxiv"
+        "opacity 1.0,match:class Sxiv"
+        "match:float true,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
+        "opacity 1.0,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
+        "size 50% 60%,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
+        # "noborder, onworkspace:w[tv1] f[-1], floating:0"
+        # "noborder, onworkspace:f[1], floating:0"
       ];
 
       bindl = [
-      # Suspend when lid is closed
+        # Suspend when lid is closed
         ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
       ];
-      
+
       bind = [
         "$mainMod, Delete, exec, systemctl suspend"
         "$mainMod_SHIFT, Delete, exec, systemctl poweroff"

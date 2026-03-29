@@ -43,7 +43,7 @@
     wakeonlan
     wipe
     xdg-utils
-    xorg.xrdb
+    xrdb
     zip
   ];
 

@@ -1,11 +1,14 @@
 {
   programs.git = {
     enable = true;
-    extraConfig = {
+    signing.format = "openpgp";
+    settings = {
+      user = {
+        name = "Simon Pitt";
+        email = "si_pitt@yahoo.com";
+      };
       pull.rebase = true;
       rebase.autostash = true;
     };
-    userEmail = "si_pitt@yahoo.com";
-    userName = "Simon Pitt";
   };
 }

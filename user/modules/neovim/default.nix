@@ -7,7 +7,7 @@
 
   home.packages = with pkgs; [
     nixd
-    nixfmt-rfc-style
+    nixfmt
     lua-language-server
     pyright
     shfmt
