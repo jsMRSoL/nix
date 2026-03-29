@@ -59,7 +59,8 @@ in
         gaps_in = 1;
         gaps_out = 2;
         border_size = 2;
-        "col.active_border" = "rgba(f38ba8ff)";
+        # "col.active_border" = "rgba(f38ba8ff)";
+        "col.active_border" = "rgba(cba6f7ff)";
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
@@ -74,10 +75,6 @@ in
           size = 3;
           passes = 1;
         };
-        # drop_shadow = "yes";
-        # shadow_range = 4;
-        # shadow_render_power = 3;
-        # "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -106,10 +103,6 @@ in
         preserve_split = "yes"; # you probably want this
       };
 
-      # gestures = {
-      #   workspace_swipe = "off";
-      # };
-
       misc = {
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
@@ -135,7 +128,9 @@ in
         "match:float true,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
         "opacity 1.0,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
         "size 50% 60%,match:class xdg-desktop-portal-gtk,match:initial_title (.*)(save)"
-        # "noborder, onworkspace:w[tv1] f[-1], floating:0"
+        "match:fullscreen true,border_size 0"
+        "match:workspace w[tv1],border_size 0"
+        # "match:workspace:w[tv1] f[-1], floating:0"
         # "noborder, onworkspace:f[1], floating:0"
       ];
 
