@@ -21,6 +21,11 @@
     let
       system = "x86_64-linux";
 
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       pistolConfig = {
         termFontSize = "16";
         keyboardType = "at-translated-set-2-keyboard";
@@ -137,11 +142,10 @@
           };
           modules = [
             ./system/hosts/viv/configuration.nix
-            ./system/components/nixpkgs.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
-              home-manager.users.simon = import ./user/profiles/simon-viv.nix;
+              home-manager.users.simon = import ./user/profiles/simon-viv.nix { inherit pkgs; };
               home-manager.extraSpecialArgs = {
                 hostConfig = vivConfig;
               };
@@ -160,7 +164,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
-              home-manager.users.simon = import ./user/profiles/simon-derek.nix;
+              home-manager.users.simon = import ./user/profiles/simon-derek.nix { inherit pkgs; };
               home-manager.extraSpecialArgs = {
                 hostConfig = derekConfig;
               };
