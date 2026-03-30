@@ -79,9 +79,7 @@ in
 
       animations = {
         enabled = "yes";
-
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
         animation = [
           "windows, 1, 7, myBezier"
           "windowsOut, 1, 7, default, popin 80%"
@@ -165,10 +163,13 @@ in
         # Layouts
         "$mainMod, F, togglefloating, "
         "$mainMod, M, fullscreen, 1"
-        "$mainMod_SHIFT, M, fullscreenstate, -1, 3"
+        # "$mainMod_SHIFT, M, fullscreenstate, -1, 3"
+        "$mainMod_SHIFT, M, exec, hyprctl keyword general:layout monocle"
 
         # Orientations
+        "$mainMod, T, exec, hyprctl keyword general:layout master"
         "$mainMod, T, layoutmsg, orientationleft"
+        "$mainMod, U, exec, hyprctl keyword general:layout master"
         "$mainMod, U, layoutmsg, orientationtop"
         "$mainMod, SPACE, layoutmsg, orientationnext"
 
