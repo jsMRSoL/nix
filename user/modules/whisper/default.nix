@@ -9,7 +9,7 @@
 
   home.sessionVariables = {
     # Vulkan environment variables for AMD GPU
-    VK_ICD_FILENAMES = "/run/current-system/sw/share/vulkan/icd.d/radeon_icd.x86_64.json";
-    VK_LAYER_PATH = "/run/current-system/sw/share/vulkan/explicit_layer.d";
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
   };
 }

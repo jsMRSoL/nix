@@ -323,5 +323,9 @@ in
     HYPRSHOT_DIR = "/home/simon/Pictures/screenshots";
     # Optional, hint Electron apps to use Wayland:
     NIXOS_OZONE_WL = "1";
+    WGPU_ADAPTER_NAME = "AMD Radeon RX 7800 XT (RADV NAVI32)";
+    # VK_ICD_FILENAMES etc are set in the whisper module.
+    GDK_BACKEND = "wayland";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 }

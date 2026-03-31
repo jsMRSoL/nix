@@ -42,7 +42,7 @@
     pkgs.obsidian
     pkgs.simple-scan
     pkgs.sqlitebrowser
-    pkgs.zed-editor
+    pkgs.zed-editor-fhs
     pkgs.zotero
   ];
 }
