@@ -34,6 +34,7 @@
   home.packages = [
     pkgs.brave
     pkgs.obsidian
+    pkgs.zed-editor-fhs
     pkgs.zotero
   ];
 }
